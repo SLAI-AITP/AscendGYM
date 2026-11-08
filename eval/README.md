@@ -4,4 +4,3 @@
 
 - [native_harness/README.md](native_harness/README.md)
 - [bare_harness/README.md](bare_harness/README.md)
-
