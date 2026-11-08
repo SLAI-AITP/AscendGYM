@@ -1,0 +1,2873 @@
+{
+  "root": "/tmp/ascendgym-eval-CtLAmj/input",
+  "n_runs": 17,
+  "generators": {
+    "agents": [
+      {
+        "id": "codex",
+        "type": "general",
+        "strategy": "agentic-search",
+        "kind": "codex",
+        "wrapper": null
+      }
+    ],
+    "engine_models": [
+      {
+        "id": "glm-5.3",
+        "vendor": null,
+        "openness": null
+      }
+    ],
+    "agent_ids": [
+      "codex"
+    ],
+    "engine_model_ids": [
+      "glm-5.3"
+    ]
+  },
+  "accuracy": {
+    "TaskPassRate": 0.7058823529411765,
+    "GateRate": 0.29411764705882354,
+    "RunCompletedRate": 0.0
+  },
+  "cost": {
+    "TotalTokens": 6229324.0,
+    "median_TotalTokens": 766453.0,
+    "TotalWallClockSec": 132625.66601823363,
+    "median_WallClockSec": 6813.166050545871,
+    "mean_LLMRounds": 6.0,
+    "median_LLMRounds": 6.0,
+    "TotalToolCalls": 257.0,
+    "median_ToolCalls": 13.0,
+    "TotalInputTokens": null,
+    "TotalCachedInputTokens": null,
+    "TotalCacheWriteTokens": null,
+    "TotalOutputTokens": null
+  },
+  "sts": {
+    "EBGS": 1.0989947088177279,
+    "mean_Speedup": 1.1199235403605547,
+    "median_Speedup": 0.9910683263273595,
+    "max_Speedup": 1.5893330133750965,
+    "mean_VLR": 0.0755777416281842,
+    "mean_EndGain": 0.1361844403537494,
+    "mean_AULS_token": 0.0727698456546858,
+    "mean_AULS_time": 0.07675200252855306,
+    "mean_STS_token": 10.447714300421763,
+    "mean_STS_time": 10.646822144115125,
+    "EIR_1%": 0.4,
+    "median_TokensTo1%": 662227.0,
+    "median_TimeTo1%": 8152.04454118479,
+    "EIR_5%": 0.2,
+    "median_TokensTo5%": 917115.0,
+    "median_TimeTo5%": 9014.839463987388,
+    "EIR_10%": 0.2,
+    "median_TokensTo10%": 917115.0,
+    "median_TimeTo10%": 9014.839463987388
+  },
+  "paos": {
+    "computed_runs": 5,
+    "mean_PAOS_base": 1.1199235403605547,
+    "mean_PTEI": 1.1199235403605547,
+    "mean_PKAI": 1.1199235403605547,
+    "mean_eTPS_base": 83.17313515446908,
+    "mean_eTPS_agent": 87.66610137748835,
+    "mean_S_i_aicore": 1.0260672232405466,
+    "mean_U_i": 0.0005801653837929396,
+    "mean_U_step": 0.13423416556477735,
+    "mean_VecRatio": 0.040400000000000005,
+    "mean_CubeRatio": 0.0,
+    "mean_MTE2Ratio": 0.0,
+    "status": "computed",
+    "runtime_scenario": "decode",
+    "G": 1.0,
+    "batch_size": 1.0,
+    "chunk_len": null,
+    "T_other_ms": 0.0,
+    "calls_per_step": [
+      1.0
+    ],
+    "input_source": {
+      "recipe": "default",
+      "G": "computed",
+      "runtime_scenario": "cli",
+      "batch_size": "cli",
+      "chunk_len": "missing",
+      "T_other_ms": "default",
+      "calls_per_step": "default"
+    }
+  },
+  "catalog": {
+    "version": "1.0",
+    "categories": [
+      {
+        "key": "accuracy",
+        "label": "正确性",
+        "subtitle": "Correctness"
+      },
+      {
+        "key": "identity",
+        "label": "生成者",
+        "subtitle": "Generator identity"
+      },
+      {
+        "key": "cost",
+        "label": "成本",
+        "subtitle": "Cost & effort"
+      },
+      {
+        "key": "sts",
+        "label": "STS · token 效率轴",
+        "subtitle": "Speedup–Token Surface"
+      },
+      {
+        "key": "paos",
+        "label": "PAOS · 价值轴",
+        "subtitle": "Profile Agent Optimization Score"
+      },
+      {
+        "key": "durations",
+        "label": "延迟",
+        "subtitle": "Latency"
+      }
+    ],
+    "metrics": {
+      "Agent": {
+        "label": "Agent",
+        "short": "AGENT",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "生成算子的 coding agent 身份，取自 run 配置的 agent.kind（command 型由 wrapper 文件名解析）。"
+      },
+      "EngineModel": {
+        "label": "Engine Model",
+        "short": "MODEL",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "驱动该 agent 的 LLM，优先取 run 配置的 agent.model，其次 usage.models_observed、harness 启动日志与 run id；具体来源记在 identity.engine_model.model_source。"
+      },
+      "TaskPassRate": {
+        "label": "Task Pass Rate",
+        "short": "TASK %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "至少存在一个有效 baseline 或通过候选的任务占比。"
+      },
+      "GateRate": {
+        "label": "Correctness Gate Rate",
+        "short": "GATE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过正确性硬门槛的任务占比；只有这些任务进入 STS / PAOS 性能榜。"
+      },
+      "RunCompletedRate": {
+        "label": "Run Completed Rate",
+        "short": "DONE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "完整跑完（operational_status=completed）的任务占比。"
+      },
+      "TaskPass": {
+        "label": "Task Pass",
+        "short": "PASS",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级 0/1 标记：存在有效 baseline 或通过候选即为 1。"
+      },
+      "CandidatePassRate": {
+        "label": "Candidate Pass Rate",
+        "short": "CAND %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过功能测试的候选数 / 已完成的候选总数。"
+      },
+      "CorrectnessGate": {
+        "label": "Correctness Gate",
+        "short": "GATE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级硬门槛：存在通过候选才允许计入性能汇总。"
+      },
+      "RunCompleted": {
+        "label": "Run Completed",
+        "short": "DONE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "运行是否正常结束。"
+      },
+      "FailureReason": {
+        "label": "Failure Reason",
+        "short": "REASON",
+        "unit": "",
+        "direction": "context",
+        "category": "accuracy",
+        "definition": "原样保留的终止原因，用于解释失败或阻塞。"
+      },
+      "TotalTokens": {
+        "label": "Cumulative Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "该任务累计消耗的 prompt+completion token，是 STS 的成本横轴。"
+      },
+      "median_TotalTokens": {
+        "label": "Median Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务累计 token 的中位数。"
+      },
+      "LLMRounds": {
+        "label": "LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 与模型交互的轮数。"
+      },
+      "mean_LLMRounds": {
+        "label": "Mean LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务 LLM 轮数的算术平均。"
+      },
+      "ToolCalls": {
+        "label": "Tool Calls",
+        "short": "TOOLS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 发起的工具调用次数。"
+      },
+      "TotalWallClockSec": {
+        "label": "Wall Time",
+        "short": "WALL",
+        "unit": "s",
+        "direction": "down",
+        "category": "cost",
+        "definition": "任务端到端 wall-clock 耗时（秒）。"
+      },
+      "BaselineMs": {
+        "label": "Baseline Latency",
+        "short": "L0 µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "优化前基线算子延迟 L0，取自有效 baseline 候选。"
+      },
+      "BestMs": {
+        "label": "Best Latency",
+        "short": "LBEST µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "通过候选中的最小延迟 L_best。"
+      },
+      "EBGS": {
+        "label": "EBGS",
+        "short": "EBGS",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "跨任务专家基线几何平均加速比 exp(mean(ln S_i))，代表峰值收益。"
+      },
+      "mean_Speedup": {
+        "label": "Mean Speedup",
+        "short": "SPD",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比 S_i = L0 / L_best 的算术平均。"
+      },
+      "median_Speedup": {
+        "label": "Median Speedup",
+        "short": "S~",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比的中位数，比均值更抗离群。"
+      },
+      "max_Speedup": {
+        "label": "Max Speedup",
+        "short": "S↑",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "任务集合中的最佳加速比。"
+      },
+      "Speedup": {
+        "label": "Speedup",
+        "short": "S",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "已验证加速比 S = L0 / L_best，只统计通过功能测试的解。"
+      },
+      "VLR": {
+        "label": "VLR",
+        "short": "VLR",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "Validated Latency Reduction 延迟降低率 1 − L_best / L0。"
+      },
+      "EndGain": {
+        "label": "End Gain",
+        "short": "log₂S",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "最终收益项 log₂S(B_max)，即 S(B_max)=L0/L_best 的对数；是 STS_token 中不依赖 token 曲线的分量，token 轴缺失时仍可计算。"
+      },
+      "AULS_token": {
+        "label": "AULS (token)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 token 轴上 best-so-far 加速曲线的归一化面积，衡量“多早拿到收益”。"
+      },
+      "AULS_time": {
+        "label": "AULS (time)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 wall-clock 轴上的 anytime 面积，衡量时间维度上的效率。"
+      },
+      "STS_token": {
+        "label": "STS Token",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "主榜分：100·[0.5·EndGain + 0.5·AULS_token]，融合最终收益与过程效率；任一分量缺失则为 null。"
+      },
+      "STS_time": {
+        "label": "STS Time",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "同 STS_token，横轴换成 wall-clock，用于基础设施效率诊断。"
+      },
+      "S_equiv": {
+        "label": "S_equiv",
+        "short": "S_EQUIV",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "2^(STS_token/100)，把综合分翻译回可解释的“等效加速比”。"
+      },
+      "EIR": {
+        "label": "EIR",
+        "short": "EIR %",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "达到指定 VLR 阈值（1% / 5% / 10%）的任务比例，衡量改进广度。"
+      },
+      "TokensTo": {
+        "label": "Tokens-to-Δ",
+        "short": "TO Δ",
+        "unit": "token",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的累计 token 数。"
+      },
+      "TimeTo": {
+        "label": "Time-to-Δ",
+        "short": "T Δ",
+        "unit": "s",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的 wall-clock 秒数。"
+      },
+      "S_i_lat": {
+        "label": "Kernel Speedup",
+        "short": "S_lat",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子延迟加速比 t_base / t_best，是 PAOS 的原子量。"
+      },
+      "T_step_base_ms": {
+        "label": "T_step (base)",
+        "short": "T0",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化前 step 总耗时 T_other + Σ(n_i · t_i^0)，按 recipe 的调用次数合成。"
+      },
+      "T_step_agent_ms": {
+        "label": "T_step (agent)",
+        "short": "T1",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化后 step 总耗时，只有被优化算子换成了最佳通过候选。"
+      },
+      "PTEI": {
+        "label": "PTEI",
+        "short": "PTEI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "eTPSGain = T_step^0 / T_step^1，step 级 token 吞吐增益。"
+      },
+      "PKAI": {
+        "label": "PKAI",
+        "short": "PKAI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "token-time 加权算子加速指数 exp(Σ w_i·ln S_i^lat)，权重小的算子影响力也小。"
+      },
+      "PAOS_base": {
+        "label": "PAOS",
+        "short": "PAOS",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "价值轴主分 √(PKAI × PTEI)：既奖励算得快，也奖励优化在关键路径上。"
+      },
+      "eTPS_base": {
+        "label": "eTPS (base)",
+        "short": "eTPS0",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化前估算模型 token 吞吐 G / T_step^0。"
+      },
+      "eTPS_agent": {
+        "label": "eTPS (agent)",
+        "short": "eTPS1",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化后估算模型 token 吞吐 G / T_step^1。"
+      },
+      "S_i_aicore": {
+        "label": "AI Core Speedup",
+        "short": "S_aicore",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "AI 活跃时间加速比 a_base / a_agent，反映是否真正更省算力。"
+      },
+      "U_i": {
+        "label": "AI Active Utilization",
+        "short": "U_i",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子级 AI 活跃时间利用率 a_i / t_i（诊断上下文，不参与 PAOS 主分）。"
+      },
+      "U_step": {
+        "label": "Step Utilization",
+        "short": "U_step",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "step 级 AI 活跃利用率 Σ(n_i·a_i) / T_step。"
+      },
+      "VecRatio": {
+        "label": "Vector Ratio",
+        "short": "VEC",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "AI Vector 时间 / Task Duration，用于判断算子是否 vector-bound。"
+      },
+      "CubeRatio": {
+        "label": "Cube Ratio",
+        "short": "CUBE",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "Cube 利用率，用于判断算子是否 cube-bound。"
+      },
+      "MTE2Ratio": {
+        "label": "MTE2 Ratio",
+        "short": "MTE2",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "MTE2（搬运）占比，用于识别访存瓶颈。"
+      }
+    }
+  },
+  "runs": [
+    {
+      "task_id": "add_rms_norm-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 8160.434064080007,
+        "SearchWallClockSec": 1859.8095306837931,
+        "LLMRounds": 5.0,
+        "ToolCalls": 8.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.011138838571428571,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.2725,
+            "S_i_aicore": null,
+            "U_i": 0.0004838403041825095,
+            "VecRatio": 0.03,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/add_rms_norm-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925075600.csv",
+            "samples": 304
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.2725,
+            "S_i_aicore": null,
+            "U_i": 0.0004838403041825095,
+            "VecRatio": 0.03,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/add_rms_norm-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925075600.csv",
+            "samples": 304
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "clipped_swiglu-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "baseline_failed",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 1324.9419599333778,
+        "SearchWallClockSec": 1294.3943090476096,
+        "LLMRounds": 2.0,
+        "ToolCalls": 5.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "fused_gdn_gating-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 6813.166050545871,
+        "SearchWallClockSec": 2766.723529030569,
+        "LLMRounds": 6.0,
+        "ToolCalls": 13.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.00756592,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.3369999999999997,
+            "S_i_aicore": null,
+            "U_i": 0.0006594861660079049,
+            "VecRatio": 0.113,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/fused_gdn_gating-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925022656.csv",
+            "samples": 200
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.3369999999999997,
+            "S_i_aicore": null,
+            "U_i": 0.0006594861660079049,
+            "VecRatio": 0.113,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/fused_gdn_gating-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925022656.csv",
+            "samples": 200
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "hc_post-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 4085.124745369889,
+        "SearchWallClockSec": 2158.856412482448,
+        "LLMRounds": 3.0,
+        "ToolCalls": 3.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.0095242,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.7065,
+            "S_i_aicore": null,
+            "U_i": 0.0008515940107188244,
+            "VecRatio": 0.616,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/hc_post-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925041202.csv",
+            "samples": 80
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.7065,
+            "S_i_aicore": null,
+            "U_i": 0.0008515940107188244,
+            "VecRatio": 0.616,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/hc_post-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925041202.csv",
+            "samples": 80
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "hc_pre_sinkhorn-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "baseline_failed",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 1178.3087650928646,
+        "SearchWallClockSec": 1147.8559939200059,
+        "LLMRounds": 2.0,
+        "ToolCalls": 4.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "interleave_rope-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 1,
+        "CandidatesPassed": 1,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 370441.0,
+        "TotalWallClockSec": 6750.9642610140145,
+        "SearchWallClockSec": 5095.638383036479,
+        "LLMRounds": 8.0,
+        "ToolCalls": 17.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.019652799999999998,
+        "BestMs": 0.02008118,
+        "Speedup": 0.9786675882592556,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 0.9786675882592556,
+        "VLR": -0.02179740291459753,
+        "EndGain": -0.03110917398100619,
+        "AULS_token": 0.0,
+        "AULS_time": 0.0,
+        "SpeedupSearch": 0.9786675882592556,
+        "VLRSearch": -0.02179740291459753,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": null,
+        "VerificationMedianMs": null,
+        "VerificationCV": null,
+        "SpeedupConfirmed": null,
+        "VLRConfirmed": null,
+        "token_source": "codex_rollout:time_aligned",
+        "STS_token": -1.5554586990503094,
+        "STS_time": -1.5554586990503094,
+        "S_equiv": 0.9892762952073882
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.019652799999999998,
+        "T_step_agent_ms": 0.02008118,
+        "eTPS_base": 50.88333469022226,
+        "eTPS_agent": 49.797870443868334,
+        "S_i_lat": 0.9786675882592556,
+        "PTEI": 0.9786675882592556,
+        "PKAI": 0.9786675882592556,
+        "PAOS_base": 0.9786675882592556,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.932,
+            "S_i_aicore": null,
+            "U_i": 0.0005488636363636364,
+            "VecRatio": 0.056,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/interleave_rope-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925021424.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 2.0835,
+            "S_i_aicore": null,
+            "U_i": 0.0005708219178082191,
+            "VecRatio": 0.054,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/interleave_rope-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260925030543.csv",
+            "samples": 240
+          },
+          "S_i_aicore": 0.9272858171346292,
+          "U_i": 0.0005708219178082191,
+          "U_step": 0.10375386306979968,
+          "VecRatio": 0.054,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.019652799999999998,
+        "token": [
+          {
+            "Tokens": 66623.0,
+            "BestMs": 0.019652799999999998,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 370441.0,
+            "BestMs": 0.019652799999999998,
+            "Speedup": 1.0
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 2016.854316267185,
+            "BestMs": 0.019652799999999998,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 5095.638383036479,
+            "BestMs": 0.019652799999999998,
+            "Speedup": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "lightning_indexer-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 0,
+        "FailureReason": "manual_stop",
+        "CandidatesTotal": 2,
+        "CandidatesPassed": 2,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 1419578.0,
+        "TotalWallClockSec": 13920.026187639683,
+        "SearchWallClockSec": 12917.617715979926,
+        "LLMRounds": 7.0,
+        "ToolCalls": 25.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.026965418571428573,
+        "BestMs": 0.0169665,
+        "Speedup": 1.5893330133750965,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0002",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.5893330133750965,
+        "VLR": 0.37080524246054203,
+        "EndGain": 0.6684214446412874,
+        "AULS_token": 0.32755428863847574,
+        "AULS_time": 0.34746507300781204,
+        "SpeedupSearch": 1.5893330133750965,
+        "VLRSearch": 0.37080524246054203,
+        "TokensTo1%": 917115.0,
+        "TimeTo1%": 9014.839463987388,
+        "TokensTo5%": 917115.0,
+        "TimeTo5%": 9014.839463987388,
+        "TokensTo10%": 917115.0,
+        "TimeTo10%": 9014.839463987388,
+        "VerificationPassRate": null,
+        "VerificationMedianMs": null,
+        "VerificationCV": null,
+        "SpeedupConfirmed": null,
+        "VLRConfirmed": null,
+        "token_source": "codex_rollout:time_aligned",
+        "STS_token": 49.79878666398816,
+        "STS_time": 50.79432588245497,
+        "S_equiv": 1.4122425270865555
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.026965418571428573,
+        "T_step_agent_ms": 0.0169665,
+        "eTPS_base": 37.08453467358961,
+        "eTPS_agent": 58.93967524238942,
+        "S_i_lat": 1.5893330133750965,
+        "PTEI": 1.5893330133750965,
+        "PKAI": 1.5893330133750965,
+        "PAOS_base": 1.5893330133750965,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.916,
+            "S_i_aicore": null,
+            "U_i": 0.0005585365853658537,
+            "VecRatio": 0.038,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/lightning_indexer-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925074947.csv",
+            "samples": 304
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0002",
+            "ActiveTimeUs": 0.877,
+            "S_i_aicore": null,
+            "U_i": 0.0005694805194805195,
+            "VecRatio": 0.04,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/lightning_indexer-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0002/profile_output/mindstudio_profiler_output/op_summary_20260925110520.csv",
+            "samples": 304
+          },
+          "S_i_aicore": 1.0444697833523375,
+          "U_i": 0.0005694805194805195,
+          "U_step": 0.051690095187575516,
+          "VecRatio": 0.04,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.026965418571428573,
+        "token": [
+          {
+            "Tokens": 11690.0,
+            "BestMs": 0.026965418571428573,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 917115.0,
+            "BestMs": 0.01786142857142857,
+            "Speedup": 1.5097011117331842
+          },
+          {
+            "Tokens": 1419578.0,
+            "BestMs": 0.0169665,
+            "Speedup": 1.5893330133750965
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 1185.4021545965225,
+            "BestMs": 0.026965418571428573,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 9014.839463987388,
+            "BestMs": 0.01786142857142857,
+            "Speedup": 1.5097011117331842
+          },
+          {
+            "Seconds": 12917.617715979926,
+            "BestMs": 0.0169665,
+            "Speedup": 1.5893330133750965
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "mla_prolog-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "manual_stop",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 1428.423422829248,
+        "SearchWallClockSec": null,
+        "LLMRounds": 2.0,
+        "ToolCalls": 7.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "moe_fused_topk-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 6911.308383745141,
+        "SearchWallClockSec": 1431.4343420937657,
+        "LLMRounds": 6.0,
+        "ToolCalls": 21.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.011926749999999998,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.874,
+            "S_i_aicore": null,
+            "U_i": 0.0006154929577464788,
+            "VecRatio": 0.036,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/moe_fused_topk-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925020439.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.874,
+            "S_i_aicore": null,
+            "U_i": 0.0006154929577464788,
+            "VecRatio": 0.036,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/moe_fused_topk-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925020439.csv",
+            "samples": 240
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "moe_gating_top_k-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 2591.949241350405,
+        "SearchWallClockSec": null,
+        "LLMRounds": 2.0,
+        "ToolCalls": 2.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "moe_token_unpermute-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.0,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 2,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 567862.0,
+        "TotalWallClockSec": 14123.280826124363,
+        "SearchWallClockSec": 9268.092143837363,
+        "LLMRounds": 11.0,
+        "ToolCalls": 23.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.0078742,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0015,
+            "S_i_aicore": null,
+            "U_i": 0.0005658192090395481,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/moe_token_unpermute-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925022247.csv",
+            "samples": 208
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0015,
+            "S_i_aicore": null,
+            "U_i": 0.0005658192090395481,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/moe_token_unpermute-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925022247.csv",
+            "samples": 208
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "qkv_rms_norm_rope_cache-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.5,
+        "CorrectnessGate": 1,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 2,
+        "CandidatesPassed": 1,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 766453.0,
+        "TotalWallClockSec": 14197.713241559453,
+        "SearchWallClockSec": 8273.5751070017,
+        "LLMRounds": 12.0,
+        "ToolCalls": 26.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.0148895,
+        "BestMs": 0.015023686666666666,
+        "Speedup": 0.9910683263273595,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0002",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 0.9910683263273595,
+        "VLR": -0.009012167411039052,
+        "EndGain": -0.012943571627349888,
+        "AULS_token": 0.0,
+        "AULS_time": 0.0,
+        "SpeedupSearch": 0.9910683263273595,
+        "VLRSearch": -0.009012167411039052,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": null,
+        "VerificationMedianMs": null,
+        "VerificationCV": null,
+        "SpeedupConfirmed": null,
+        "VLRConfirmed": null,
+        "token_source": "codex_rollout:time_aligned",
+        "STS_token": -0.6471785813674944,
+        "STS_time": -0.6471785813674944,
+        "S_equiv": 0.9955241465315442
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.0148895,
+        "T_step_agent_ms": 0.015023686666666666,
+        "eTPS_base": 67.1614224789281,
+        "eTPS_agent": 66.56155856995598,
+        "S_i_lat": 0.9910683263273595,
+        "PTEI": 0.9910683263273595,
+        "PKAI": 0.9910683263273595,
+        "PAOS_base": 0.9910683263273595,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.013,
+            "S_i_aicore": null,
+            "U_i": 0.0004965686274509804,
+            "VecRatio": 0.033,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/qkv_rms_norm_rope_cache-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925040055.csv",
+            "samples": 1040
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0002",
+            "ActiveTimeUs": 1.003,
+            "S_i_aicore": null,
+            "U_i": 0.0005117346938775509,
+            "VecRatio": 0.032,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/qkv_rms_norm_rope_cache-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0002/profile_output/mindstudio_profiler_output/op_summary_20260925055116.csv",
+            "samples": 1040
+          },
+          "S_i_aicore": 1.0099700897308075,
+          "U_i": 0.0005117346938775509,
+          "U_step": 0.06676124324566583,
+          "VecRatio": 0.032,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.0148895,
+        "token": [
+          {
+            "Tokens": 117168.0,
+            "BestMs": 0.0148895,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 766453.0,
+            "BestMs": 0.0148895,
+            "Speedup": 1.0
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 1653.1653442224488,
+            "BestMs": 0.0148895,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 8273.5751070017,
+            "BestMs": 0.0148895,
+            "Speedup": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "recurrent_gated_delta_rule-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.0,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "manual_stop",
+        "CandidatesTotal": 3,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 1707314.0,
+        "TotalWallClockSec": 23871.950649246573,
+        "SearchWallClockSec": 21288.217990870588,
+        "LLMRounds": 8.0,
+        "ToolCalls": 47.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.013174666666666666,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0775000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.00047052401746724894,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/recurrent_gated_delta_rule-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925051027.csv",
+            "samples": 368
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0775000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.00047052401746724894,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/recurrent_gated_delta_rule-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925051027.csv",
+            "samples": 368
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "rms_norm-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 0,
+        "FailureReason": null,
+        "CandidatesTotal": 1,
+        "CandidatesPassed": 1,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 909413.0,
+        "TotalWallClockSec": 7289.249618382193,
+        "SearchWallClockSec": 7289.249618382193,
+        "LLMRounds": 13.0,
+        "ToolCalls": 24.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": null,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.012102442857142858,
+        "BestMs": 0.011508568571428573,
+        "Speedup": 1.0516027933472674,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0516027933472674,
+        "VLR": 0.0490706126626147,
+        "EndGain": 0.0725898792699066,
+        "AULS_token": 0.0362949396349533,
+        "AULS_time": 0.0362949396349533,
+        "SpeedupSearch": 1.0516027933472674,
+        "VLRSearch": 0.0490706126626147,
+        "TokensTo1%": 407339.0,
+        "TimeTo1%": 7289.249618382193,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": null,
+        "VerificationMedianMs": null,
+        "VerificationCV": null,
+        "SpeedupConfirmed": null,
+        "VLRConfirmed": null,
+        "token_source": "codex_rollout:time_aligned",
+        "STS_token": 5.444240945242995,
+        "STS_time": 5.444240945242995,
+        "S_equiv": 1.0384576698173547
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.012102442857142858,
+        "T_step_agent_ms": 0.011508568571428573,
+        "eTPS_base": 82.62794642403954,
+        "eTPS_agent": 86.89177926806832,
+        "S_i_lat": 1.0516027933472674,
+        "PTEI": 1.0516027933472674,
+        "PKAI": 1.0516027933472674,
+        "PAOS_base": 1.0516027933472674,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.222,
+            "S_i_aicore": null,
+            "U_i": 0.0007936938046557457,
+            "VecRatio": 0.032,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/rms_norm-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925074415.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 2.8529999999999998,
+            "S_i_aicore": null,
+            "U_i": 0.0007567639257294429,
+            "VecRatio": 0.034,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/rms_norm-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260925092800.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.1293375394321767,
+          "U_i": 0.0007567639257294429,
+          "U_step": 0.24790224625179894,
+          "VecRatio": 0.034,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.012102442857142858,
+        "token": [
+          {
+            "Tokens": 30986.0,
+            "BestMs": 0.012102442857142858,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 407339.0,
+            "BestMs": 0.011508568571428573,
+            "Speedup": 1.0516027933472674
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 1064.5360931521282,
+            "BestMs": 0.012102442857142858,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 7289.249618382193,
+            "BestMs": 0.011508568571428573,
+            "Speedup": 1.0516027933472674
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "rope_with_sin_cos_cache-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 2753.140589611605,
+        "SearchWallClockSec": null,
+        "LLMRounds": 2.0,
+        "ToolCalls": 2.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "sparse_flash_attention-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "failed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": null,
+        "TotalWallClockSec": 4626.664149936289,
+        "SearchWallClockSec": 1376.555263360031,
+        "LLMRounds": 3.0,
+        "ToolCalls": 9.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.027436540000000006,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0000",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "no_passed_candidate",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 4.6259999999999994,
+            "S_i_aicore": null,
+            "U_i": 0.0006039164490861618,
+            "VecRatio": 0.016,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/sparse_flash_attention-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925100401.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 4.6259999999999994,
+            "S_i_aicore": null,
+            "U_i": 0.0006039164490861618,
+            "VecRatio": 0.016,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/sparse_flash_attention-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925100401.csv",
+            "samples": 240
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "swi_glu-codex-native-codex-glm-5.3-20260925-014051",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "codex",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "codex",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "glm-5.3",
+          "raw": "glm-5.3",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 1,
+        "CandidatesPassed": 1,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 488263.0,
+        "TotalWallClockSec": 12599.019861772656,
+        "SearchWallClockSec": 10678.178157910705,
+        "LLMRounds": 10.0,
+        "ToolCalls": 21.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false,
+        "cost_source": "codex_rollout:time_aligned"
+      },
+      "durations": {
+        "BaselineMs": 0.005614557142857143,
+        "BestMs": 0.005677314285714285,
+        "Speedup": 0.988945980493795,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 0.988945980493795,
+        "VLR": -0.01117757665659913,
+        "EndGain": -0.016036376534090693,
+        "AULS_token": 0.0,
+        "AULS_time": 0.0,
+        "SpeedupSearch": 0.988945980493795,
+        "VLRSearch": -0.01117757665659913,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": null,
+        "VerificationMedianMs": null,
+        "VerificationCV": null,
+        "SpeedupConfirmed": null,
+        "VLRConfirmed": null,
+        "token_source": "codex_rollout:time_aligned",
+        "STS_token": -0.8018188267045346,
+        "STS_time": -0.8018188267045346,
+        "S_equiv": 0.9944576313216139
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.005614557142857143,
+        "T_step_agent_ms": 0.005677314285714285,
+        "eTPS_base": 178.1084375055659,
+        "eTPS_agent": 176.13962336315967,
+        "S_i_lat": 0.988945980493795,
+        "PTEI": 0.988945980493795,
+        "PKAI": 0.988945980493795,
+        "PAOS_base": 0.988945980493795,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.1635,
+            "S_i_aicore": null,
+            "U_i": 0.00047684426229508195,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/swi_glu-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925050214.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 1.1415,
+            "S_i_aicore": null,
+            "U_i": 0.0004920258620689655,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-codex-glm-5.3-20260925-014051/swi_glu-codex-native-codex-glm-5.3-20260925-014051/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260925065426.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.0192728865527814,
+          "U_i": 0.0004920258620689655,
+          "U_step": 0.20106338006904675,
+          "VecRatio": 0.042,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.005614557142857143,
+        "token": [
+          {
+            "Tokens": 122403.0,
+            "BestMs": 0.005614557142857143,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 488263.0,
+            "BestMs": 0.005614557142857143,
+            "Speedup": 1.0
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 3946.2192361894995,
+            "BestMs": 0.005614557142857143,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 10678.178157910705,
+            "BestMs": 0.005614557142857143,
+            "Speedup": 1.0
+          }
+        ]
+      }
+    }
+  ]
+}

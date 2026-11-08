@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="AscendGYM mark">
+  <circle cx="48" cy="48" r="38" fill="none" stroke="#0E9B8E" stroke-width="4"/>
+  <path d="M18 30A38 38 0 0 1 70 14M78 66A38 38 0 0 1 27 80" fill="none" stroke="#E08A1E" stroke-width="4" stroke-linecap="round"/>
+  <rect x="28" y="28" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#14161A" stroke-width="3"/>
+  <g fill="#0E9B8E">
+    <rect x="35" y="35" width="8" height="8" rx="2"/><rect x="46" y="35" width="8" height="8" rx="2"/><rect x="57" y="35" width="4" height="8" rx="2"/>
+    <rect x="35" y="46" width="8" height="8" rx="2"/><rect x="46" y="46" width="8" height="8" rx="2" fill="#E08A1E"/><rect x="57" y="46" width="4" height="8" rx="2"/>
+    <rect x="35" y="57" width="8" height="4" rx="2"/><rect x="46" y="57" width="8" height="4" rx="2"/><rect x="57" y="57" width="4" height="4" rx="2"/>
+  </g>
+</svg>

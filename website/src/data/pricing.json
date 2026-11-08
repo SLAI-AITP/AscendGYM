@@ -1,0 +1,8 @@
+{
+  "schema": "ascendgym-pricing-v1",
+  "currency": "USD",
+  "unit": "per_1M_tokens",
+  "updated": null,
+  "note": "价格由使用者导入或填写，评测集不预设任何价格，避免把未经验证的数字当成结论。未配置价格的模型，其 API Cost 一律显示为 – 。",
+  "models": {}
+}

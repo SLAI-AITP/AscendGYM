@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="AscendGYM monochrome mark">
+  <circle cx="48" cy="48" r="38" fill="none" stroke="#14161A" stroke-width="4"/>
+  <rect x="28" y="28" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#14161A" stroke-width="3"/>
+  <path d="M35 35h8v8h-8zm11 0h8v8h-8zm11 0h4v8h-4zM35 46h8v8h-8zm11 0h8v8h-8zm11 0h4v8h-4zM35 57h8v4h-8zm11 0h8v4h-8zm11 0h4v4h-4z" fill="#14161A"/>
+</svg>

@@ -1,0 +1,4979 @@
+{
+  "root": "/tmp/ascendgym-eval-CtLAmj/input",
+  "n_runs": 17,
+  "generators": {
+    "agents": [
+      {
+        "id": "opencode",
+        "type": "general",
+        "strategy": "agentic-search",
+        "kind": "opencode",
+        "wrapper": null
+      }
+    ],
+    "engine_models": [
+      {
+        "id": "gpt-5.6-terra",
+        "vendor": null,
+        "openness": null
+      }
+    ],
+    "agent_ids": [
+      "opencode"
+    ],
+    "engine_model_ids": [
+      "gpt-5.6-terra"
+    ]
+  },
+  "accuracy": {
+    "TaskPassRate": 1.0,
+    "GateRate": 1.0,
+    "RunCompletedRate": 1.0
+  },
+  "cost": {
+    "TotalTokens": 51899132.0,
+    "median_TotalTokens": 2883047.0,
+    "TotalWallClockSec": 66537.52114577033,
+    "median_WallClockSec": 3002.087322375737,
+    "mean_LLMRounds": 50.88235294117647,
+    "median_LLMRounds": 46.0,
+    "TotalToolCalls": 1053.0,
+    "median_ToolCalls": 55.0,
+    "TotalInputTokens": 6113037.0,
+    "TotalCachedInputTokens": 45591040.0,
+    "TotalCacheWriteTokens": 0.0,
+    "TotalOutputTokens": 195055.0
+  },
+  "sts": {
+    "EBGS": 1.0470981213705357,
+    "mean_Speedup": 1.0482628985203888,
+    "median_Speedup": 1.022948140710621,
+    "max_Speedup": 1.1641344106202904,
+    "mean_VLR": 0.043947010237602974,
+    "mean_EndGain": 0.06639664053219929,
+    "mean_AULS_token": 0.03452119970770972,
+    "mean_AULS_time": 0.0397605658065923,
+    "mean_STS_token": 5.045892011995453,
+    "mean_STS_time": 5.307860316939579,
+    "EIR_1%": 0.6470588235294118,
+    "median_TokensTo1%": 591634.0,
+    "median_TimeTo1%": 610.6221961881965,
+    "EIR_5%": 0.35294117647058826,
+    "median_TokensTo5%": 884781.5,
+    "median_TimeTo5%": 1103.6776522663422,
+    "EIR_10%": 0.17647058823529413,
+    "median_TokensTo10%": 1310164.0,
+    "median_TimeTo10%": 1631.1553556211293
+  },
+  "paos": {
+    "computed_runs": 17,
+    "mean_PAOS_base": 1.0482628985203888,
+    "mean_PTEI": 1.0482628985203888,
+    "mean_PKAI": 1.0482628985203888,
+    "mean_eTPS_base": 86.66924647922428,
+    "mean_eTPS_agent": 90.3028048171157,
+    "mean_S_i_aicore": 1.029267859728007,
+    "mean_U_i": 0.0006108464446604455,
+    "mean_U_step": 0.24751289531947698,
+    "mean_VecRatio": 0.12920588235294114,
+    "mean_CubeRatio": 0.0,
+    "mean_MTE2Ratio": 0.0,
+    "status": "computed",
+    "runtime_scenario": "decode",
+    "G": 1.0,
+    "batch_size": 1.0,
+    "chunk_len": null,
+    "T_other_ms": 0.0,
+    "calls_per_step": [
+      1.0
+    ],
+    "input_source": {
+      "recipe": "default",
+      "G": "computed",
+      "runtime_scenario": "cli",
+      "batch_size": "cli",
+      "chunk_len": "missing",
+      "T_other_ms": "default",
+      "calls_per_step": "default"
+    }
+  },
+  "catalog": {
+    "version": "1.0",
+    "categories": [
+      {
+        "key": "accuracy",
+        "label": "正确性",
+        "subtitle": "Correctness"
+      },
+      {
+        "key": "identity",
+        "label": "生成者",
+        "subtitle": "Generator identity"
+      },
+      {
+        "key": "cost",
+        "label": "成本",
+        "subtitle": "Cost & effort"
+      },
+      {
+        "key": "sts",
+        "label": "STS · token 效率轴",
+        "subtitle": "Speedup–Token Surface"
+      },
+      {
+        "key": "paos",
+        "label": "PAOS · 价值轴",
+        "subtitle": "Profile Agent Optimization Score"
+      },
+      {
+        "key": "durations",
+        "label": "延迟",
+        "subtitle": "Latency"
+      }
+    ],
+    "metrics": {
+      "Agent": {
+        "label": "Agent",
+        "short": "AGENT",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "生成算子的 coding agent 身份，取自 run 配置的 agent.kind（command 型由 wrapper 文件名解析）。"
+      },
+      "EngineModel": {
+        "label": "Engine Model",
+        "short": "MODEL",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "驱动该 agent 的 LLM，优先取 run 配置的 agent.model，其次 usage.models_observed、harness 启动日志与 run id；具体来源记在 identity.engine_model.model_source。"
+      },
+      "TaskPassRate": {
+        "label": "Task Pass Rate",
+        "short": "TASK %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "至少存在一个有效 baseline 或通过候选的任务占比。"
+      },
+      "GateRate": {
+        "label": "Correctness Gate Rate",
+        "short": "GATE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过正确性硬门槛的任务占比；只有这些任务进入 STS / PAOS 性能榜。"
+      },
+      "RunCompletedRate": {
+        "label": "Run Completed Rate",
+        "short": "DONE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "完整跑完（operational_status=completed）的任务占比。"
+      },
+      "TaskPass": {
+        "label": "Task Pass",
+        "short": "PASS",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级 0/1 标记：存在有效 baseline 或通过候选即为 1。"
+      },
+      "CandidatePassRate": {
+        "label": "Candidate Pass Rate",
+        "short": "CAND %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过功能测试的候选数 / 已完成的候选总数。"
+      },
+      "CorrectnessGate": {
+        "label": "Correctness Gate",
+        "short": "GATE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级硬门槛：存在通过候选才允许计入性能汇总。"
+      },
+      "RunCompleted": {
+        "label": "Run Completed",
+        "short": "DONE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "运行是否正常结束。"
+      },
+      "FailureReason": {
+        "label": "Failure Reason",
+        "short": "REASON",
+        "unit": "",
+        "direction": "context",
+        "category": "accuracy",
+        "definition": "原样保留的终止原因，用于解释失败或阻塞。"
+      },
+      "TotalTokens": {
+        "label": "Cumulative Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "该任务累计消耗的 prompt+completion token，是 STS 的成本横轴。"
+      },
+      "median_TotalTokens": {
+        "label": "Median Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务累计 token 的中位数。"
+      },
+      "LLMRounds": {
+        "label": "LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 与模型交互的轮数。"
+      },
+      "mean_LLMRounds": {
+        "label": "Mean LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务 LLM 轮数的算术平均。"
+      },
+      "ToolCalls": {
+        "label": "Tool Calls",
+        "short": "TOOLS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 发起的工具调用次数。"
+      },
+      "TotalWallClockSec": {
+        "label": "Wall Time",
+        "short": "WALL",
+        "unit": "s",
+        "direction": "down",
+        "category": "cost",
+        "definition": "任务端到端 wall-clock 耗时（秒）。"
+      },
+      "BaselineMs": {
+        "label": "Baseline Latency",
+        "short": "L0 µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "优化前基线算子延迟 L0，取自有效 baseline 候选。"
+      },
+      "BestMs": {
+        "label": "Best Latency",
+        "short": "LBEST µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "通过候选中的最小延迟 L_best。"
+      },
+      "EBGS": {
+        "label": "EBGS",
+        "short": "EBGS",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "跨任务专家基线几何平均加速比 exp(mean(ln S_i))，代表峰值收益。"
+      },
+      "mean_Speedup": {
+        "label": "Mean Speedup",
+        "short": "SPD",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比 S_i = L0 / L_best 的算术平均。"
+      },
+      "median_Speedup": {
+        "label": "Median Speedup",
+        "short": "S~",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比的中位数，比均值更抗离群。"
+      },
+      "max_Speedup": {
+        "label": "Max Speedup",
+        "short": "S↑",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "任务集合中的最佳加速比。"
+      },
+      "Speedup": {
+        "label": "Speedup",
+        "short": "S",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "已验证加速比 S = L0 / L_best，只统计通过功能测试的解。"
+      },
+      "VLR": {
+        "label": "VLR",
+        "short": "VLR",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "Validated Latency Reduction 延迟降低率 1 − L_best / L0。"
+      },
+      "EndGain": {
+        "label": "End Gain",
+        "short": "log₂S",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "最终收益项 log₂S(B_max)，即 S(B_max)=L0/L_best 的对数；是 STS_token 中不依赖 token 曲线的分量，token 轴缺失时仍可计算。"
+      },
+      "AULS_token": {
+        "label": "AULS (token)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 token 轴上 best-so-far 加速曲线的归一化面积，衡量“多早拿到收益”。"
+      },
+      "AULS_time": {
+        "label": "AULS (time)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 wall-clock 轴上的 anytime 面积，衡量时间维度上的效率。"
+      },
+      "STS_token": {
+        "label": "STS Token",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "主榜分：100·[0.5·EndGain + 0.5·AULS_token]，融合最终收益与过程效率；任一分量缺失则为 null。"
+      },
+      "STS_time": {
+        "label": "STS Time",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "同 STS_token，横轴换成 wall-clock，用于基础设施效率诊断。"
+      },
+      "S_equiv": {
+        "label": "S_equiv",
+        "short": "S_EQUIV",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "2^(STS_token/100)，把综合分翻译回可解释的“等效加速比”。"
+      },
+      "EIR": {
+        "label": "EIR",
+        "short": "EIR %",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "达到指定 VLR 阈值（1% / 5% / 10%）的任务比例，衡量改进广度。"
+      },
+      "TokensTo": {
+        "label": "Tokens-to-Δ",
+        "short": "TO Δ",
+        "unit": "token",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的累计 token 数。"
+      },
+      "TimeTo": {
+        "label": "Time-to-Δ",
+        "short": "T Δ",
+        "unit": "s",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的 wall-clock 秒数。"
+      },
+      "S_i_lat": {
+        "label": "Kernel Speedup",
+        "short": "S_lat",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子延迟加速比 t_base / t_best，是 PAOS 的原子量。"
+      },
+      "T_step_base_ms": {
+        "label": "T_step (base)",
+        "short": "T0",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化前 step 总耗时 T_other + Σ(n_i · t_i^0)，按 recipe 的调用次数合成。"
+      },
+      "T_step_agent_ms": {
+        "label": "T_step (agent)",
+        "short": "T1",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化后 step 总耗时，只有被优化算子换成了最佳通过候选。"
+      },
+      "PTEI": {
+        "label": "PTEI",
+        "short": "PTEI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "eTPSGain = T_step^0 / T_step^1，step 级 token 吞吐增益。"
+      },
+      "PKAI": {
+        "label": "PKAI",
+        "short": "PKAI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "token-time 加权算子加速指数 exp(Σ w_i·ln S_i^lat)，权重小的算子影响力也小。"
+      },
+      "PAOS_base": {
+        "label": "PAOS",
+        "short": "PAOS",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "价值轴主分 √(PKAI × PTEI)：既奖励算得快，也奖励优化在关键路径上。"
+      },
+      "eTPS_base": {
+        "label": "eTPS (base)",
+        "short": "eTPS0",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化前估算模型 token 吞吐 G / T_step^0。"
+      },
+      "eTPS_agent": {
+        "label": "eTPS (agent)",
+        "short": "eTPS1",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化后估算模型 token 吞吐 G / T_step^1。"
+      },
+      "S_i_aicore": {
+        "label": "AI Core Speedup",
+        "short": "S_aicore",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "AI 活跃时间加速比 a_base / a_agent，反映是否真正更省算力。"
+      },
+      "U_i": {
+        "label": "AI Active Utilization",
+        "short": "U_i",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子级 AI 活跃时间利用率 a_i / t_i（诊断上下文，不参与 PAOS 主分）。"
+      },
+      "U_step": {
+        "label": "Step Utilization",
+        "short": "U_step",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "step 级 AI 活跃利用率 Σ(n_i·a_i) / T_step。"
+      },
+      "VecRatio": {
+        "label": "Vector Ratio",
+        "short": "VEC",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "AI Vector 时间 / Task Duration，用于判断算子是否 vector-bound。"
+      },
+      "CubeRatio": {
+        "label": "Cube Ratio",
+        "short": "CUBE",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "Cube 利用率，用于判断算子是否 cube-bound。"
+      },
+      "MTE2Ratio": {
+        "label": "MTE2 Ratio",
+        "short": "MTE2",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "MTE2（搬运）占比，用于识别访存瓶颈。"
+      }
+    }
+  },
+  "runs": [
+    {
+      "task_id": "add_rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 6,
+        "CandidatesPassed": 6,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2924788.0,
+        "TotalWallClockSec": 3553.7181627545506,
+        "SearchWallClockSec": 3553.6476467587054,
+        "LLMRounds": 49.0,
+        "ToolCalls": 59.0,
+        "InputTokens": 286219.0,
+        "CachedInputTokens": 2629120.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 9449.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.01092222,
+        "BestMs": 0.010768664285714286,
+        "Speedup": 1.0142594949764958,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0003",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0142594949764958,
+        "VLR": 0.01405902044508478,
+        "EndGain": 0.020426808377447033,
+        "AULS_token": 0.008885048501001677,
+        "AULS_time": 0.010976872947225467,
+        "SpeedupSearch": 1.0142594949764958,
+        "VLRSearch": 0.01405902044508478,
+        "TokensTo1%": 1363612.0,
+        "TimeTo1%": 1477.0646676141769,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.010964657142857142,
+        "VerificationCV": 0.010458223603593131,
+        "SpeedupConfirmed": 0.996129642513739,
+        "VLRConfirmed": -0.003885395355261334,
+        "STS_token": 1.4655928439224355,
+        "STS_time": 1.570184066233625,
+        "S_equiv": 1.0102104903999178
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.01092222,
+        "T_step_agent_ms": 0.010768664285714286,
+        "eTPS_base": 91.55647844485829,
+        "eTPS_agent": 92.8620275893084,
+        "S_i_lat": 1.0142594949764958,
+        "PTEI": 1.0142594949764958,
+        "PKAI": 1.0142594949764958,
+        "PAOS_base": 1.0142594949764958,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.2650000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0004884169884169884,
+            "VecRatio": 0.031,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/add_rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926014415.csv",
+            "samples": 304
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0003",
+            "ActiveTimeUs": 1.277,
+            "S_i_aicore": null,
+            "U_i": 0.0004968871595330738,
+            "VecRatio": 0.03,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/add_rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0003/profile_output/mindstudio_profiler_output/op_summary_20260926020311.csv",
+            "samples": 304
+          },
+          "S_i_aicore": 0.9906029757243541,
+          "U_i": 0.0004968871595330738,
+          "U_step": 0.1185848092315468,
+          "VecRatio": 0.03,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.01092222,
+        "token": [
+          {
+            "Tokens": 41063.0,
+            "BestMs": 0.01092222,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 536335.0,
+            "BestMs": 0.010846202857142858,
+            "Speedup": 1.0070086410754415
+          },
+          {
+            "Tokens": 913201.0,
+            "BestMs": 0.010846202857142858,
+            "Speedup": 1.0070086410754415
+          },
+          {
+            "Tokens": 1363612.0,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Tokens": 1626291.0,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Tokens": 2027146.0,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Tokens": 2436498.0,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 341.1178055116907,
+            "BestMs": 0.01092222,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 832.3837524224073,
+            "BestMs": 0.010846202857142858,
+            "Speedup": 1.0070086410754415
+          },
+          {
+            "Seconds": 1137.321013579145,
+            "BestMs": 0.010846202857142858,
+            "Speedup": 1.0070086410754415
+          },
+          {
+            "Seconds": 1477.0646676141769,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Seconds": 1755.0935869356617,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Seconds": 2059.6058147251606,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          },
+          {
+            "Seconds": 2368.365210578777,
+            "BestMs": 0.010768664285714286,
+            "Speedup": 1.0142594949764958
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "clipped_swiglu-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 16,
+        "CandidatesPassed": 16,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 3425632.0,
+        "TotalWallClockSec": 6182.526484674774,
+        "SearchWallClockSec": 6182.470114852302,
+        "LLMRounds": 56.0,
+        "ToolCalls": 71.0,
+        "InputTokens": 477090.0,
+        "CachedInputTokens": 2934784.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 13758.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.012322685714285716,
+        "BestMs": 0.011376894285714286,
+        "Speedup": 1.0831326550831222,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0012",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0831326550831222,
+        "VLR": 0.07675205312385525,
+        "EndGain": 0.11520994572606225,
+        "AULS_token": 0.07160206846781719,
+        "AULS_time": 0.08978601688014083,
+        "SpeedupSearch": 1.0831326550831222,
+        "VLRSearch": 0.07675205312385525,
+        "TokensTo1%": 757821.0,
+        "TimeTo1%": 771.0410214113072,
+        "TokensTo5%": 757821.0,
+        "TimeTo5%": 771.0410214113072,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.011655428571428572,
+        "VerificationCV": 0.02593146076393241,
+        "SpeedupConfirmed": 1.057248614992401,
+        "VLRConfirmed": 0.05414867816385116,
+        "STS_token": 9.340600709693971,
+        "STS_time": 10.249798130310154,
+        "S_equiv": 1.0668859844949006
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.012322685714285716,
+        "T_step_agent_ms": 0.011376894285714286,
+        "eTPS_base": 81.15114052131491,
+        "eTPS_agent": 87.89745029587537,
+        "S_i_lat": 1.0831326550831222,
+        "PTEI": 1.0831326550831222,
+        "PKAI": 1.0831326550831222,
+        "PAOS_base": 1.0831326550831222,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 2.0380000000000003,
+            "S_i_aicore": null,
+            "U_i": 0.000553804347826087,
+            "VecRatio": 0.034,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/clipped_swiglu-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925234837.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0012",
+            "ActiveTimeUs": 1.7145000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0005530645161290323,
+            "VecRatio": 0.034,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/clipped_swiglu-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0012/profile_output/mindstudio_profiler_output/op_summary_20260926005007.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.1886847477398659,
+          "U_i": 0.0005530645161290323,
+          "U_step": 0.15070017853227835,
+          "VecRatio": 0.034,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.012322685714285716,
+        "token": [
+          {
+            "Tokens": 41344.0,
+            "BestMs": 0.012322685714285716,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 757821.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 881986.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1071843.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1265136.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1462301.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1595717.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1731173.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 1868915.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 2008752.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 2150334.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 2439229.0,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Tokens": 2585887.0,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Tokens": 2734393.0,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Tokens": 2884750.0,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Tokens": 3036967.0,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Tokens": 3191048.0,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 299.4702373268083,
+            "BestMs": 0.012322685714285716,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 771.0410214113072,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 1076.5754607496783,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 1371.0117658618838,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 1722.4367573326454,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 2040.0938183469698,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 2314.999630643986,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 2614.5994793334976,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 2897.314155243337,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 3155.486687550321,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 3416.1987688606605,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 3741.045429418795,
+            "BestMs": 0.011442437142857144,
+            "Speedup": 1.0769284165985618
+          },
+          {
+            "Seconds": 3990.675469073467,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Seconds": 4254.073280485347,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Seconds": 4517.054069362581,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Seconds": 4770.955700737424,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          },
+          {
+            "Seconds": 5035.816603344865,
+            "BestMs": 0.011376894285714286,
+            "Speedup": 1.0831326550831222
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "fused_gdn_gating-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 12,
+        "CandidatesPassed": 12,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 1438195.0,
+        "TotalWallClockSec": 1748.6220213975757,
+        "SearchWallClockSec": 1748.5701808966696,
+        "LLMRounds": 39.0,
+        "ToolCalls": 49.0,
+        "InputTokens": 239239.0,
+        "CachedInputTokens": 1188352.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 10604.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.007666328,
+        "BestMs": 0.006585432,
+        "Speedup": 1.1641344106202904,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.1641344106202904,
+        "VLR": 0.14099266298024304,
+        "EndGain": 0.21925764101278167,
+        "AULS_token": 0.18435463551722683,
+        "AULS_time": 0.18726736290014584,
+        "SpeedupSearch": 1.1641344106202904,
+        "VLRSearch": 0.14099266298024304,
+        "TokensTo1%": 111889.0,
+        "TimeTo1%": 242.64873267989606,
+        "TokensTo5%": 111889.0,
+        "TimeTo5%": 242.64873267989606,
+        "TokensTo10%": 111889.0,
+        "TimeTo10%": 242.64873267989606,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.00673568,
+        "VerificationCV": 0.00968510651726358,
+        "SpeedupConfirmed": 1.1381668962896099,
+        "VLRConfirmed": 0.12139423202346677,
+        "STS_token": 20.180613826500426,
+        "STS_time": 20.326250195646374,
+        "S_equiv": 1.1501373335899285
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.007666328,
+        "T_step_agent_ms": 0.006585432,
+        "eTPS_base": 130.4405446779736,
+        "eTPS_agent": 151.85032659968246,
+        "S_i_lat": 1.1641344106202904,
+        "PTEI": 1.1641344106202904,
+        "PKAI": 1.1641344106202904,
+        "PAOS_base": 1.1641344106202904,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.3899999999999997,
+            "S_i_aicore": null,
+            "U_i": 0.0006495497221689979,
+            "VecRatio": 0.112,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/fused_gdn_gating-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925231318.csv",
+            "samples": 200
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 5.909000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0009189735614307933,
+            "VecRatio": 0.426,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/fused_gdn_gating-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260925231521.csv",
+            "samples": 200
+          },
+          "S_i_aicore": 0.5737011338635978,
+          "U_i": 0.0009189735614307933,
+          "U_step": 0.8972835798775237,
+          "VecRatio": 0.426,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.007666328,
+        "token": [
+          {
+            "Tokens": 37547.0,
+            "BestMs": 0.007666328,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 111889.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 177095.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 244069.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 312870.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 383526.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 529781.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 606102.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 726526.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 809362.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 937349.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 1024700.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Tokens": 1158924.0,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 119.60851675923914,
+            "BestMs": 0.007666328,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 242.64873267989606,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 331.2806778876111,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 416.20480781421065,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 515.389200059697,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 595.1753302142024,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 730.8987234951928,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 855.7929124329239,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 962.4527158504352,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 1048.8229354107752,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 1143.7369795106351,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 1263.394384157844,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          },
+          {
+            "Seconds": 1350.7444268325344,
+            "BestMs": 0.006585432,
+            "Speedup": 1.1641344106202904
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "hc_post-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.6666666666666666,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 6,
+        "CandidatesPassed": 4,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 1581771.0,
+        "TotalWallClockSec": 1683.0651996126398,
+        "SearchWallClockSec": 1683.0200364254415,
+        "LLMRounds": 28.0,
+        "ToolCalls": 42.0,
+        "InputTokens": 346235.0,
+        "CachedInputTokens": 1227776.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 7760.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.00957466,
+        "BestMs": 0.00954976,
+        "Speedup": 1.0026073953690984,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0006",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0026073953690984,
+        "VLR": 0.0026006145387931223,
+        "EndGain": 0.003756780787826611,
+        "AULS_token": 0.0004179691623401549,
+        "AULS_time": 0.00039813302815930074,
+        "SpeedupSearch": 1.0026073953690984,
+        "VLRSearch": 0.0026006145387931223,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.009533199999999999,
+        "VerificationCV": 0.002274328693210587,
+        "SpeedupConfirmed": 1.0043490118742922,
+        "VLRConfirmed": 0.0043301798706170125,
+        "STS_token": 0.20873749750833828,
+        "STS_time": 0.2077456907992956,
+        "S_equiv": 1.0014479052828915
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.00957466,
+        "T_step_agent_ms": 0.00954976,
+        "eTPS_base": 104.44235095554306,
+        "eTPS_agent": 104.7146734577623,
+        "S_i_lat": 1.0026073953690984,
+        "PTEI": 1.0026073953690984,
+        "PKAI": 1.0026073953690984,
+        "PAOS_base": 1.0026073953690984,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.782,
+            "S_i_aicore": null,
+            "U_i": 0.0008504453308562372,
+            "VecRatio": 0.6074999999999999,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/hc_post-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926000351.csv",
+            "samples": 80
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0006",
+            "ActiveTimeUs": 7.813,
+            "S_i_aicore": null,
+            "U_i": 0.0008483170466883821,
+            "VecRatio": 0.612,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/hc_post-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0006/profile_output/mindstudio_profiler_output/op_summary_20260926002109.csv",
+            "samples": 80
+          },
+          "S_i_aicore": 0.9960322539357481,
+          "U_i": 0.0008483170466883821,
+          "U_step": 0.8181357437254968,
+          "VecRatio": 0.612,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.00957466,
+        "token": [
+          {
+            "Tokens": 77283.0,
+            "BestMs": 0.00957466,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 426135.0,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Tokens": 543822.0,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Tokens": 997224.0,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Tokens": 1213636.0,
+            "BestMs": 0.00954976,
+            "Speedup": 1.0026073953690984
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 147.65751825179905,
+            "BestMs": 0.00957466,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 525.3645043969154,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Seconds": 682.22998064477,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Seconds": 1050.333693113178,
+            "BestMs": 0.00957178,
+            "Speedup": 1.0003008844749879
+          },
+          {
+            "Seconds": 1185.1890492029488,
+            "BestMs": 0.00954976,
+            "Speedup": 1.0026073953690984
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "hc_pre_sinkhorn-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.9,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 10,
+        "CandidatesPassed": 9,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2142771.0,
+        "TotalWallClockSec": 1713.0131330201402,
+        "SearchWallClockSec": 1712.9659690521657,
+        "LLMRounds": 38.0,
+        "ToolCalls": 50.0,
+        "InputTokens": 310403.0,
+        "CachedInputTokens": 1822720.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 9648.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.008092,
+        "BestMs": 0.0080375,
+        "Speedup": 1.0067807153965787,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0007",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0067807153965787,
+        "VLR": 0.006735046959960522,
+        "EndGain": 0.009749487455611073,
+        "AULS_token": 0.0013920732594199345,
+        "AULS_time": 0.0016897499455136725,
+        "SpeedupSearch": 1.0067807153965787,
+        "VLRSearch": 0.006735046959960522,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.008027175,
+        "VerificationCV": 0.000986960158210499,
+        "SpeedupConfirmed": 1.008075692880746,
+        "VLRConfirmed": 0.008010998517054002,
+        "STS_token": 0.5570780357515503,
+        "STS_time": 0.5719618700562373,
+        "S_equiv": 1.0038688353950602
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.008092,
+        "T_step_agent_ms": 0.0080375,
+        "eTPS_base": 123.57884330202668,
+        "eTPS_agent": 124.41679626749612,
+        "S_i_lat": 1.0067807153965787,
+        "PTEI": 1.0067807153965787,
+        "PKAI": 1.0067807153965787,
+        "PAOS_base": 1.0067807153965787,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.569,
+            "S_i_aicore": null,
+            "U_i": 0.0009355995055624227,
+            "VecRatio": 0.6475,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/hc_pre_sinkhorn-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926011232.csv",
+            "samples": 64
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0007",
+            "ActiveTimeUs": 7.4435,
+            "S_i_aicore": null,
+            "U_i": 0.0009281172069825436,
+            "VecRatio": 0.6475,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/hc_pre_sinkhorn-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0007/profile_output/mindstudio_profiler_output/op_summary_20260926012649.csv",
+            "samples": 64
+          },
+          "S_i_aicore": 1.0168603479545912,
+          "U_i": 0.0009281172069825436,
+          "U_step": 0.9260964230171074,
+          "VecRatio": 0.6475,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.008092,
+        "token": [
+          {
+            "Tokens": 117702.0,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 349846.0,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 677637.0,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 800648.0,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1052762.0,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1248772.0,
+            "BestMs": 0.008073499999999999,
+            "Speedup": 1.0022914473276772
+          },
+          {
+            "Tokens": 1381422.0,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Tokens": 1516019.0,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Tokens": 1652424.0,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Tokens": 1860346.0,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 149.9077966697514,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 327.85272223781794,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 543.2488652709872,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 632.6653886558488,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 808.8748878035694,
+            "BestMs": 0.008092,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 943.348625198938,
+            "BestMs": 0.008073499999999999,
+            "Speedup": 1.0022914473276772
+          },
+          {
+            "Seconds": 1006.2995130093768,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Seconds": 1073.6815234590322,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Seconds": 1204.5749208563939,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          },
+          {
+            "Seconds": 1379.4072675071657,
+            "BestMs": 0.0080375,
+            "Speedup": 1.0067807153965787
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "interleave_rope-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.8333333333333334,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 6,
+        "CandidatesPassed": 5,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 4411414.0,
+        "TotalWallClockSec": 7122.434733066708,
+        "SearchWallClockSec": 7122.36846140679,
+        "LLMRounds": 87.0,
+        "ToolCalls": 96.0,
+        "InputTokens": 462357.0,
+        "CachedInputTokens": 3931136.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 17921.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.01982292,
+        "BestMs": 0.019644440000000003,
+        "Speedup": 1.009085522417539,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0003",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.009085522417539,
+        "VLR": 0.009003718927382942,
+        "EndGain": 0.013048451489887598,
+        "AULS_token": 0.003706979403694412,
+        "AULS_time": 0.005226847989849469,
+        "SpeedupSearch": 1.009085522417539,
+        "VLRSearch": 0.009003718927382942,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.019867799999999998,
+        "VerificationCV": 0.008080885401710184,
+        "SpeedupConfirmed": 0.9977410684625375,
+        "VLRConfirmed": -0.002264045862062636,
+        "STS_token": 0.8377715446791004,
+        "STS_time": 0.9137649739868534,
+        "S_equiv": 1.0058238830907986
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.01982292,
+        "T_step_agent_ms": 0.019644440000000003,
+        "eTPS_base": 50.44665468054151,
+        "eTPS_agent": 50.904988892531414,
+        "S_i_lat": 1.009085522417539,
+        "PTEI": 1.009085522417539,
+        "PKAI": 1.009085522417539,
+        "PAOS_base": 1.009085522417539,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 2.0940000000000003,
+            "S_i_aicore": null,
+            "U_i": 0.0005752747252747253,
+            "VecRatio": 0.054,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/interleave_rope-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925231449.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0003",
+            "ActiveTimeUs": 2.0515,
+            "S_i_aicore": null,
+            "U_i": 0.0005746498599439775,
+            "VecRatio": 0.055,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/interleave_rope-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0003/profile_output/mindstudio_profiler_output/op_summary_20260926004422.csv",
+            "samples": 240
+          },
+          "S_i_aicore": 1.0207165488666832,
+          "U_i": 0.0005746498599439775,
+          "U_step": 0.1044315847130282,
+          "VecRatio": 0.055,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.01982292,
+        "token": [
+          {
+            "Tokens": 39125.0,
+            "BestMs": 0.01982292,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 333734.0,
+            "BestMs": 0.01982292,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 3732127.0,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Tokens": 3850586.0,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Tokens": 3970879.0,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Tokens": 4218475.0,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 212.2696313681081,
+            "BestMs": 0.01982292,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 463.21050309110433,
+            "BestMs": 0.01982292,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 5586.442673099227,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Seconds": 5788.209415826015,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Seconds": 5980.940906188451,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          },
+          {
+            "Seconds": 6226.382136863656,
+            "BestMs": 0.019644440000000003,
+            "Speedup": 1.009085522417539
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "lightning_indexer-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 11,
+        "CandidatesPassed": 11,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2883047.0,
+        "TotalWallClockSec": 3207.2213495047763,
+        "SearchWallClockSec": 3207.1653186567128,
+        "LLMRounds": 46.0,
+        "ToolCalls": 55.0,
+        "InputTokens": 286465.0,
+        "CachedInputTokens": 2585600.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 10982.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.027081514285714283,
+        "BestMs": 0.025836171428571426,
+        "Speedup": 1.048201524772578,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.048201524772578,
+        "VLR": 0.045984978683403455,
+        "EndGain": 0.06791611271490859,
+        "AULS_token": 0.0498780274480416,
+        "AULS_time": 0.057181557056447625,
+        "SpeedupSearch": 1.048201524772578,
+        "VLRSearch": 0.045984978683403455,
+        "TokensTo1%": 272155.0,
+        "TimeTo1%": 397.7985199736431,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.02673077142857143,
+        "VerificationCV": 0.036939433310587626,
+        "SpeedupConfirmed": 1.0131213144401796,
+        "VLRConfirmed": 0.012951375371497376,
+        "STS_token": 5.88970700814751,
+        "STS_time": 6.2548834885678115,
+        "S_equiv": 1.0416691078674032
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.027081514285714283,
+        "T_step_agent_ms": 0.025836171428571426,
+        "eTPS_base": 36.92555702202768,
+        "eTPS_agent": 38.70542517356619,
+        "S_i_lat": 1.048201524772578,
+        "PTEI": 1.048201524772578,
+        "PKAI": 1.048201524772578,
+        "PAOS_base": 1.048201524772578,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.944,
+            "S_i_aicore": null,
+            "U_i": 0.0005585798816568047,
+            "VecRatio": 0.037,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/lightning_indexer-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926020257.csv",
+            "samples": 304
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 0.907,
+            "S_i_aicore": null,
+            "U_i": 0.0005530487804878049,
+            "VecRatio": 0.038,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/lightning_indexer-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260926020644.csv",
+            "samples": 304
+          },
+          "S_i_aicore": 1.0407938257993383,
+          "U_i": 0.0005530487804878049,
+          "U_step": 0.03510582063242453,
+          "VecRatio": 0.038,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.027081514285714283,
+        "token": [
+          {
+            "Tokens": 21269.0,
+            "BestMs": 0.027081514285714283,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 272155.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 519489.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 773091.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 1032998.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 1165607.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 1368295.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 1714403.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 1926264.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 2214012.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 2433351.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Tokens": 2581597.0,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 171.30671169329435,
+            "BestMs": 0.027081514285714283,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 397.7985199736431,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 637.5958096357062,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 818.7821590481326,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 1029.1508026532829,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 1221.977320828475,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 1436.519851155579,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 1640.8962758518755,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 1857.4941916372627,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 2089.5501220189035,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 2277.1315932413563,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          },
+          {
+            "Seconds": 2461.723839342594,
+            "BestMs": 0.025836171428571426,
+            "Speedup": 1.048201524772578
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "mla_prolog-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 20,
+        "CandidatesPassed": 20,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 4008491.0,
+        "TotalWallClockSec": 5504.690619662404,
+        "SearchWallClockSec": 5504.615305991843,
+        "LLMRounds": 54.0,
+        "ToolCalls": 64.0,
+        "InputTokens": 281172.0,
+        "CachedInputTokens": 3715584.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 11735.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.0380412475,
+        "BestMs": 0.03478867333333333,
+        "Speedup": 1.0934952056234395,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0014",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0934952056234395,
+        "VLR": 0.0855012487870348,
+        "EndGain": 0.12894689497361372,
+        "AULS_token": 0.05740873575159841,
+        "AULS_time": 0.06990592297847693,
+        "SpeedupSearch": 1.0934952056234395,
+        "VLRSearch": 0.0855012487870348,
+        "TokensTo1%": 284686.0,
+        "TimeTo1%": 540.6348157357424,
+        "TokensTo5%": 920721.0,
+        "TimeTo5%": 1433.3918677875772,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.03741046666666667,
+        "VerificationCV": 0.00921670250245784,
+        "SpeedupConfirmed": 1.0168610789850254,
+        "VLRConfirmed": 0.016581497053516192,
+        "STS_token": 9.317781536260608,
+        "STS_time": 9.942640897604532,
+        "S_equiv": 1.0667172479957834
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.0380412475,
+        "T_step_agent_ms": 0.03478867333333333,
+        "eTPS_base": 26.28725569528181,
+        "eTPS_agent": 28.744988071788118,
+        "S_i_lat": 1.0934952056234395,
+        "PTEI": 1.0934952056234395,
+        "PKAI": 1.0934952056234395,
+        "PAOS_base": 1.0934952056234395,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.276,
+            "S_i_aicore": null,
+            "U_i": 0.0005229508196721312,
+            "VecRatio": 0.036,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/mla_prolog-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926024220.csv",
+            "samples": 960
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0014",
+            "ActiveTimeUs": 1.1465,
+            "S_i_aicore": null,
+            "U_i": 0.0005211363636363637,
+            "VecRatio": 0.038,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/mla_prolog-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0014/profile_output/mindstudio_profiler_output/op_summary_20260926033451.csv",
+            "samples": 960
+          },
+          "S_i_aicore": 1.1129524640209332,
+          "U_i": 0.0005211363636363637,
+          "U_step": 0.03295612882430508,
+          "VecRatio": 0.038,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.0380412475,
+        "token": [
+          {
+            "Tokens": 45918.0,
+            "BestMs": 0.0380412475,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 284686.0,
+            "BestMs": 0.037094253333333334,
+            "Speedup": 1.025529403656056
+          },
+          {
+            "Tokens": 422816.0,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Tokens": 562878.0,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Tokens": 776300.0,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Tokens": 920721.0,
+            "BestMs": 0.035478883333333336,
+            "Speedup": 1.0722222326614
+          },
+          {
+            "Tokens": 1066894.0,
+            "BestMs": 0.035478883333333336,
+            "Speedup": 1.0722222326614
+          },
+          {
+            "Tokens": 1215074.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 1365178.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 1517202.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 1671149.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 1827027.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 2064359.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 2385968.0,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Tokens": 2548704.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 2713378.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 2879963.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 3048405.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 3218767.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 3391138.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Tokens": 3565345.0,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 268.440405793488,
+            "BestMs": 0.0380412475,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 540.6348157357424,
+            "BestMs": 0.037094253333333334,
+            "Speedup": 1.025529403656056
+          },
+          {
+            "Seconds": 752.0258743846789,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Seconds": 972.4162189988419,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Seconds": 1206.2021826198325,
+            "BestMs": 0.03670498333333333,
+            "Speedup": 1.036405524408811
+          },
+          {
+            "Seconds": 1433.3918677875772,
+            "BestMs": 0.035478883333333336,
+            "Speedup": 1.0722222326614
+          },
+          {
+            "Seconds": 1635.2301731202751,
+            "BestMs": 0.035478883333333336,
+            "Speedup": 1.0722222326614
+          },
+          {
+            "Seconds": 1845.976426815614,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 2065.82470502425,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 2278.959987242706,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 2489.1498256130144,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 2685.103917963803,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 2945.826296421699,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 3211.686397987418,
+            "BestMs": 0.03521584999999999,
+            "Speedup": 1.0802308477574731
+          },
+          {
+            "Seconds": 3418.8432674622163,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 3616.209053689614,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 3806.9002948598936,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 4030.721816908568,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 4238.138071583584,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 4426.305156393908,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          },
+          {
+            "Seconds": 4625.870251473971,
+            "BestMs": 0.03478867333333333,
+            "Speedup": 1.0934952056234395
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "moe_fused_topk-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.45454545454545453,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 11,
+        "CandidatesPassed": 5,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2833359.0,
+        "TotalWallClockSec": 3002.087322375737,
+        "SearchWallClockSec": 3002.0381001643836,
+        "LLMRounds": 40.0,
+        "ToolCalls": 52.0,
+        "InputTokens": 788977.0,
+        "CachedInputTokens": 2033664.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 10718.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.01170214,
+        "BestMs": 0.010350999999999999,
+        "Speedup": 1.1305323157182883,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0007",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.1305323157182883,
+        "VLR": 0.1154609327866527,
+        "EndGain": 0.17700223141733332,
+        "AULS_token": 0.04832185390124699,
+        "AULS_time": 0.058276815556113006,
+        "SpeedupSearch": 1.1305323157182883,
+        "VLRSearch": 0.1154609327866527,
+        "TokensTo1%": 848842.0,
+        "TimeTo1%": 996.9337721625343,
+        "TokensTo5%": 848842.0,
+        "TimeTo5%": 996.9337721625343,
+        "TokensTo10%": 1310164.0,
+        "TimeTo10%": 1631.1553556211293,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.010999740000000001,
+        "VerificationCV": 0.059298283899344995,
+        "SpeedupConfirmed": 1.0638560547794764,
+        "VLRConfirmed": 0.06002320943007,
+        "STS_token": 11.266204265929016,
+        "STS_time": 11.763952348672316,
+        "S_equiv": 1.0812214531726767
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.01170214,
+        "T_step_agent_ms": 0.010350999999999999,
+        "eTPS_base": 85.454455338938,
+        "eTPS_agent": 96.60902328277461,
+        "S_i_lat": 1.1305323157182883,
+        "PTEI": 1.1305323157182883,
+        "PKAI": 1.1305323157182883,
+        "PAOS_base": 1.1305323157182883,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.9245000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0006246621621621623,
+            "VecRatio": 0.035,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_fused_topk-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925231416.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0007",
+            "ActiveTimeUs": 0.8734999999999999,
+            "S_i_aicore": null,
+            "U_i": 0.0006108391608391608,
+            "VecRatio": 0.035500000000000004,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_fused_topk-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0007/profile_output/mindstudio_profiler_output/op_summary_20260925233828.csv",
+            "samples": 240
+          },
+          "S_i_aicore": 1.058385804235833,
+          "U_i": 0.0006108391608391608,
+          "U_step": 0.08438798183750362,
+          "VecRatio": 0.035500000000000004,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.01170214,
+        "token": [
+          {
+            "Tokens": 37870.0,
+            "BestMs": 0.01170214,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 566597.0,
+            "BestMs": 0.01170214,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 848842.0,
+            "BestMs": 0.0105403,
+            "Speedup": 1.1102283616215856
+          },
+          {
+            "Tokens": 1145816.0,
+            "BestMs": 0.0105403,
+            "Speedup": 1.1102283616215856
+          },
+          {
+            "Tokens": 1310164.0,
+            "BestMs": 0.010350999999999999,
+            "Speedup": 1.1305323157182883
+          },
+          {
+            "Tokens": 2319847.0,
+            "BestMs": 0.010350999999999999,
+            "Speedup": 1.1305323157182883
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 178.69231757894158,
+            "BestMs": 0.01170214,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 828.6008710963652,
+            "BestMs": 0.01170214,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 996.9337721625343,
+            "BestMs": 0.0105403,
+            "Speedup": 1.1102283616215856
+          },
+          {
+            "Seconds": 1479.6587420664728,
+            "BestMs": 0.0105403,
+            "Speedup": 1.1102283616215856
+          },
+          {
+            "Seconds": 1631.1553556211293,
+            "BestMs": 0.010350999999999999,
+            "Speedup": 1.1305323157182883
+          },
+          {
+            "Seconds": 2272.569860478863,
+            "BestMs": 0.010350999999999999,
+            "Speedup": 1.1305323157182883
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "moe_gating_top_k-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.7142857142857143,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 7,
+        "CandidatesPassed": 5,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 3063076.0,
+        "TotalWallClockSec": 2678.0286458637565,
+        "SearchWallClockSec": 2677.968354373239,
+        "LLMRounds": 38.0,
+        "ToolCalls": 54.0,
+        "InputTokens": 341321.0,
+        "CachedInputTokens": 2712576.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 9179.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.006289408235294118,
+        "BestMs": 0.006235197647058824,
+        "Speedup": 1.0086942854587562,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0005",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0086942854587562,
+        "VLR": 0.00861934640068085,
+        "EndGain": 0.01248898942656572,
+        "AULS_token": 0.0019379830734430436,
+        "AULS_time": 0.0027453668228983796,
+        "SpeedupSearch": 1.0086942854587562,
+        "VLRSearch": 0.00861934640068085,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.006382130588235294,
+        "VerificationCV": 0.005165998654044133,
+        "SpeedupConfirmed": 0.9854715675808798,
+        "VLRConfirmed": -0.014742619571241677,
+        "STS_token": 0.7213486250004382,
+        "STS_time": 0.761717812473205,
+        "S_equiv": 1.0050125285539764
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.006289408235294118,
+        "T_step_agent_ms": 0.006235197647058824,
+        "eTPS_base": 158.99747044377315,
+        "eTPS_agent": 160.37983983903146,
+        "S_i_lat": 1.0086942854587562,
+        "PTEI": 1.0086942854587562,
+        "PKAI": 1.0086942854587562,
+        "PAOS_base": 1.0086942854587562,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.783,
+            "S_i_aicore": null,
+            "U_i": 0.0005931818181818182,
+            "VecRatio": 0.035,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_gating_top_k-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926011501.csv",
+            "samples": 352
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0005",
+            "ActiveTimeUs": 0.7885,
+            "S_i_aicore": null,
+            "U_i": 0.0005973484848484849,
+            "VecRatio": 0.034,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_gating_top_k-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0005/profile_output/mindstudio_profiler_output/op_summary_20260926013500.csv",
+            "samples": 352
+          },
+          "S_i_aicore": 0.9930247305009512,
+          "U_i": 0.0005973484848484849,
+          "U_step": 0.12645950371307632,
+          "VecRatio": 0.034,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.006289408235294118,
+        "token": [
+          {
+            "Tokens": 72178.0,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 403341.0,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 988667.0,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1942761.0,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          },
+          {
+            "Tokens": 2162770.0,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          },
+          {
+            "Tokens": 2384809.0,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 227.77702217176557,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 499.9149803807959,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 932.9410863537341,
+            "BestMs": 0.006289408235294118,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1427.0597307551652,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          },
+          {
+            "Seconds": 1607.886514625512,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          },
+          {
+            "Seconds": 1822.5830816412345,
+            "BestMs": 0.006235197647058824,
+            "Speedup": 1.0086942854587562
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "moe_token_unpermute-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.8333333333333334,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 6,
+        "CandidatesPassed": 5,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 1430512.0,
+        "TotalWallClockSec": 1940.9006948694587,
+        "SearchWallClockSec": 1940.8339534690604,
+        "LLMRounds": 32.0,
+        "ToolCalls": 43.0,
+        "InputTokens": 259179.0,
+        "CachedInputTokens": 1162240.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 9093.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.00789085,
+        "BestMs": 0.007927624999999999,
+        "Speedup": 0.9953611579760648,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0002",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 0.9953611579760648,
+        "VLR": -0.004660461167047769,
+        "EndGain": -0.006708005128473944,
+        "AULS_token": 0.0,
+        "AULS_time": 0.0,
+        "SpeedupSearch": 0.9953611579760648,
+        "VLRSearch": -0.004660461167047769,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.00787455,
+        "VerificationCV": 0.01415090729190733,
+        "SpeedupConfirmed": 1.0020699595532443,
+        "VLRConfirmed": 0.0020656836715943205,
+        "STS_token": -0.3354002564236972,
+        "STS_time": -0.3354002564236972,
+        "S_equiv": 0.9976778828740591
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.00789085,
+        "T_step_agent_ms": 0.007927624999999999,
+        "eTPS_base": 126.7290596070132,
+        "eTPS_agent": 126.14118351965439,
+        "S_i_lat": 0.9953611579760648,
+        "PTEI": 0.9953611579760648,
+        "PKAI": 0.9953611579760648,
+        "PAOS_base": 0.9953611579760648,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.024,
+            "S_i_aicore": null,
+            "U_i": 0.0005565217391304348,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_token_unpermute-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925231430.csv",
+            "samples": 208
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0002",
+            "ActiveTimeUs": 0.9784999999999999,
+            "S_i_aicore": null,
+            "U_i": 0.0005406077348066298,
+            "VecRatio": 0.04,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/moe_token_unpermute-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0002/profile_output/mindstudio_profiler_output/op_summary_20260925232053.csv",
+            "samples": 208
+          },
+          "S_i_aicore": 1.0464997445068984,
+          "U_i": 0.0005406077348066298,
+          "U_step": 0.12342914807398181,
+          "VecRatio": 0.04,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.00789085,
+        "token": [
+          {
+            "Tokens": 94793.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 244039.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 365924.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 804895.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1026597.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1197137.0,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 192.76722586061805,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 386.58428223989904,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 576.2963496670127,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 877.6398556223139,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1048.6462199036032,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1218.6172050749883,
+            "BestMs": 0.00789085,
+            "Speedup": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "qkv_rms_norm_rope_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 8,
+        "CandidatesPassed": 8,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2504225.0,
+        "TotalWallClockSec": 2820.3296666583046,
+        "SearchWallClockSec": 2820.2738988278434,
+        "LLMRounds": 48.0,
+        "ToolCalls": 55.0,
+        "InputTokens": 343550.0,
+        "CachedInputTokens": 2150400.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 10275.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.015017366666666665,
+        "BestMs": 0.014249276666666665,
+        "Speedup": 1.0539037888005076,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0005",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0539037888005076,
+        "VLR": 0.05114678339078538,
+        "EndGain": 0.07574316891450497,
+        "AULS_token": 0.034976571468786154,
+        "AULS_time": 0.04362045958274667,
+        "SpeedupSearch": 1.0539037888005076,
+        "VLRSearch": 0.05114678339078538,
+        "TokensTo1%": 591634.0,
+        "TimeTo1%": 547.1336267590523,
+        "TokensTo5%": 1343463.0,
+        "TimeTo5%": 1210.42153237015,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.014487931666666667,
+        "VerificationCV": 0.016469180042624033,
+        "SpeedupConfirmed": 1.0365431734619583,
+        "VLRConfirmed": 0.03525484938548917,
+        "STS_token": 5.535987019164557,
+        "STS_time": 5.968181424862582,
+        "S_equiv": 1.03911827176055
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.015017366666666665,
+        "T_step_agent_ms": 0.014249276666666665,
+        "eTPS_base": 66.58957074143048,
+        "eTPS_agent": 70.17900089899301,
+        "S_i_lat": 1.0539037888005076,
+        "PTEI": 1.0539037888005076,
+        "PKAI": 1.0539037888005076,
+        "PAOS_base": 1.0539037888005076,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0305,
+            "S_i_aicore": null,
+            "U_i": 0.00048154205607476636,
+            "VecRatio": 0.032,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/qkv_rms_norm_rope_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925234350.csv",
+            "samples": 1040
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0005",
+            "ActiveTimeUs": 1.006,
+            "S_i_aicore": null,
+            "U_i": 0.00048365384615384617,
+            "VecRatio": 0.032,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/qkv_rms_norm_rope_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0005/profile_output/mindstudio_profiler_output/op_summary_20260926000037.csv",
+            "samples": 1040
+          },
+          "S_i_aicore": 1.0243538767395626,
+          "U_i": 0.00048365384615384617,
+          "U_step": 0.07060007490438697,
+          "VecRatio": 0.032,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.015017366666666665,
+        "token": [
+          {
+            "Tokens": 88809.0,
+            "BestMs": 0.015017366666666665,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 335856.0,
+            "BestMs": 0.014907074999999999,
+            "Speedup": 1.0073986121802343
+          },
+          {
+            "Tokens": 591634.0,
+            "BestMs": 0.014471201666666666,
+            "Speedup": 1.0377415098331502
+          },
+          {
+            "Tokens": 748230.0,
+            "BestMs": 0.014471201666666666,
+            "Speedup": 1.0377415098331502
+          },
+          {
+            "Tokens": 1014767.0,
+            "BestMs": 0.014380666666666668,
+            "Speedup": 1.0442747206898149
+          },
+          {
+            "Tokens": 1343463.0,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Tokens": 1567355.0,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Tokens": 1910744.0,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Tokens": 2204465.0,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 202.7386732045561,
+            "BestMs": 0.015017366666666665,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 382.1604480696842,
+            "BestMs": 0.014907074999999999,
+            "Speedup": 1.0073986121802343
+          },
+          {
+            "Seconds": 547.1336267590523,
+            "BestMs": 0.014471201666666666,
+            "Speedup": 1.0377415098331502
+          },
+          {
+            "Seconds": 735.0530458791181,
+            "BestMs": 0.014471201666666666,
+            "Speedup": 1.0377415098331502
+          },
+          {
+            "Seconds": 969.1083703516051,
+            "BestMs": 0.014380666666666668,
+            "Speedup": 1.0442747206898149
+          },
+          {
+            "Seconds": 1210.42153237015,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Seconds": 1431.9509285893291,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Seconds": 1715.6790318638086,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          },
+          {
+            "Seconds": 1985.4722787495703,
+            "BestMs": 0.014249276666666665,
+            "Speedup": 1.0539037888005076
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "recurrent_gated_delta_rule-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 7,
+        "CandidatesPassed": 7,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2067343.0,
+        "TotalWallClockSec": 2503.3540997896343,
+        "SearchWallClockSec": 2503.301223700866,
+        "LLMRounds": 38.0,
+        "ToolCalls": 52.0,
+        "InputTokens": 314435.0,
+        "CachedInputTokens": 1743360.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 9548.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.013433378888888889,
+        "BestMs": 0.013176755555555555,
+        "Speedup": 1.0194754567807958,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0003",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0194754567807958,
+        "VLR": 0.019103409161308926,
+        "EndGain": 0.027827043812727197,
+        "AULS_token": 0.009373240501574079,
+        "AULS_time": 0.012914808541814822,
+        "SpeedupSearch": 1.0194754567807958,
+        "VLRSearch": 0.019103409161308926,
+        "TokensTo1%": 869758.0,
+        "TimeTo1%": 856.97202196531,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.01315225111111111,
+        "VerificationCV": 0.014282786327825503,
+        "SpeedupConfirmed": 1.0213748791292678,
+        "VLRConfirmed": 0.020927555167099987,
+        "STS_token": 1.860014215715064,
+        "STS_time": 2.037092617727101,
+        "S_equiv": 1.012976104450296
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.013433378888888889,
+        "T_step_agent_ms": 0.013176755555555555,
+        "eTPS_base": 74.44143489670547,
+        "eTPS_agent": 75.89121584473669,
+        "S_i_lat": 1.0194754567807958,
+        "PTEI": 1.0194754567807958,
+        "PKAI": 1.0194754567807958,
+        "PAOS_base": 1.0194754567807958,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0535,
+            "S_i_aicore": null,
+            "U_i": 0.0004580434782608696,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/recurrent_gated_delta_rule-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926003352.csv",
+            "samples": 368
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0003",
+            "ActiveTimeUs": 1.059,
+            "S_i_aicore": null,
+            "U_i": 0.00045256410256410253,
+            "VecRatio": 0.042499999999999996,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/recurrent_gated_delta_rule-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0003/profile_output/mindstudio_profiler_output/op_summary_20260926004638.csv",
+            "samples": 368
+          },
+          "S_i_aicore": 0.9948064211520303,
+          "U_i": 0.00045256410256410253,
+          "U_step": 0.08036879757957616,
+          "VecRatio": 0.042499999999999996,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.013433378888888889,
+        "token": [
+          {
+            "Tokens": 118170.0,
+            "BestMs": 0.013433378888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 467603.0,
+            "BestMs": 0.013433378888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 869758.0,
+            "BestMs": 0.013242555555555556,
+            "Speedup": 1.0144098571104938
+          },
+          {
+            "Tokens": 988347.0,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Tokens": 1108864.0,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Tokens": 1417978.0,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Tokens": 1608098.0,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Tokens": 1736988.0,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 266.42707678768784,
+            "BestMs": 0.013433378888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 523.1312749525532,
+            "BestMs": 0.013433378888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 856.97202196531,
+            "BestMs": 0.013242555555555556,
+            "Speedup": 1.0144098571104938
+          },
+          {
+            "Seconds": 1032.411921591498,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Seconds": 1204.1738813519478,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Seconds": 1389.6893807156011,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Seconds": 1548.732651813887,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          },
+          {
+            "Seconds": 1751.9951704740524,
+            "BestMs": 0.013176755555555555,
+            "Speedup": 1.0194754567807958
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 20,
+        "CandidatesPassed": 20,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 3401326.0,
+        "TotalWallClockSec": 6845.400053464808,
+        "SearchWallClockSec": 6845.321756098419,
+        "LLMRounds": 53.0,
+        "ToolCalls": 62.0,
+        "InputTokens": 245508.0,
+        "CachedInputTokens": 3144192.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 11626.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.011942648571428573,
+        "BestMs": 0.011506400000000002,
+        "Speedup": 1.037913558665488,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0005",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.037913558665488,
+        "VLR": 0.03652862837078252,
+        "EndGain": 0.05368629564417586,
+        "AULS_token": 0.026743032247618467,
+        "AULS_time": 0.03032377591330653,
+        "SpeedupSearch": 1.037913558665488,
+        "VLRSearch": 0.03652862837078252,
+        "TokensTo1%": 739613.0,
+        "TimeTo1%": 1586.635107495822,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.011919102857142858,
+        "VerificationCV": 0.013906898650839536,
+        "SpeedupConfirmed": 1.0019754602815265,
+        "VLRConfirmed": 0.0019715655321254077,
+        "STS_token": 4.021466394589717,
+        "STS_time": 4.2005035778741195,
+        "S_equiv": 1.028266814907034
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.011942648571428573,
+        "T_step_agent_ms": 0.011506400000000002,
+        "eTPS_base": 83.73351974807214,
+        "eTPS_agent": 86.90815546130848,
+        "S_i_lat": 1.037913558665488,
+        "PTEI": 1.037913558665488,
+        "PKAI": 1.037913558665488,
+        "PAOS_base": 1.037913558665488,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.117,
+            "S_i_aicore": null,
+            "U_i": 0.0008267904509283821,
+            "VecRatio": 0.033,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926020048.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0005",
+            "ActiveTimeUs": 2.8145,
+            "S_i_aicore": null,
+            "U_i": 0.0007606756756756756,
+            "VecRatio": 0.033,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0005/profile_output/mindstudio_profiler_output/op_summary_20260926022219.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.1074791259548766,
+          "U_i": 0.0007606756756756756,
+          "U_step": 0.2446030035458527,
+          "VecRatio": 0.033,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.011942648571428573,
+        "token": [
+          {
+            "Tokens": 69264.0,
+            "BestMs": 0.011942648571428573,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 249300.0,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Tokens": 369107.0,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Tokens": 490686.0,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Tokens": 614194.0,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Tokens": 739613.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 866883.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 996106.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1127277.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1260358.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1395309.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1532224.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1670956.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1811569.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 1954241.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2098842.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2245387.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2393778.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2544152.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2696443.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Tokens": 2850575.0,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 297.85610994603485,
+            "BestMs": 0.011942648571428573,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 608.9429894080386,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Seconds": 860.5582655593753,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Seconds": 1094.3696862412617,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Seconds": 1340.6824159203097,
+            "BestMs": 0.011831802857142857,
+            "Speedup": 1.0093684551394295
+          },
+          {
+            "Seconds": 1586.635107495822,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 1837.2351158801466,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 2084.116869535297,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 2343.3428141474724,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 2633.8782195299864,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 2894.3557678870857,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 3176.299667316489,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 3470.082330716774,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 3740.75897293631,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 4020.202969925478,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 4288.099245445803,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 4542.244579060003,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 4839.799548694864,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 5104.768408710137,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 5370.175817376003,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          },
+          {
+            "Seconds": 5643.081989350729,
+            "BestMs": 0.011506400000000002,
+            "Speedup": 1.037913558665488
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "rope_with_sin_cos_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.42857142857142855,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 7,
+        "CandidatesPassed": 3,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 1979606.0,
+        "TotalWallClockSec": 2428.987329485826,
+        "SearchWallClockSec": 2428.9195373244584,
+        "LLMRounds": 39.0,
+        "ToolCalls": 49.0,
+        "InputTokens": 208282.0,
+        "CachedInputTokens": 1762816.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 8508.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.048594475,
+        "BestMs": 0.04750433875,
+        "Speedup": 1.022948140710621,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0001",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.022948140710621,
+        "VLR": 0.022433337328986447,
+        "EndGain": 0.032733008195616205,
+        "AULS_token": 0.025045596879586823,
+        "AULS_time": 0.025668382866759907,
+        "SpeedupSearch": 1.022948140710621,
+        "VLRSearch": 0.022433337328986447,
+        "TokensTo1%": 218603.0,
+        "TimeTo1%": 536.1807073894888,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.04760165,
+        "VerificationCV": 0.005480115251270675,
+        "SpeedupConfirmed": 1.0208569450848868,
+        "VLRConfirmed": 0.020430820581969322,
+        "STS_token": 2.8889302537601513,
+        "STS_time": 2.9200695531188057,
+        "S_equiv": 1.020226374648842
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.048594475,
+        "T_step_agent_ms": 0.04750433875,
+        "eTPS_base": 20.578471112199484,
+        "eTPS_agent": 21.050708762891684,
+        "S_i_lat": 1.022948140710621,
+        "PTEI": 1.022948140710621,
+        "PKAI": 1.022948140710621,
+        "PAOS_base": 1.022948140710621,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.8345,
+            "S_i_aicore": null,
+            "U_i": 0.0004918230563002681,
+            "VecRatio": 0.04,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/rope_with_sin_cos_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926013039.csv",
+            "samples": 336
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0001",
+            "ActiveTimeUs": 1.6789999999999998,
+            "S_i_aicore": null,
+            "U_i": 0.0004689944134078212,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/rope_with_sin_cos_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0001/profile_output/mindstudio_profiler_output/op_summary_20260926013540.csv",
+            "samples": 336
+          },
+          "S_i_aicore": 1.0926146515783206,
+          "U_i": 0.0004689944134078212,
+          "U_step": 0.03534414001289513,
+          "VecRatio": 0.039,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.048594475,
+        "token": [
+          {
+            "Tokens": 43845.0,
+            "BestMs": 0.048594475,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 218603.0,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          },
+          {
+            "Tokens": 371066.0,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          },
+          {
+            "Tokens": 1340913.0,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 235.6140393866226,
+            "BestMs": 0.048594475,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 536.1807073894888,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          },
+          {
+            "Seconds": 746.092198818922,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          },
+          {
+            "Seconds": 1583.1140828700736,
+            "BestMs": 0.04750433875,
+            "Speedup": 1.022948140710621
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "sparse_flash_attention-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 38,
+        "CandidatesPassed": 38,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 8768845.0,
+        "TotalWallClockSec": 8049.573443225585,
+        "SearchWallClockSec": 8049.513677250594,
+        "LLMRounds": 120.0,
+        "ToolCalls": 129.0,
+        "InputTokens": 511591.0,
+        "CachedInputTokens": 8235520.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 21734.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.02840275,
+        "BestMs": 0.025341119999999998,
+        "Speedup": 1.1208166805571342,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0015",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.1208166805571342,
+        "VLR": 0.10779343549480258,
+        "EndGain": 0.1645503319538014,
+        "AULS_token": 0.06084126847675199,
+        "AULS_time": 0.07699782512735076,
+        "SpeedupSearch": 1.1208166805571342,
+        "VLRSearch": 0.10779343549480258,
+        "TokensTo1%": 523329.0,
+        "TimeTo1%": 610.6221961881965,
+        "TokensTo5%": 1799914.0,
+        "TimeTo5%": 2202.82119788602,
+        "TokensTo10%": 2447604.0,
+        "TimeTo10%": 3111.065083586611,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.027659800000000002,
+        "VerificationCV": 0.040892923137871205,
+        "SpeedupConfirmed": 1.0268602809854013,
+        "VLRConfirmed": 0.02615767839381744,
+        "STS_token": 11.26958002152767,
+        "STS_time": 12.077407854057608,
+        "S_equiv": 1.0812467529205319
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.02840275,
+        "T_step_agent_ms": 0.025341119999999998,
+        "eTPS_base": 35.20785839399354,
+        "eTPS_agent": 39.46155497468147,
+        "S_i_lat": 1.1208166805571342,
+        "PTEI": 1.1208166805571342,
+        "PKAI": 1.1208166805571342,
+        "PAOS_base": 1.1208166805571342,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 4.788,
+            "S_i_aicore": null,
+            "U_i": 0.0005933085501858736,
+            "VecRatio": 0.016,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/sparse_flash_attention-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926021046.csv",
+            "samples": 240
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0015",
+            "ActiveTimeUs": 4.0120000000000005,
+            "S_i_aicore": null,
+            "U_i": 0.0006024024024024025,
+            "VecRatio": 0.018,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/sparse_flash_attention-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0015/profile_output/mindstudio_profiler_output/op_summary_20260926025907.csv",
+            "samples": 240
+          },
+          "S_i_aicore": 1.193419740777667,
+          "U_i": 0.0006024024024024025,
+          "U_step": 0.1583197585584221,
+          "VecRatio": 0.018,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.02840275,
+        "token": [
+          {
+            "Tokens": 41751.0,
+            "BestMs": 0.02840275,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 315638.0,
+            "BestMs": 0.02840275,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 523329.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 685068.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 906918.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 1020046.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 1135299.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 1252290.0,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Tokens": 1431216.0,
+            "BestMs": 0.027137679999999997,
+            "Speedup": 1.046616733633826
+          },
+          {
+            "Tokens": 1552382.0,
+            "BestMs": 0.027137679999999997,
+            "Speedup": 1.046616733633826
+          },
+          {
+            "Tokens": 1799914.0,
+            "BestMs": 0.026235520000000002,
+            "Speedup": 1.082606710292001
+          },
+          {
+            "Tokens": 1925703.0,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Tokens": 2053329.0,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Tokens": 2182937.0,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Tokens": 2314327.0,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Tokens": 2447604.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 2582770.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 2788859.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 2928188.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 3142164.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 3288997.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 3437763.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 3740144.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 3971435.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 4128000.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 4366041.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 4526646.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 4770875.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 5018530.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 5269594.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 5524441.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 5869568.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 6132320.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 6309563.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 6578754.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 6851421.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 7128226.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 7502530.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Tokens": 7691910.0,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 210.7018003538251,
+            "BestMs": 0.02840275,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 422.764820093289,
+            "BestMs": 0.02840275,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 610.6221961881965,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 787.6339379139245,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 977.5502977455035,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 1151.554813339375,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 1325.3410694459453,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 1546.2527858605608,
+            "BestMs": 0.02737963,
+            "Speedup": 1.0373679264475086
+          },
+          {
+            "Seconds": 1783.6107473261654,
+            "BestMs": 0.027137679999999997,
+            "Speedup": 1.046616733633826
+          },
+          {
+            "Seconds": 1954.2389342281967,
+            "BestMs": 0.027137679999999997,
+            "Speedup": 1.046616733633826
+          },
+          {
+            "Seconds": 2202.82119788602,
+            "BestMs": 0.026235520000000002,
+            "Speedup": 1.082606710292001
+          },
+          {
+            "Seconds": 2397.311507381499,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Seconds": 2558.7553749633953,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Seconds": 2750.84657620918,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Seconds": 2928.0076068583876,
+            "BestMs": 0.025781679999999998,
+            "Speedup": 1.1016640498214236
+          },
+          {
+            "Seconds": 3111.065083586611,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 3276.689807895571,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 3493.3179752640426,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 3663.6951049957424,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 3889.4691211590543,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 4056.4659325079992,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 4228.636029730551,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 4452.552502373233,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 4647.720432997681,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 4835.398417615332,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5056.0938431322575,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5216.11123008281,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5408.961634180509,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5572.531367114745,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5757.9036948643625,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 5952.589047458954,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 6125.81570629403,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 6281.568834058009,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 6442.537331998348,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 6635.395705448464,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 6814.836593179032,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 7011.188089617528,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 7174.919063691981,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          },
+          {
+            "Seconds": 7345.0703764026985,
+            "BestMs": 0.025341119999999998,
+            "Speedup": 1.1208166805571342
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "swi_glu-opencode-native-opencode-gpt-5.6-terra-20260925-231120",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "gpt-5.6-terra",
+          "raw": "gptplus5/gpt-5.6-terra",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 14,
+        "CandidatesPassed": 14,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 3034731.0,
+        "TotalWallClockSec": 5553.5681863436475,
+        "SearchWallClockSec": 5553.49667503126,
+        "LLMRounds": 60.0,
+        "ToolCalls": 71.0,
+        "InputTokens": 411014.0,
+        "CachedInputTokens": 2611200.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 12517.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.00565558,
+        "BestMs": 0.005604428571428572,
+        "Speedup": 1.0091269659198083,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0012",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0091269659198083,
+        "VLR": 0.009044417826540974,
+        "EndGain": 0.013107702272998813,
+        "AULS_token": 0.0019753109709175357,
+        "AULS_time": 0.002949720575119904,
+        "SpeedupSearch": 1.0091269659198083,
+        "VLRSearch": 0.009044417826540974,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.005642634285714285,
+        "VerificationCV": 0.001940832857025671,
+        "SpeedupConfirmed": 1.0022942678242484,
+        "VLRConfirmed": 0.0022890162080131393,
+        "STS_token": 0.7541506621958174,
+        "STS_time": 0.8028711424059358,
+        "S_equiv": 1.005241060609785
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.00565558,
+        "T_step_agent_ms": 0.005604428571428572,
+        "eTPS_base": 176.81652456511975,
+        "eTPS_agent": 178.43032295888455,
+        "S_i_lat": 1.0091269659198083,
+        "PTEI": 1.0091269659198083,
+        "PKAI": 1.0091269659198083,
+        "PAOS_base": 1.0091269659198083,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.1785,
+            "S_i_aicore": null,
+            "U_i": 0.0004869834710743802,
+            "VecRatio": 0.0415,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/swi_glu-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260926003216.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0012",
+            "ActiveTimeUs": 1.126,
+            "S_i_aicore": null,
+            "U_i": 0.00047310924369747896,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-gpt-5.6-terra-20260925-231120/swi_glu-opencode-native-opencode-gpt-5.6-terra-20260925-231120/evaluations/E0012/profile_output/mindstudio_profiler_output/op_summary_20260926013030.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.046625222024867,
+          "U_i": 0.00047310924369747896,
+          "U_step": 0.200912543651704,
+          "VecRatio": 0.042,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.00565558,
+        "token": [
+          {
+            "Tokens": 42012.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 375460.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 562969.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 805304.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1005562.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1159453.0,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1316873.0,
+            "BestMs": 0.005642228571428571,
+            "Speedup": 1.00236633954162
+          },
+          {
+            "Tokens": 1477922.0,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Tokens": 1755207.0,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Tokens": 1926382.0,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Tokens": 2101019.0,
+            "BestMs": 0.005608777142857143,
+            "Speedup": 1.0083445742183679
+          },
+          {
+            "Tokens": 2279620.0,
+            "BestMs": 0.005608777142857143,
+            "Speedup": 1.0083445742183679
+          },
+          {
+            "Tokens": 2462442.0,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          },
+          {
+            "Tokens": 2586278.0,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          },
+          {
+            "Tokens": 2775693.0,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 289.97161548770964,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 593.4965393599123,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 874.3021386787295,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1236.5126075223088,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1532.5050401259214,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1830.9230579137802,
+            "BestMs": 0.00565558,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 2131.9771647322923,
+            "BestMs": 0.005642228571428571,
+            "Speedup": 1.00236633954162
+          },
+          {
+            "Seconds": 2409.8766232579947,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Seconds": 2671.2196752941236,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Seconds": 2926.011595947668,
+            "BestMs": 0.005614734285714286,
+            "Speedup": 1.0072747368276427
+          },
+          {
+            "Seconds": 3193.6078333156183,
+            "BestMs": 0.005608777142857143,
+            "Speedup": 1.0083445742183679
+          },
+          {
+            "Seconds": 3471.8951664827764,
+            "BestMs": 0.005608777142857143,
+            "Speedup": 1.0083445742183679
+          },
+          {
+            "Seconds": 3782.236846398562,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          },
+          {
+            "Seconds": 4057.813815381378,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          },
+          {
+            "Seconds": 4332.252954894677,
+            "BestMs": 0.005604428571428572,
+            "Speedup": 1.0091269659198083
+          }
+        ]
+      }
+    }
+  ]
+}

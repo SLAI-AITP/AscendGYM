@@ -1,0 +1,169 @@
+{
+  "source_date": "2026-10-22",
+  "harness_runs": 289,
+  "default_runs": 128,
+  "checks": [
+    {
+      "group": "claude-code::claude-opus-5",
+      "sts": 74.03717915621269,
+      "expected_sts": 74.03717915621269,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "claude-code::gpt-5.6-terra",
+      "sts": 7.027841914037475,
+      "expected_sts": 7.027841914037475,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "claude-code::glm-5.3",
+      "sts": 44.03181421251067,
+      "expected_sts": 44.03181421251067,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "claude-code::Qwen3.5-122B",
+      "sts": 6.930661924692416,
+      "expected_sts": 6.930661924692416,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "claude-code::Qwen3.6-35B",
+      "sts": 4.921939382511611,
+      "expected_sts": 4.921939382511611,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "claude-code::DeepSeek-V4-Flash-BF16",
+      "sts": 10.314318956397646,
+      "expected_sts": 10.314318956397646,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "codex::gpt-5.6-terra",
+      "sts": 58.36028333429681,
+      "expected_sts": 58.36028333429681,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "codex::glm-5.3",
+      "sts": 5.415272052537867,
+      "expected_sts": 5.415272052537867,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "codex::Qwen3.5-122B",
+      "sts": 3.6385936059254735,
+      "expected_sts": 3.6385936059254735,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "codex::Qwen3.6-35B",
+      "sts": 6.470042353818354,
+      "expected_sts": 6.470042353818354,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "codex::DeepSeek-V4-Flash-BF16",
+      "sts": 11.517911130385038,
+      "expected_sts": 11.517911130385038,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::claude-opus-5",
+      "sts": 47.06815928221053,
+      "expected_sts": 47.06815928221053,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::gpt-5.6-terra",
+      "sts": 6.624852911018037,
+      "expected_sts": 6.624852911018037,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::glm-5.3",
+      "sts": 31.601038826152745,
+      "expected_sts": 31.601038826152745,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::Qwen3.5-122B",
+      "sts": 7.9019840608363605,
+      "expected_sts": 7.9019840608363605,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::Qwen3.6-35B",
+      "sts": 7.161371031002409,
+      "expected_sts": 7.161371031002409,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "opencode::DeepSeek-V4-Flash-BF16",
+      "sts": 9.942030712770716,
+      "expected_sts": 9.942030712770716,
+      "runs": 17,
+      "operators": 17
+    },
+    {
+      "group": "kl-luna",
+      "sts": 22.58287459833043,
+      "expected_sts": 22.58287459833043,
+      "runs": 48,
+      "operators": 16
+    },
+    {
+      "group": "kl-warm",
+      "sts": 34.695288712084285,
+      "expected_sts": 34.695288712084285,
+      "runs": 48,
+      "operators": 16
+    },
+    {
+      "group": "kl-nl",
+      "sts": 10.889903369737157,
+      "expected_sts": 10.889903369737157,
+      "runs": 16,
+      "operators": 16
+    },
+    {
+      "group": "kl-cl",
+      "sts": 13.96391490898753,
+      "expected_sts": 13.96391490898753,
+      "runs": 16,
+      "operators": 16
+    }
+  ],
+  "sources": {
+    "harness_grouped/data/normalized_runs.json": "c3dd4e0609e3b6a8774ff0d79b6cd6c9869c2dfd3d999954e1fd50b9c8c37623",
+    "harness_grouped/data/group_metrics.csv": "cb6913b7a039e109bf47ed3b6a3e7476535813cd37de05ce733e01e33c6bb11e",
+    "harness_grouped/data/input_manifest.json": "240de9587f5dc92baf739b8a3bc47e206d5562aef4b54e45479d82acf27b48ff",
+    "model/Default/data_luna_four_modes_20261022/normalized_runs.json": "3566929b1754cc5867dd067104e16206102813b241c4cd37a27257ab3893cae0",
+    "model/Default/data_luna_four_modes_20261022/group_metrics.csv": "5d37e44100718c549e387255e6872b7ce73752795907861d2ff9cdb9742b5b7b",
+    "model/Default/STS/data_budgets_10M_20M_50M_20261022/sts_by_run.csv": "a4a4fe604d6777187bce7a75c914db25234d475f07ae223c629a03bb7b0e7073",
+    "model/Default/STS/data_budgets_10M_20M_50M_20261022/sts_by_mode.csv": "3d003623c45fef5ff0685b48fa71935a05ff28f140d82f8899d1f9f052bf1ee3"
+  },
+  "notes": [
+    "Source CSVs take precedence over stale README counts.",
+    "Unexported PAOS, AULS, STS_time and billing splits remain null.",
+    "GM uses the terminal selected trajectory; STS uses a 50M-token cutoff.",
+    "Default no-lessons STS covers 15 of 16 operators."
+  ]
+}

@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import { effectScope, ref, computed } from 'vue';
+import { usePagination } from '../src/lib/usePagination.js';
+
+const scope = effectScope();
+scope.run(() => {
+  const rows = ref(Array.from({ length: 17 }, (_, i) => ({ id: `entry-${i}`, score: 17 - i })));
+  const fullScores = computed(() => rows.value.map(row => row.score));
+  const first = usePagination(rows), second = usePagination(rows);
+  assert.equal(first.pageCount.value, 4);
+  assert.equal(first.pagedItems.value.length, 5);
+  first.page.value = 2;
+  assert.equal(first.startIndex.value, 5);
+  assert.equal(first.pagedItems.value[0].id, 'entry-5');
+  assert.equal(second.page.value, 1, 'table pages must be independent');
+  assert.equal(fullScores.value.length, 17, 'plot/color source must retain all entries');
+  first.page.value = 4;
+  assert.deepEqual(first.pagedItems.value.map(row => row.id), ['entry-15', 'entry-16']);
+  first.page.value = 999;
+  assert.equal(first.page.value, 4);
+  rows.value = rows.value.slice(0, 4);
+  assert.equal(first.page.value, 1);
+  assert.equal(first.pageCount.value, 1);
+  assert.equal(first.pagedItems.value.length, 4);
+  rows.value = [];
+  assert.equal(first.total.value, 0);
+  assert.equal(first.pagedItems.value.length, 0);
+  rows.value = Array.from({ length: 11 }, (_, i) => ({ id: `new-${i}` }));
+  first.page.value = 2;
+  rows.value = [...rows.value].reverse();
+  assert.equal(first.page.value, 1, 'new sort order resets the page');
+  assert.equal(first.pagedItems.value[0].id, 'new-10');
+});
+scope.stop();
+console.log('PASS: 5-row pages, independent navigation, global offsets, last/empty/single pages, clamping, filter/sort resets and full chart data.');

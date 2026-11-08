@@ -1,0 +1,36 @@
+{
+  "name": "ascendgym-ux-v2-vue",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "AscendGYM leaderboard UX v2.0 — entry-based (agent × engine model), STS/PAOS metrics, v2 data contract. Aggregates every eval_summary.json in the repository as the default dataset.",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node scripts/mock-api.mjs",
+    "build": "vite build",
+    "prebuild": "python3 scripts/build-shape-bundle.py",
+    "data:shapes": "python3 scripts/build-shape-bundle.py",
+    "test:shapes": "python3 scripts/build-shape-bundle.py --check && node scripts/verify-shape-results.mjs",
+    "preview": "vite preview --port 4174 --strictPort",
+    "bundle": "node scripts/build-bundle.mjs",
+    "bundle:operator": "node scripts/build-operator-bundle.mjs",
+    "test:anchors": "node scripts/verify-anchors.mjs",
+    "test:mapping": "node scripts/audit-field-mapping.mjs",
+    "test:precision": "node scripts/audit-precision.mjs",
+    "test": "npm run test:anchors && npm run test:mapping && npm run test:precision && npm run test:supplement && npm run test:pricing && npm run test:pagination && npm run test:shapes && npm run test:submission",
+    "test:submission": "node scripts/verify-submission.mjs",
+    "data:sync": "python3 scripts/sync-supplement.py",
+    "test:supplement": "python3 scripts/verify-supplement.py",
+    "test:pricing": "node scripts/verify-api-pricing.mjs",
+    "test:pagination": "node scripts/verify-pagination.mjs"
+  },
+  "dependencies": {
+    "katex": "0.19.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.1.0"
+  }
+}

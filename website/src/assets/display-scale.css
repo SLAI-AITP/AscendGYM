@@ -1,0 +1,12 @@
+/* Apply the established compact layout independently of browser preferences. */
+:root {
+  --site-scale: 0.6666666666666666;
+  zoom: var(--site-scale);
+}
+
+@media print {
+  :root {
+    --site-scale: 1;
+    zoom: 1;
+  }
+}

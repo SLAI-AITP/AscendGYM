@@ -1,0 +1,5 @@
+# Some upstream source files use CRLF. Accept that line ending in whitespace checks.
+* whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# The shape bundle records a SHA-256 of these CSV bytes; do not normalize them.
+public/templates/*.csv -text

@@ -1,0 +1,3925 @@
+{
+  "root": "/tmp/ascendgym-eval-CtLAmj/input",
+  "n_runs": 17,
+  "generators": {
+    "agents": [
+      {
+        "id": "opencode",
+        "type": "general",
+        "strategy": "agentic-search",
+        "kind": "opencode",
+        "wrapper": null
+      }
+    ],
+    "engine_models": [
+      {
+        "id": "DeepSeek-V4-Flash-BF16",
+        "vendor": null,
+        "openness": null
+      }
+    ],
+    "agent_ids": [
+      "opencode"
+    ],
+    "engine_model_ids": [
+      "DeepSeek-V4-Flash-BF16"
+    ]
+  },
+  "accuracy": {
+    "TaskPassRate": 0.47058823529411764,
+    "GateRate": 0.47058823529411764,
+    "RunCompletedRate": 0.47058823529411764
+  },
+  "cost": {
+    "TotalTokens": 101620360.0,
+    "median_TotalTokens": 0.0,
+    "TotalWallClockSec": 72591.14921526518,
+    "median_WallClockSec": 83.57464527711272,
+    "mean_LLMRounds": 120.875,
+    "median_LLMRounds": 112.5,
+    "TotalToolCalls": 1060.0,
+    "median_ToolCalls": 128.0,
+    "TotalInputTokens": 78290487.0,
+    "TotalCachedInputTokens": 0.0,
+    "TotalCacheWriteTokens": 0.0,
+    "TotalOutputTokens": 528606.0
+  },
+  "sts": {
+    "EBGS": 1.06612999970808,
+    "mean_Speedup": 1.0677949470925454,
+    "median_Speedup": 1.0483961780104183,
+    "max_Speedup": 1.2126112659705988,
+    "mean_VLR": 0.06063676415964919,
+    "mean_EndGain": 0.09238336539460087,
+    "mean_AULS_token": 0.04080462828919016,
+    "mean_AULS_time": 0.04370078443351927,
+    "mean_STS_token": 6.659399684189553,
+    "mean_STS_time": 6.804207491406007,
+    "EIR_1%": 0.875,
+    "median_TokensTo1%": 1291541.0,
+    "median_TimeTo1%": 1457.2818998452276,
+    "EIR_5%": 0.5,
+    "median_TokensTo5%": 3739691.0,
+    "median_TimeTo5%": 3224.0214525558986,
+    "EIR_10%": 0.125,
+    "median_TokensTo10%": 5395860.0,
+    "median_TimeTo10%": 4391.456435189582
+  },
+  "paos": {
+    "computed_runs": 8,
+    "mean_PAOS_base": 1.0677949470925454,
+    "mean_PTEI": 1.0677949470925454,
+    "mean_PKAI": 1.0677949470925454,
+    "mean_eTPS_base": 80.99356660102893,
+    "mean_eTPS_agent": 84.69860379914375,
+    "mean_S_i_aicore": 1.0340975404669344,
+    "mean_U_i": 0.000629045464450929,
+    "mean_U_step": 0.2993998077519986,
+    "mean_VecRatio": 0.18412500000000004,
+    "mean_CubeRatio": 0.0,
+    "mean_MTE2Ratio": 0.0,
+    "status": "computed",
+    "runtime_scenario": "decode",
+    "G": 1.0,
+    "batch_size": 1.0,
+    "chunk_len": null,
+    "T_other_ms": 0.0,
+    "calls_per_step": [
+      1.0
+    ],
+    "input_source": {
+      "recipe": "default",
+      "G": "computed",
+      "runtime_scenario": "cli",
+      "batch_size": "cli",
+      "chunk_len": "missing",
+      "T_other_ms": "default",
+      "calls_per_step": "default"
+    }
+  },
+  "catalog": {
+    "version": "1.0",
+    "categories": [
+      {
+        "key": "accuracy",
+        "label": "正确性",
+        "subtitle": "Correctness"
+      },
+      {
+        "key": "identity",
+        "label": "生成者",
+        "subtitle": "Generator identity"
+      },
+      {
+        "key": "cost",
+        "label": "成本",
+        "subtitle": "Cost & effort"
+      },
+      {
+        "key": "sts",
+        "label": "STS · token 效率轴",
+        "subtitle": "Speedup–Token Surface"
+      },
+      {
+        "key": "paos",
+        "label": "PAOS · 价值轴",
+        "subtitle": "Profile Agent Optimization Score"
+      },
+      {
+        "key": "durations",
+        "label": "延迟",
+        "subtitle": "Latency"
+      }
+    ],
+    "metrics": {
+      "Agent": {
+        "label": "Agent",
+        "short": "AGENT",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "生成算子的 coding agent 身份，取自 run 配置的 agent.kind（command 型由 wrapper 文件名解析）。"
+      },
+      "EngineModel": {
+        "label": "Engine Model",
+        "short": "MODEL",
+        "unit": "",
+        "direction": "context",
+        "category": "identity",
+        "definition": "驱动该 agent 的 LLM，优先取 run 配置的 agent.model，其次 usage.models_observed、harness 启动日志与 run id；具体来源记在 identity.engine_model.model_source。"
+      },
+      "TaskPassRate": {
+        "label": "Task Pass Rate",
+        "short": "TASK %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "至少存在一个有效 baseline 或通过候选的任务占比。"
+      },
+      "GateRate": {
+        "label": "Correctness Gate Rate",
+        "short": "GATE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过正确性硬门槛的任务占比；只有这些任务进入 STS / PAOS 性能榜。"
+      },
+      "RunCompletedRate": {
+        "label": "Run Completed Rate",
+        "short": "DONE %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "完整跑完（operational_status=completed）的任务占比。"
+      },
+      "TaskPass": {
+        "label": "Task Pass",
+        "short": "PASS",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级 0/1 标记：存在有效 baseline 或通过候选即为 1。"
+      },
+      "CandidatePassRate": {
+        "label": "Candidate Pass Rate",
+        "short": "CAND %",
+        "unit": "%",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "通过功能测试的候选数 / 已完成的候选总数。"
+      },
+      "CorrectnessGate": {
+        "label": "Correctness Gate",
+        "short": "GATE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "任务级硬门槛：存在通过候选才允许计入性能汇总。"
+      },
+      "RunCompleted": {
+        "label": "Run Completed",
+        "short": "DONE",
+        "unit": "",
+        "direction": "up",
+        "category": "accuracy",
+        "definition": "运行是否正常结束。"
+      },
+      "FailureReason": {
+        "label": "Failure Reason",
+        "short": "REASON",
+        "unit": "",
+        "direction": "context",
+        "category": "accuracy",
+        "definition": "原样保留的终止原因，用于解释失败或阻塞。"
+      },
+      "TotalTokens": {
+        "label": "Cumulative Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "该任务累计消耗的 prompt+completion token，是 STS 的成本横轴。"
+      },
+      "median_TotalTokens": {
+        "label": "Median Tokens",
+        "short": "TOKENS",
+        "unit": "token",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务累计 token 的中位数。"
+      },
+      "LLMRounds": {
+        "label": "LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 与模型交互的轮数。"
+      },
+      "mean_LLMRounds": {
+        "label": "Mean LLM Rounds",
+        "short": "ROUNDS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "各任务 LLM 轮数的算术平均。"
+      },
+      "ToolCalls": {
+        "label": "Tool Calls",
+        "short": "TOOLS",
+        "unit": "",
+        "direction": "down",
+        "category": "cost",
+        "definition": "Agent 发起的工具调用次数。"
+      },
+      "TotalWallClockSec": {
+        "label": "Wall Time",
+        "short": "WALL",
+        "unit": "s",
+        "direction": "down",
+        "category": "cost",
+        "definition": "任务端到端 wall-clock 耗时（秒）。"
+      },
+      "BaselineMs": {
+        "label": "Baseline Latency",
+        "short": "L0 µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "优化前基线算子延迟 L0，取自有效 baseline 候选。"
+      },
+      "BestMs": {
+        "label": "Best Latency",
+        "short": "LBEST µs",
+        "unit": "ms",
+        "direction": "down",
+        "category": "durations",
+        "definition": "通过候选中的最小延迟 L_best。"
+      },
+      "EBGS": {
+        "label": "EBGS",
+        "short": "EBGS",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "跨任务专家基线几何平均加速比 exp(mean(ln S_i))，代表峰值收益。"
+      },
+      "mean_Speedup": {
+        "label": "Mean Speedup",
+        "short": "SPD",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比 S_i = L0 / L_best 的算术平均。"
+      },
+      "median_Speedup": {
+        "label": "Median Speedup",
+        "short": "S~",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "各任务已验证加速比的中位数，比均值更抗离群。"
+      },
+      "max_Speedup": {
+        "label": "Max Speedup",
+        "short": "S↑",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "任务集合中的最佳加速比。"
+      },
+      "Speedup": {
+        "label": "Speedup",
+        "short": "S",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "已验证加速比 S = L0 / L_best，只统计通过功能测试的解。"
+      },
+      "VLR": {
+        "label": "VLR",
+        "short": "VLR",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "Validated Latency Reduction 延迟降低率 1 − L_best / L0。"
+      },
+      "EndGain": {
+        "label": "End Gain",
+        "short": "log₂S",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "最终收益项 log₂S(B_max)，即 S(B_max)=L0/L_best 的对数；是 STS_token 中不依赖 token 曲线的分量，token 轴缺失时仍可计算。"
+      },
+      "AULS_token": {
+        "label": "AULS (token)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 token 轴上 best-so-far 加速曲线的归一化面积，衡量“多早拿到收益”。"
+      },
+      "AULS_time": {
+        "label": "AULS (time)",
+        "short": "AULS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "对数 wall-clock 轴上的 anytime 面积，衡量时间维度上的效率。"
+      },
+      "STS_token": {
+        "label": "STS Token",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "主榜分：100·[0.5·EndGain + 0.5·AULS_token]，融合最终收益与过程效率；任一分量缺失则为 null。"
+      },
+      "STS_time": {
+        "label": "STS Time",
+        "short": "STS",
+        "unit": "",
+        "direction": "up",
+        "category": "sts",
+        "definition": "同 STS_token，横轴换成 wall-clock，用于基础设施效率诊断。"
+      },
+      "S_equiv": {
+        "label": "S_equiv",
+        "short": "S_EQUIV",
+        "unit": "×",
+        "direction": "up",
+        "category": "sts",
+        "definition": "2^(STS_token/100)，把综合分翻译回可解释的“等效加速比”。"
+      },
+      "EIR": {
+        "label": "EIR",
+        "short": "EIR %",
+        "unit": "%",
+        "direction": "up",
+        "category": "sts",
+        "definition": "达到指定 VLR 阈值（1% / 5% / 10%）的任务比例，衡量改进广度。"
+      },
+      "TokensTo": {
+        "label": "Tokens-to-Δ",
+        "short": "TO Δ",
+        "unit": "token",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的累计 token 数。"
+      },
+      "TimeTo": {
+        "label": "Time-to-Δ",
+        "short": "T Δ",
+        "unit": "s",
+        "direction": "down",
+        "category": "sts",
+        "definition": "首次达到 VLR ≥ Δ（1% / 5% / 10%）所需的 wall-clock 秒数。"
+      },
+      "S_i_lat": {
+        "label": "Kernel Speedup",
+        "short": "S_lat",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子延迟加速比 t_base / t_best，是 PAOS 的原子量。"
+      },
+      "T_step_base_ms": {
+        "label": "T_step (base)",
+        "short": "T0",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化前 step 总耗时 T_other + Σ(n_i · t_i^0)，按 recipe 的调用次数合成。"
+      },
+      "T_step_agent_ms": {
+        "label": "T_step (agent)",
+        "short": "T1",
+        "unit": "ms",
+        "direction": "down",
+        "category": "paos",
+        "definition": "优化后 step 总耗时，只有被优化算子换成了最佳通过候选。"
+      },
+      "PTEI": {
+        "label": "PTEI",
+        "short": "PTEI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "eTPSGain = T_step^0 / T_step^1，step 级 token 吞吐增益。"
+      },
+      "PKAI": {
+        "label": "PKAI",
+        "short": "PKAI",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "token-time 加权算子加速指数 exp(Σ w_i·ln S_i^lat)，权重小的算子影响力也小。"
+      },
+      "PAOS_base": {
+        "label": "PAOS",
+        "short": "PAOS",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "价值轴主分 √(PKAI × PTEI)：既奖励算得快，也奖励优化在关键路径上。"
+      },
+      "eTPS_base": {
+        "label": "eTPS (base)",
+        "short": "eTPS0",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化前估算模型 token 吞吐 G / T_step^0。"
+      },
+      "eTPS_agent": {
+        "label": "eTPS (agent)",
+        "short": "eTPS1",
+        "unit": "token/ms",
+        "direction": "up",
+        "category": "paos",
+        "definition": "优化后估算模型 token 吞吐 G / T_step^1。"
+      },
+      "S_i_aicore": {
+        "label": "AI Core Speedup",
+        "short": "S_aicore",
+        "unit": "×",
+        "direction": "up",
+        "category": "paos",
+        "definition": "AI 活跃时间加速比 a_base / a_agent，反映是否真正更省算力。"
+      },
+      "U_i": {
+        "label": "AI Active Utilization",
+        "short": "U_i",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "算子级 AI 活跃时间利用率 a_i / t_i（诊断上下文，不参与 PAOS 主分）。"
+      },
+      "U_step": {
+        "label": "Step Utilization",
+        "short": "U_step",
+        "unit": "",
+        "direction": "up",
+        "category": "paos",
+        "definition": "step 级 AI 活跃利用率 Σ(n_i·a_i) / T_step。"
+      },
+      "VecRatio": {
+        "label": "Vector Ratio",
+        "short": "VEC",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "AI Vector 时间 / Task Duration，用于判断算子是否 vector-bound。"
+      },
+      "CubeRatio": {
+        "label": "Cube Ratio",
+        "short": "CUBE",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "Cube 利用率，用于判断算子是否 cube-bound。"
+      },
+      "MTE2Ratio": {
+        "label": "MTE2 Ratio",
+        "short": "MTE2",
+        "unit": "",
+        "direction": "context",
+        "category": "paos",
+        "definition": "MTE2（搬运）占比，用于识别访存瓶颈。"
+      }
+    }
+  },
+  "runs": [
+    {
+      "task_id": "add_rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 83.57464527711272,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "clipped_swiglu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 83.49305332172662,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "fused_gdn_gating-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 82.48870185296983,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "hc_post-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.6153846153846154,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 13,
+        "CandidatesPassed": 8,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 2892903.0,
+        "TotalWallClockSec": 5088.191878397018,
+        "SearchWallClockSec": 5088.133968794718,
+        "LLMRounds": 69.0,
+        "ToolCalls": 73.0,
+        "InputTokens": 2837599.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 55304.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.00954628,
+        "BestMs": 0.0094696,
+        "Speedup": 1.0080974909183071,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0011",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0080974909183071,
+        "VLR": 0.008032448241618861,
+        "EndGain": 0.011635165487821916,
+        "AULS_token": 0.001175731637097673,
+        "AULS_time": 0.0012586973245083486,
+        "SpeedupSearch": 1.0080974909183071,
+        "VLRSearch": 0.008032448241618861,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.0095236,
+        "VerificationCV": 0.005451763707249175,
+        "SpeedupConfirmed": 1.0023814523919528,
+        "VLRConfirmed": 0.002375794550337984,
+        "STS_token": 0.6405448562459795,
+        "STS_time": 0.6446931406165133,
+        "S_equiv": 1.004449789653396
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.00954628,
+        "T_step_agent_ms": 0.0094696,
+        "eTPS_base": 104.75284613482947,
+        "eTPS_agent": 105.60108135507308,
+        "S_i_lat": 1.0080974909183071,
+        "PTEI": 1.0080974909183071,
+        "PKAI": 1.0080974909183071,
+        "PAOS_base": 1.0080974909183071,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.7695,
+            "S_i_aicore": null,
+            "U_i": 0.0008729775280898878,
+            "VecRatio": 0.6214999999999999,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/hc_post-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925185544.csv",
+            "samples": 80
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0011",
+            "ActiveTimeUs": 7.6025,
+            "S_i_aicore": null,
+            "U_i": 0.0008466035634743875,
+            "VecRatio": 0.606,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/hc_post-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0011/profile_output/mindstudio_profiler_output/op_summary_20260925200328.csv",
+            "samples": 80
+          },
+          "S_i_aicore": 1.0219664584018415,
+          "U_i": 0.0008466035634743875,
+          "U_step": 0.8028322210019431,
+          "VecRatio": 0.606,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.00954628,
+        "token": [
+          {
+            "Tokens": 77322.0,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 970628.0,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1267200.0,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1704425.0,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Tokens": 2120412.0,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Tokens": 2334283.0,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Tokens": 2517220.0,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          },
+          {
+            "Tokens": 2624096.0,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          },
+          {
+            "Tokens": 2831471.0,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 201.09954958595335,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1714.5035365466028,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 2285.132644928992,
+            "BestMs": 0.00954628,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 2878.7151183234528,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Seconds": 3833.979815832339,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Seconds": 4015.081467486918,
+            "BestMs": 0.00951426,
+            "Speedup": 1.0033654745613427
+          },
+          {
+            "Seconds": 4264.926336943172,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          },
+          {
+            "Seconds": 4443.2748359637335,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          },
+          {
+            "Seconds": 4776.120583943091,
+            "BestMs": 0.0094696,
+            "Speedup": 1.0080974909183071
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "hc_pre_sinkhorn-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.5,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 14,
+        "CandidatesPassed": 7,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 11757723.0,
+        "TotalWallClockSec": 6986.8685853257775,
+        "SearchWallClockSec": 6986.823235383257,
+        "LLMRounds": 114.0,
+        "ToolCalls": 123.0,
+        "InputTokens": 11680335.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 77388.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.008098725,
+        "BestMs": 0.007622725,
+        "Speedup": 1.062444860597752,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0011",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.062444860597752,
+        "VLR": 0.05877468366934291,
+        "EndGain": 0.08738796933843822,
+        "AULS_token": 0.014280245462018686,
+        "AULS_time": 0.01990650941874464,
+        "SpeedupSearch": 1.062444860597752,
+        "VLRSearch": 0.05877468366934291,
+        "TokensTo1%": 7418540.0,
+        "TimeTo1%": 3772.0378328748047,
+        "TokensTo5%": 10695320.0,
+        "TimeTo5%": 5555.191976976581,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.00763685,
+        "VerificationCV": 0.0011501046992525397,
+        "SpeedupConfirmed": 1.0604797789664586,
+        "VLRConfirmed": 0.05703058197432309,
+        "STS_token": 5.083410740022845,
+        "STS_time": 5.364723937859143,
+        "S_equiv": 1.0358636448353762
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.008098725,
+        "T_step_agent_ms": 0.007622725,
+        "eTPS_base": 123.47622619609878,
+        "eTPS_agent": 131.18668192805066,
+        "S_i_lat": 1.062444860597752,
+        "PTEI": 1.062444860597752,
+        "PKAI": 1.062444860597752,
+        "PAOS_base": 1.062444860597752,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 7.548500000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0009319711093277365,
+            "VecRatio": 0.6455,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/hc_pre_sinkhorn-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927111528.csv",
+            "samples": 64
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0011",
+            "ActiveTimeUs": 7.077,
+            "S_i_aicore": null,
+            "U_i": 0.0009275837210826397,
+            "VecRatio": 0.6325000000000001,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/hc_pre_sinkhorn-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0011/profile_output/mindstudio_profiler_output/op_summary_20260927124445.csv",
+            "samples": 64
+          },
+          "S_i_aicore": 1.066624275823089,
+          "U_i": 0.0009275837210826397,
+          "U_step": 0.9284081480048145,
+          "VecRatio": 0.6325000000000001,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.008098725,
+        "token": [
+          {
+            "Tokens": 87724.0,
+            "BestMs": 0.008098725,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 2767711.0,
+            "BestMs": 0.008031375,
+            "Speedup": 1.0083858616986505
+          },
+          {
+            "Tokens": 6765694.0,
+            "BestMs": 0.008031375,
+            "Speedup": 1.0083858616986505
+          },
+          {
+            "Tokens": 7418540.0,
+            "BestMs": 0.007703374999999999,
+            "Speedup": 1.0513216609602933
+          },
+          {
+            "Tokens": 9908508.0,
+            "BestMs": 0.007695874999999999,
+            "Speedup": 1.0523462244384167
+          },
+          {
+            "Tokens": 10695320.0,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          },
+          {
+            "Tokens": 11286972.0,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          },
+          {
+            "Tokens": 11594362.0,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 197.76087375823408,
+            "BestMs": 0.008098725,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1598.9001343520358,
+            "BestMs": 0.008031375,
+            "Speedup": 1.0083858616986505
+          },
+          {
+            "Seconds": 3326.293392671272,
+            "BestMs": 0.008031375,
+            "Speedup": 1.0083858616986505
+          },
+          {
+            "Seconds": 3772.0378328748047,
+            "BestMs": 0.007703374999999999,
+            "Speedup": 1.0513216609602933
+          },
+          {
+            "Seconds": 4658.885456784628,
+            "BestMs": 0.007695874999999999,
+            "Speedup": 1.0523462244384167
+          },
+          {
+            "Seconds": 5555.191976976581,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          },
+          {
+            "Seconds": 6111.814360648394,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          },
+          {
+            "Seconds": 6454.405576636083,
+            "BestMs": 0.007622725,
+            "Speedup": 1.062444860597752
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "interleave_rope-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 82.55867737997323,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "lightning_indexer-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.9090909090909091,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 11,
+        "CandidatesPassed": 10,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 12117666.0,
+        "TotalWallClockSec": 6980.282060644589,
+        "SearchWallClockSec": 6980.123387651518,
+        "LLMRounds": 87.0,
+        "ToolCalls": 97.0,
+        "InputTokens": 12050576.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 67090.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.026536335714285715,
+        "BestMs": 0.02565514571428571,
+        "Speedup": 1.034347495423085,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0002",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.034347495423085,
+        "VLR": 0.03320692086080368,
+        "EndGain": 0.04872094938760921,
+        "AULS_token": 0.03266941031542434,
+        "AULS_time": 0.03341065916891944,
+        "SpeedupSearch": 1.034347495423085,
+        "VLRSearch": 0.03320692086080368,
+        "TokensTo1%": 1291541.0,
+        "TimeTo1%": 847.9683249294758,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.026505255714285716,
+        "VerificationCV": 0.03510244100531232,
+        "SpeedupConfirmed": 1.0011725976287507,
+        "VLRConfirmed": 0.001171224253967651,
+        "STS_token": 4.069517985151677,
+        "STS_time": 4.106580427826432,
+        "S_equiv": 1.0286093549721094
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.026536335714285715,
+        "T_step_agent_ms": 0.02565514571428571,
+        "eTPS_base": 37.68417805558793,
+        "eTPS_agent": 38.97853518887495,
+        "S_i_lat": 1.034347495423085,
+        "PTEI": 1.034347495423085,
+        "PKAI": 1.034347495423085,
+        "PAOS_base": 1.034347495423085,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 0.887,
+            "S_i_aicore": null,
+            "U_i": 0.0005613924050632911,
+            "VecRatio": 0.038,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/lightning_indexer-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927144249.csv",
+            "samples": 304
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0002",
+            "ActiveTimeUs": 0.9045000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0005583333333333334,
+            "VecRatio": 0.038,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/lightning_indexer-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0002/profile_output/mindstudio_profiler_output/op_summary_20260927150641.csv",
+            "samples": 304
+          },
+          "S_i_aicore": 0.9806522940851299,
+          "U_i": 0.0005583333333333334,
+          "U_step": 0.0352560850783374,
+          "VecRatio": 0.038,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.026536335714285715,
+        "token": [
+          {
+            "Tokens": 296926.0,
+            "BestMs": 0.026536335714285715,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1291541.0,
+            "BestMs": 0.02606333571428571,
+            "Speedup": 1.0181480991222758
+          },
+          {
+            "Tokens": 2248013.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 2629398.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 3036090.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 4296268.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 5922474.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 8205823.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 9950593.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 11052396.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Tokens": 11621432.0,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 281.99340995401144,
+            "BestMs": 0.026536335714285715,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 847.9683249294758,
+            "BestMs": 0.02606333571428571,
+            "Speedup": 1.0181480991222758
+          },
+          {
+            "Seconds": 1712.8435563230887,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 2404.3026406588033,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 2678.679133065976,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 3042.1949574714527,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 3654.192069550976,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 4752.8068440929055,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 5235.545772759244,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 5874.275230353698,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          },
+          {
+            "Seconds": 6218.929506949149,
+            "BestMs": 0.02565514571428571,
+            "Speedup": 1.034347495423085
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "mla_prolog-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 1.0,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 16,
+        "CandidatesPassed": 16,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 12655691.0,
+        "TotalWallClockSec": 7410.666687184013,
+        "SearchWallClockSec": 7410.580209508538,
+        "LLMRounds": 111.0,
+        "ToolCalls": 119.0,
+        "InputTokens": 12599154.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 56537.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.03869647166666667,
+        "BestMs": 0.03508580916666666,
+        "Speedup": 1.102909483513646,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0004",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.102909483513646,
+        "VLR": 0.09330727956549723,
+        "EndGain": 0.14131439288347275,
+        "AULS_token": 0.08283528887823804,
+        "AULS_time": 0.0946228178377243,
+        "SpeedupSearch": 1.102909483513646,
+        "VLRSearch": 0.09330727956549723,
+        "TokensTo1%": 1492337.0,
+        "TimeTo1%": 760.3802172988653,
+        "TokensTo5%": 3682967.0,
+        "TimeTo5%": 1698.9107847912237,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.03754562083333333,
+        "VerificationCV": 0.031599823407821824,
+        "SpeedupConfirmed": 1.0306520656148428,
+        "VLRConfirmed": 0.02974045911076406,
+        "STS_token": 11.20748408808554,
+        "STS_time": 11.796860536059853,
+        "S_equiv": 1.0807814669295144
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.03869647166666667,
+        "T_step_agent_ms": 0.03508580916666666,
+        "eTPS_base": 25.84214934669108,
+        "eTPS_agent": 28.50155158884156,
+        "S_i_lat": 1.102909483513646,
+        "PTEI": 1.102909483513646,
+        "PKAI": 1.102909483513646,
+        "PAOS_base": 1.102909483513646,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.2295,
+            "S_i_aicore": null,
+            "U_i": 0.0005209745762711865,
+            "VecRatio": 0.037,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/mla_prolog-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927145533.csv",
+            "samples": 960
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0004",
+            "ActiveTimeUs": 1.1945000000000001,
+            "S_i_aicore": null,
+            "U_i": 0.0005082978723404257,
+            "VecRatio": 0.036,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/mla_prolog-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0004/profile_output/mindstudio_profiler_output/op_summary_20260927152257.csv",
+            "samples": 960
+          },
+          "S_i_aicore": 1.0293009627459186,
+          "U_i": 0.0005082978723404257,
+          "U_step": 0.03404510337287125,
+          "VecRatio": 0.036,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.03869647166666667,
+        "token": [
+          {
+            "Tokens": 334778.0,
+            "BestMs": 0.03869647166666667,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1492337.0,
+            "BestMs": 0.03677375416666667,
+            "Speedup": 1.0522850479525647
+          },
+          {
+            "Tokens": 2882305.0,
+            "BestMs": 0.03677375416666667,
+            "Speedup": 1.0522850479525647
+          },
+          {
+            "Tokens": 3682967.0,
+            "BestMs": 0.03532091166666667,
+            "Speedup": 1.09556831465326
+          },
+          {
+            "Tokens": 4171505.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 4499363.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 5164722.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 5845863.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 6536679.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 7060555.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 7592559.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 8506603.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 10400945.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 10881732.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 11547754.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 11798062.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Tokens": 12347465.0,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 313.69361009821296,
+            "BestMs": 0.03869647166666667,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 760.3802172988653,
+            "BestMs": 0.03677375416666667,
+            "Speedup": 1.0522850479525647
+          },
+          {
+            "Seconds": 1366.36505605001,
+            "BestMs": 0.03677375416666667,
+            "Speedup": 1.0522850479525647
+          },
+          {
+            "Seconds": 1698.9107847912237,
+            "BestMs": 0.03532091166666667,
+            "Speedup": 1.09556831465326
+          },
+          {
+            "Seconds": 1957.7995318593457,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 2165.806569944136,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 2478.2999325385317,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 2784.335640440695,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 3017.084099818021,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 3326.735196611844,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 3660.3855784926564,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 4138.752896872349,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 4921.754939048551,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 5305.661118720658,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 5856.920830760151,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 6094.78963823244,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          },
+          {
+            "Seconds": 6484.410139723681,
+            "BestMs": 0.03508580916666666,
+            "Speedup": 1.102909483513646
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "moe_fused_topk-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 82.45580814778805,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "moe_gating_top_k-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 83.5659286910668,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "moe_token_unpermute-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 82.52981008589268,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "qkv_rms_norm_rope_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 83.49143092520535,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "recurrent_gated_delta_rule-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.9583333333333334,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 24,
+        "CandidatesPassed": 23,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 22801267.0,
+        "TotalWallClockSec": 12356.797302809544,
+        "SearchWallClockSec": 12356.72887181677,
+        "LLMRounds": 185.0,
+        "ToolCalls": 196.0,
+        "InputTokens": null,
+        "CachedInputTokens": null,
+        "CacheWriteTokens": null,
+        "OutputTokens": null,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": 0.013273618888888889,
+        "BestMs": 0.012916806666666667,
+        "Speedup": 1.027623872635875,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0021",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.027623872635875,
+        "VLR": 0.026881306839456,
+        "EndGain": 0.039312310856758424,
+        "AULS_token": 0.00972853656706857,
+        "AULS_time": 0.010257155609376262,
+        "SpeedupSearch": 1.027623872635875,
+        "VLRSearch": 0.026881306839456,
+        "TokensTo1%": 4516471.0,
+        "TimeTo1%": 3761.209495413117,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.013119913333333334,
+        "VerificationCV": 0.016259484225296012,
+        "SpeedupConfirmed": 1.0117154398547008,
+        "VLRConfirmed": 0.011579777665924995,
+        "STS_token": 2.4520423711913497,
+        "STS_time": 2.4784733233067344,
+        "S_equiv": 1.0171415208148145
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.013273618888888889,
+        "T_step_agent_ms": 0.012916806666666667,
+        "eTPS_base": 75.33740484571862,
+        "eTPS_agent": 77.41851572189411,
+        "S_i_lat": 1.027623872635875,
+        "PTEI": 1.027623872635875,
+        "PKAI": 1.027623872635875,
+        "PAOS_base": 1.027623872635875,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.0699999999999998,
+            "S_i_aicore": null,
+            "U_i": 0.0004572649572649572,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/recurrent_gated_delta_rule-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927111711.csv",
+            "samples": 368
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0021",
+            "ActiveTimeUs": 1.0955,
+            "S_i_aicore": null,
+            "U_i": 0.00045456431535269705,
+            "VecRatio": 0.042,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/recurrent_gated_delta_rule-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0021/profile_output/mindstudio_profiler_output/op_summary_20260927140942.csv",
+            "samples": 368
+          },
+          "S_i_aicore": 0.9767229575536284,
+          "U_i": 0.00045456431535269705,
+          "U_step": 0.08481198397333499,
+          "VecRatio": 0.042,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.013273618888888889,
+        "token": [
+          {
+            "Tokens": 89232.0,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 608149.0,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 1544020.0,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 2415635.0,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Tokens": 2978222.0,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Tokens": 3985717.0,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Tokens": 4516471.0,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Tokens": 5286580.0,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Tokens": 6683197.0,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Tokens": 7445599.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 9075452.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 10350500.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 10939463.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 12334385.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 13931443.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 14258771.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 17361249.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 17896020.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 18436863.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 19349501.0,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Tokens": 19905167.0,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Tokens": 21221147.0,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Tokens": 22543976.0,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Tokens": 22724388.0,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 302.2826260989532,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1048.1173699656501,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1844.1473357537761,
+            "BestMs": 0.013273618888888889,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 2377.9461626410484,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Seconds": 2869.504188402556,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Seconds": 3378.0064543057233,
+            "BestMs": 0.013160143333333332,
+            "Speedup": 1.0086226686656319
+          },
+          {
+            "Seconds": 3761.209495413117,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Seconds": 4149.304194410332,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Seconds": 5587.184012725949,
+            "BestMs": 0.013063086666666666,
+            "Speedup": 1.0161165754767165
+          },
+          {
+            "Seconds": 6138.507253312506,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 6859.900044461712,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 7273.4303038511425,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 7698.791798562743,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 8168.092077452689,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 8523.04668823909,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 8842.886617734097,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 9684.830398937687,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 9962.92152251862,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 10144.325812713243,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 10405.816698046401,
+            "BestMs": 0.013036077777777778,
+            "Speedup": 1.0182218237080511
+          },
+          {
+            "Seconds": 10653.511932333931,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Seconds": 10915.026757135056,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Seconds": 11397.562185458839,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          },
+          {
+            "Seconds": 11712.572126220912,
+            "BestMs": 0.012916806666666667,
+            "Speedup": 1.027623872635875
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.9,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 20,
+        "CandidatesPassed": 18,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 14759371.0,
+        "TotalWallClockSec": 12158.537968561985,
+        "SearchWallClockSec": 12158.459000739269,
+        "LLMRounds": 123.0,
+        "ToolCalls": 135.0,
+        "InputTokens": 14668953.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 90418.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.012080302857142858,
+        "BestMs": 0.011349202857142856,
+        "Speedup": 1.0644186212197158,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0004",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0644186212197158,
+        "VLR": 0.06052000588443163,
+        "EndGain": 0.0900656545805764,
+        "AULS_token": 0.05039122125434271,
+        "AULS_time": 0.052425202406440684,
+        "SpeedupSearch": 1.0644186212197158,
+        "VLRSearch": 0.06052000588443163,
+        "TokensTo1%": 982632.0,
+        "TimeTo1%": 1457.2818998452276,
+        "TokensTo5%": 3164749.0,
+        "TimeTo5%": 2964.247730817646,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.011735008571428573,
+        "VerificationCV": 0.015175805577021736,
+        "SpeedupConfirmed": 1.0294242891781928,
+        "VLRConfirmed": 0.028583247439870174,
+        "STS_token": 7.022843791745956,
+        "STS_time": 7.124542849350854,
+        "S_equiv": 1.0498829100756744
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.012080302857142858,
+        "T_step_agent_ms": 0.011349202857142856,
+        "eTPS_base": 82.77938159544722,
+        "eTPS_agent": 88.11191522324665,
+        "S_i_lat": 1.0644186212197158,
+        "PTEI": 1.0644186212197158,
+        "PKAI": 1.0644186212197158,
+        "PAOS_base": 1.0644186212197158,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 3.104,
+            "S_i_aicore": null,
+            "U_i": 0.0008299465240641711,
+            "VecRatio": 0.033,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927131420.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0004",
+            "ActiveTimeUs": 2.843,
+            "S_i_aicore": null,
+            "U_i": 0.0007683783783783783,
+            "VecRatio": 0.035500000000000004,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0004/profile_output/mindstudio_profiler_output/op_summary_20260927135801.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.0918044319380935,
+          "U_i": 0.0007683783783783783,
+          "U_step": 0.25050217497969024,
+          "VecRatio": 0.035500000000000004,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.012080302857142858,
+        "token": [
+          {
+            "Tokens": 162319.0,
+            "BestMs": 0.012080302857142858,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 982632.0,
+            "BestMs": 0.011753822857142857,
+            "Speedup": 1.02777649484496
+          },
+          {
+            "Tokens": 2385377.0,
+            "BestMs": 0.011753822857142857,
+            "Speedup": 1.02777649484496
+          },
+          {
+            "Tokens": 3164749.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 6001400.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 6590623.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 7349537.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 7970586.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 9281123.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 9962863.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 11185978.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 12449976.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 12821384.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 13196676.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 14116923.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 14180162.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 14399998.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 14529811.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Tokens": 14619824.0,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 343.98170511517674,
+            "BestMs": 0.012080302857142858,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1457.2818998452276,
+            "BestMs": 0.011753822857142857,
+            "Speedup": 1.02777649484496
+          },
+          {
+            "Seconds": 2263.907982168719,
+            "BestMs": 0.011753822857142857,
+            "Speedup": 1.02777649484496
+          },
+          {
+            "Seconds": 2964.247730817646,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 4613.324795711786,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 5086.6234774924815,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 5486.680861889385,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 5917.540115478449,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 6689.204725529067,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 7059.657196292654,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 7454.349792798981,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 8191.26946520526,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 8461.294479016215,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 8780.709240661003,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 9517.64210920874,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 9762.015730726533,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 10479.060932594351,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 10789.88640615344,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          },
+          {
+            "Seconds": 11042.810323663056,
+            "BestMs": 0.011349202857142856,
+            "Speedup": 1.0644186212197158
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "rope_with_sin_cos_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.6956521739130435,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 23,
+        "CandidatesPassed": 16,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 20452596.0,
+        "TotalWallClockSec": 13089.668557036668,
+        "SearchWallClockSec": 13089.595580955036,
+        "LLMRounds": 176.0,
+        "ToolCalls": 184.0,
+        "InputTokens": 20319861.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 132735.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.04820153124999999,
+        "BestMs": 0.039750192499999996,
+        "Speedup": 1.2126112659705988,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0010",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.2126112659705988,
+        "VLR": 0.1753334081061999,
+        "EndGain": 0.2781171312166335,
+        "AULS_token": 0.10785330981610164,
+        "AULS_time": 0.10681312409442818,
+        "SpeedupSearch": 1.2126112659705988,
+        "VLRSearch": 0.1753334081061999,
+        "TokensTo1%": 983792.0,
+        "TimeTo1%": 1751.0073360307142,
+        "TokensTo5%": 3796415.0,
+        "TimeTo5%": 3483.7951742941514,
+        "TokensTo10%": 5395860.0,
+        "TimeTo10%": 4391.456435189582,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.0406101425,
+        "VerificationCV": 0.010128410226034746,
+        "SpeedupConfirmed": 1.1869333196750045,
+        "VLRConfirmed": 0.15749268857511645,
+        "STS_token": 19.29852205163676,
+        "STS_time": 19.246512765553085,
+        "S_equiv": 1.1431266247563434
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.04820153124999999,
+        "T_step_agent_ms": 0.039750192499999996,
+        "eTPS_base": 20.746228886660113,
+        "eTPS_agent": 25.157110874368723,
+        "S_i_lat": 1.2126112659705988,
+        "PTEI": 1.2126112659705988,
+        "PKAI": 1.2126112659705988,
+        "PAOS_base": 1.2126112659705988,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.8375,
+            "S_i_aicore": null,
+            "U_i": 0.00049,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/rope_with_sin_cos_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260927111713.csv",
+            "samples": 336
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0010",
+            "ActiveTimeUs": 1.7715,
+            "S_i_aicore": null,
+            "U_i": 0.00047240000000000004,
+            "VecRatio": 0.039,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/rope_with_sin_cos_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0010/profile_output/mindstudio_profiler_output/op_summary_20260927130930.csv",
+            "samples": 336
+          },
+          "S_i_aicore": 1.0372565622353935,
+          "U_i": 0.00047240000000000004,
+          "U_step": 0.0445658219139442,
+          "VecRatio": 0.039,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.04820153124999999,
+        "token": [
+          {
+            "Tokens": 180721.0,
+            "BestMs": 0.04820153124999999,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 983792.0,
+            "BestMs": 0.046021374999999996,
+            "Speedup": 1.047372688234543
+          },
+          {
+            "Tokens": 3796415.0,
+            "BestMs": 0.044922315000000004,
+            "Speedup": 1.0729974902228434
+          },
+          {
+            "Tokens": 4906849.0,
+            "BestMs": 0.044922315000000004,
+            "Speedup": 1.0729974902228434
+          },
+          {
+            "Tokens": 5395860.0,
+            "BestMs": 0.043316327499999994,
+            "Speedup": 1.1127797306916196
+          },
+          {
+            "Tokens": 7079358.0,
+            "BestMs": 0.0428787275,
+            "Speedup": 1.1241362339868877
+          },
+          {
+            "Tokens": 9245511.0,
+            "BestMs": 0.0428787275,
+            "Speedup": 1.1241362339868877
+          },
+          {
+            "Tokens": 10006782.0,
+            "BestMs": 0.04081157875,
+            "Speedup": 1.1810748989954227
+          },
+          {
+            "Tokens": 10735506.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 12266448.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 19668065.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 19763396.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 19863927.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 19970359.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 20161867.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 20242193.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Tokens": 20324824.0,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 304.2941656364128,
+            "BestMs": 0.04820153124999999,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1751.0073360307142,
+            "BestMs": 0.046021374999999996,
+            "Speedup": 1.047372688234543
+          },
+          {
+            "Seconds": 3483.7951742941514,
+            "BestMs": 0.044922315000000004,
+            "Speedup": 1.0729974902228434
+          },
+          {
+            "Seconds": 4022.976208725013,
+            "BestMs": 0.044922315000000004,
+            "Speedup": 1.0729974902228434
+          },
+          {
+            "Seconds": 4391.456435189582,
+            "BestMs": 0.043316327499999994,
+            "Speedup": 1.1127797306916196
+          },
+          {
+            "Seconds": 4756.42068313621,
+            "BestMs": 0.0428787275,
+            "Speedup": 1.1241362339868877
+          },
+          {
+            "Seconds": 5630.342124185525,
+            "BestMs": 0.0428787275,
+            "Speedup": 1.1241362339868877
+          },
+          {
+            "Seconds": 5969.230619666167,
+            "BestMs": 0.04081157875,
+            "Speedup": 1.1810748989954227
+          },
+          {
+            "Seconds": 7041.918049328029,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 8699.66221840214,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 11206.265810844488,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 11396.194528886117,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 11631.706739190966,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 11813.95188757684,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 12116.259861946106,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 12272.294055894949,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          },
+          {
+            "Seconds": 12422.37011631485,
+            "BestMs": 0.039750192499999996,
+            "Speedup": 1.2126112659705988
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "sparse_flash_attention-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "blocked",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 0,
+        "CandidatePassRate": null,
+        "CorrectnessGate": 0,
+        "RunCompleted": 0,
+        "FailureReason": "agent_error",
+        "CandidatesTotal": 0,
+        "CandidatesPassed": 0
+      },
+      "cost": {
+        "TotalTokens": 0.0,
+        "TotalWallClockSec": 81.60043225996196,
+        "SearchWallClockSec": null,
+        "LLMRounds": null,
+        "ToolCalls": null,
+        "InputTokens": 0.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 0.0,
+        "UsageAvailable": false
+      },
+      "durations": {
+        "BaselineMs": null,
+        "BestMs": null,
+        "Speedup": null,
+        "BaselineEvaluationId": null,
+        "BestEvaluationId": null,
+        "BaselineEvidence": null
+      },
+      "sts": {
+        "status": "unavailable",
+        "reason": "missing_valid_baseline",
+        "Speedup": null,
+        "VLR": null,
+        "EndGain": null,
+        "AULS_token": null,
+        "AULS_time": null,
+        "STS_token": null,
+        "STS_time": null,
+        "S_equiv": null,
+        "TokensTo1%": null,
+        "TimeTo1%": null,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null
+      },
+      "paos": {
+        "status": "unavailable",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": null,
+        "T_step_agent_ms": null,
+        "eTPS_base": null,
+        "eTPS_agent": null,
+        "S_i_lat": null,
+        "PTEI": null,
+        "PKAI": null,
+        "PAOS_base": null,
+        "profiling": {
+          "baseline": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "agent": {
+            "status": "unavailable",
+            "evaluation_id": null,
+            "ActiveTimeUs": null,
+            "S_i_aicore": null,
+            "U_i": null,
+            "VecRatio": null,
+            "CubeRatio": null,
+            "MTE2Ratio": null,
+            "reason": "missing_evaluation_id"
+          },
+          "S_i_aicore": null,
+          "U_i": null,
+          "U_step": null,
+          "VecRatio": null,
+          "CubeRatio": null,
+          "MTE2Ratio": null
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "reason": "correctness_gate_failed"
+      }
+    },
+    {
+      "task_id": "swi_glu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "opencode",
+          "type": "general",
+          "strategy": "agentic-search",
+          "kind": "opencode",
+          "wrapper": null
+        },
+        "engine_model": {
+          "id": "DeepSeek-V4-Flash-BF16",
+          "raw": "local/DeepSeek-V4-Flash-BF16",
+          "vendor": null,
+          "openness": null,
+          "model_source": "config.resolved.json:agent.model"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.7272727272727273,
+        "CorrectnessGate": 1,
+        "RunCompleted": 1,
+        "FailureReason": "agent_finished",
+        "CandidatesTotal": 11,
+        "CandidatesPassed": 8,
+        "BaselineEvidence": "candidate_trace"
+      },
+      "cost": {
+        "TotalTokens": 4183143.0,
+        "TotalWallClockSec": 7774.377687363885,
+        "SearchWallClockSec": 7774.3121256213635,
+        "LLMRounds": 102.0,
+        "ToolCalls": 133.0,
+        "InputTokens": 4134009.0,
+        "CachedInputTokens": 0.0,
+        "CacheWriteTokens": 0.0,
+        "OutputTokens": 49134.0,
+        "UsageAvailable": true
+      },
+      "durations": {
+        "BaselineMs": 0.0056392,
+        "BestMs": 0.005475448571428571,
+        "Speedup": 1.0299064864613832,
+        "BaselineEvaluationId": "E0000",
+        "BestEvaluationId": "E0003",
+        "BaselineEvidence": "candidate_trace"
+      },
+      "sts": {
+        "status": "computed",
+        "Speedup": 1.0299064864613832,
+        "VLR": 0.029038060109843333,
+        "EndGain": 0.042513349405496594,
+        "AULS_token": 0.027503282383229653,
+        "AULS_time": 0.030912109608012276,
+        "SpeedupSearch": 1.0299064864613832,
+        "VLRSearch": 0.029038060109843333,
+        "TokensTo1%": 799402.0,
+        "TimeTo1%": 1371.6980690630153,
+        "TokensTo5%": null,
+        "TimeTo5%": null,
+        "TokensTo10%": null,
+        "TimeTo10%": null,
+        "VerificationPassRate": 1.0,
+        "VerificationMedianMs": 0.005511097142857142,
+        "VerificationCV": 0.004640389877232062,
+        "SpeedupConfirmed": 1.0232445289607877,
+        "VLRConfirmed": 0.022716494740895432,
+        "STS_token": 3.5008315894363125,
+        "STS_time": 3.671272950675444,
+        "S_equiv": 1.0245627287374885
+      },
+      "paos": {
+        "status": "computed",
+        "G": 1.0,
+        "runtime_scenario": "decode",
+        "batch_size": 1.0,
+        "chunk_len": null,
+        "T_other_ms": 0.0,
+        "calls_per_step": [
+          1.0
+        ],
+        "T_step_base_ms": 0.0056392,
+        "T_step_agent_ms": 0.005475448571428571,
+        "eTPS_base": 177.3301177471982,
+        "eTPS_agent": 182.63343851280027,
+        "S_i_lat": 1.0299064864613832,
+        "PTEI": 1.0299064864613832,
+        "PKAI": 1.0299064864613832,
+        "PAOS_base": 1.0299064864613832,
+        "profiling": {
+          "baseline": {
+            "status": "computed",
+            "evaluation_id": "E0000",
+            "ActiveTimeUs": 1.2565,
+            "S_i_aicore": null,
+            "U_i": 0.0004986111111111111,
+            "VecRatio": 0.0415,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/swi_glu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0000/profile_output/mindstudio_profiler_output/op_summary_20260925190630.csv",
+            "samples": 192
+          },
+          "agent": {
+            "status": "computed",
+            "evaluation_id": "E0003",
+            "ActiveTimeUs": 1.176,
+            "S_i_aicore": null,
+            "U_i": 0.0004962025316455696,
+            "VecRatio": 0.044,
+            "CubeRatio": 0.0,
+            "MTE2Ratio": 0.0,
+            "source": "/tmp/ascendgym-eval-CtLAmj/input/native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/swi_glu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117/evaluations/E0003/profile_output/mindstudio_profiler_output/op_summary_20260925193631.csv",
+            "samples": 192
+          },
+          "S_i_aicore": 1.068452380952381,
+          "U_i": 0.0004962025316455696,
+          "U_step": 0.21477692369105308,
+          "VecRatio": 0.044,
+          "CubeRatio": 0.0,
+          "MTE2Ratio": 0.0
+        },
+        "input_source": {
+          "recipe": "default",
+          "G": "computed",
+          "runtime_scenario": "cli",
+          "batch_size": "cli",
+          "chunk_len": "missing",
+          "T_other_ms": "default",
+          "calls_per_step": "default"
+        },
+        "recipe": null
+      },
+      "anytime": {
+        "BaselineMs": 0.0056392,
+        "token": [
+          {
+            "Tokens": 77543.0,
+            "BestMs": 0.0056392,
+            "Speedup": 1.0
+          },
+          {
+            "Tokens": 799402.0,
+            "BestMs": 0.005501725714285715,
+            "Speedup": 1.0249874844464384
+          },
+          {
+            "Tokens": 1195864.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 1631816.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 2001576.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 3159368.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 3344250.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 3492322.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Tokens": 3960930.0,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          }
+        ],
+        "time": [
+          {
+            "Seconds": 387.2886361638084,
+            "BestMs": 0.0056392,
+            "Speedup": 1.0
+          },
+          {
+            "Seconds": 1371.6980690630153,
+            "BestMs": 0.005501725714285715,
+            "Speedup": 1.0249874844464384
+          },
+          {
+            "Seconds": 2188.1291287187487,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 2794.786058046855,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 3384.8978889733553,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 4238.952041469514,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 4862.878803290427,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 5342.562592498027,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          },
+          {
+            "Seconds": 6580.148172715679,
+            "BestMs": 0.005475448571428571,
+            "Speedup": 1.0299064864613832
+          }
+        ]
+      }
+    }
+  ]
+}

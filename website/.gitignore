@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.npm-cache/
+.local-deploy/
+tmp/
+screenshots/
+__pycache__/
+*.py[cod]
+.DS_Store
+._*
+__MACOSX/
+.env
+.env.*
+!.env.example
+!.env.template

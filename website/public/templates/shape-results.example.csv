@@ -1,0 +1,3 @@
+﻿entry_id,operator,run_id,case_id,shape,dtype,t_base_us,t_best_us,correctness
+EXAMPLE_ONLY_DO_NOT_IMPORT,example_kernel,EXAMPLE_RUN,case_001,"x=[8,4096]; weight=[4096]",x=float16; weight=float16,100,80,pass
+EXAMPLE_ONLY_DO_NOT_IMPORT,example_kernel,EXAMPLE_RUN,case_002,"x=[32,8192]; weight=[8192]",x=bfloat16; weight=float16,160,,fail

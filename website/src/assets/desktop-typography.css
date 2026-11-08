@@ -1,0 +1,452 @@
+/* Original type sizes remain the mobile default. PC text is doubled; panel headings are 30% smaller than the enlarged version. */
+@media (min-width: 981px) {
+  body {
+  font-size: 30px
+  }
+  button { font: inherit
+  }
+  input { font: inherit
+  }
+  select { font: inherit
+  }
+  .mini-lockup { font-size: 28px
+  }
+  .nav-links { font-size: 24px
+  }
+  .nav-index { font: 700 16px var(--font-mono)
+  }
+  .page-title { font-size: 56px
+  }
+  .page-lede { font-size: 26px
+  }
+  .page-quicklink { font: 500 20px var(--font-mono)
+  }
+  .eyebrow { font-size: 20px
+  }
+  .section-index { font-size: 20px
+  }
+  .hero h1 { font-size: clamp(104px, 12.4vw, 176px)
+  }
+  .hero-tagline { font-size: 34px
+  }
+  .resource-chip { font-size: 24px
+  }
+  .resource-icon { font: 650 16px/1 var(--font-mono)
+  }
+  .status-row { font-size: 22px
+  }
+  .placeholder-note { font-size: 16px
+  }
+  .headline-stats dt { font-size: 18px
+  }
+  .headline-stats dd { font-size: 44px
+  }
+  .segmented button { font-size: 20px
+  }
+  .filter-group button { font-size: 20px
+  }
+  .section-heading h2 { font-size: clamp(33.6px, 4.48vw, 49.28px)
+  }
+  .section-heading > label { font-size: 18px
+  }
+  .control-row label { font-size: 18px
+  }
+  .leader-controls label { font-size: 18px
+  }
+  .direction-badge { font: 20px/1.3 var(--font-mono)
+  }
+  .zero-key { font: 20px/1.3 var(--font-mono)
+  }
+  select { font-size: 22px
+  }
+  input[type="search"] { font-size: 22px
+  }
+  .search-field > span:not(.sr-only) { font-size: 30px
+  }
+  .surface-title-row h3 { font-size: 18.2px
+  }
+  .surface-title-row p { font-size: 20px
+  }
+  .micro-label { font-size: 16px
+  }
+  .chart-tick { font: 18px var(--font-mono)
+  }
+  .chart-label { font: 650 20px var(--font-sans)
+  }
+  .chart-data { font: 650 20px var(--font-mono)
+  }
+  .rank-value { font: 760 26px var(--font-mono)
+  }
+  .leader-table th { font-size: 16px
+  }
+  .leader-table th button { font: inherit
+  }
+  .leader-table td { font-size: 22px
+  }
+  .leader-table .score-cell { font-size: 28px
+  }
+  .rank-badge { font-size: 18px
+  }
+  .model-text strong { font-size: 22px
+  }
+  .model-text small { font-size: 16px
+  }
+  .vendor-chip { font: 750 16px/1 var(--font-mono)
+  }
+  .vendor-chip[data-size="md"] { font-size: 18px
+  }
+  .vendor-chip[data-size="lg"] { font-size: 22px
+  }
+  .vendor-glyph { font: 750 16px/1 var(--font-mono)
+  }
+  .vendor-chip[data-size="md"] .vendor-glyph { font-size: 18px
+  }
+  .vendor-chip[data-size="lg"] .vendor-glyph { font-size: 22px
+  }
+  .weight-tag { font: 14px/1.35 var(--font-mono)
+  }
+  .origin-tag { font: 700 14px/1.4 var(--font-mono)
+  }
+  .pareto-key { font-size: 18px
+  }
+  .contour-label { font: 14px var(--font-mono)
+  }
+  .scatter-label { font: 650 18px var(--font-sans)
+  }
+  .rubric-table th { font-size: 16px
+  }
+  .rubric-table td { font-size: 20px
+  }
+  .rubric-signal b { font-size: 18px
+  }
+  .metric-help { font: 650 16px/1 var(--font-mono)
+  }
+  .ramp-legend { font: 16px var(--font-mono)
+  }
+  .heat-head { font-size: 16px
+  }
+  .heat-row-label { font-size: 20px
+  }
+  .heat-cell { font-size: 18px
+  }
+  .best-row { font-size: 18px
+  }
+  .matrix-head { font-size: 18px
+  }
+  .matrix-row-head { font: 650 20px var(--font-mono)
+  }
+  .matrix-cell { font-size: 24px
+  }
+  .matrix-value small { font-size: 14px
+  }
+  .timing-index { font: 12px var(--font-mono)
+  }
+  .chip-rail-label { font: 760 26px var(--font-mono)
+  }
+  .context-note { font-size: 20px
+  }
+  .fingerprint-label { font: 700 16px var(--font-mono)
+  }
+  .util-legend span { font-size: 16px
+  }
+  .roofline-note p { font-size: 20px
+  }
+  .optional-tag { font: 750 16px var(--font-mono)
+  }
+  .loop-steps li:not(:last-child)::after { font-size: 52px
+  }
+  .loop-steps li > span { font: 750 80px var(--font-mono)
+  }
+  .loop-steps strong { font-size: 32px
+  }
+  .loop-steps p { font-size: 20px
+  }
+  .method-copy p { font-size: 20px
+  }
+  .method-copy h3 { font-size: 30.8px
+  }
+  .footer-lockup strong { font-size: 34px
+  }
+  .footer-lockup p { font-size: 20px
+  }
+  .footer-grid h2 { font-size: 14px
+  }
+  .footer-grid pre { font: 18px/1.55 var(--font-mono)
+  }
+  .secondary-button { font-size: 18px
+  }
+  .footer-links { font-size: 20px
+  }
+  .footer-bottom { font-size: 18px
+  }
+  .drawer-header .model-text strong { font-size: 30px
+  }
+  .drawer-stat span { font-size: 16px
+  }
+  .drawer-stat b { font: 650 32px var(--font-mono)
+  }
+  .drawer-section h3 { font-size: 16.8px
+  }
+  .drawer-op-table th { font-size: 16px
+  }
+  .drawer-op-table td { font-size: 16px
+  }
+  .tool-summary span { font-size: 16px
+  }
+  .tool-summary b { font: 650 26px var(--font-mono)
+  }
+  .data-tooltip { font-size: 18px
+  }
+  .toast { font-size: 18px
+  }
+  .import-panel-head h3 { font-size: 21px
+  }
+  .import-panel-head p { font-size: 20px
+  }
+  .import-panel-head code { font-size: 18px
+  }
+  .import-secondary { font: 500 18px var(--font-mono)
+  }
+  .import-table th { font-size: 16px
+  }
+  .import-table td { font-size: 16px
+  }
+  .import-hint { font-size: 18px
+  }
+  .import-datasets b { font-size: 20px
+  }
+  .import-datasets small { font-size: 16px
+  }
+  .dataset-filters label { font-size: 18px
+  }
+  .import-datasets li.dataset-empty { font-size: 20px
+  }
+  .import-datasets li .upload-remove { font: 600 20px var(--font-mono)
+  }
+  .upload-drop-text { font-size: 20px
+  }
+  .import-summary h3 { font-size: 18.2px
+  }
+  .import-summary-grid span { font-size: 16px
+  }
+  .import-summary-grid b { font: 650 30px var(--font-mono)
+  }
+  .agent-badge {
+  font: 750 16px/1 var(--font-mono)
+  }
+  .agent-badge[data-size="lg"] { font-size: 22px
+  }
+  .flag-cell { font-size: 22px
+  }
+  .flag-dot { font-size: 20px
+  }
+  .flag-none { font-size: 18px
+  }
+  .scatter-sublabel { font: 15px var(--font-sans)
+  }
+  .scatter-point .scatter-label { font-size: calc(18px * var(--text-scale, 1))
+  }
+  .scatter-point .scatter-sublabel { font-size: calc(15px * var(--text-scale, 1))
+  }
+  .quadrant-label { font: 600 22px var(--font-sans)
+  }
+  .quadrant-legend { font: 19px var(--font-sans)
+  }
+  .quadrant-key { font: 18px var(--font-mono)
+  }
+  .heat-missing { font: 650 17px var(--font-sans)
+  }
+  .best-values small { font-size: 15px
+  }
+  .shape-ring-center .matrix-value { font-size: 22px
+  }
+  .shape-ring-center i { font: 700 18px var(--font-mono)
+  }
+  .shape-ring-label { font: 650 17px var(--font-mono)
+  }
+  .shape-rings-summary b { font: 750 26px var(--font-mono)
+  }
+  .worst-chip { font: 650 18px var(--font-mono)
+  }
+  .fingerprint-zero { font: 700 16px var(--font-mono)
+  }
+  .method-copy h3 { font-size: 15.4px
+  }
+  .math-block {
+  font-size: 30px
+  }
+  .math-block + .math-label {
+  font: 17px var(--font-mono)
+  }
+  .math-label {
+  font: 17px var(--font-mono)
+  }
+  .var-list dt { font-size: 18px
+  }
+  .var-list dd { font-size: 18px
+  }
+  .catalog-block h3 { font-size: 16.8px
+  }
+  .catalog-table th { font-size: 19px
+  }
+  .catalog-table td { font-size: 19px
+  }
+  .catalog-table th { font-size: 16px
+  }
+  .drawer-identity-meta { font-size: 17px
+  }
+  .verdict-chip { font: 750 20px var(--font-mono)
+  }
+  .verdict-sentence { font-size: 21px
+  }
+  .drawer-section-row h3 { font-size: 16.8px
+  }
+  .drawer-op-select label { font-size: 18px
+  }
+  .drawer-op-select select { font-size: 20px
+  }
+  .radar-axis-label { font: 650 18px var(--font-sans)
+  }
+  .radar-dot-value { font: 700 16px var(--font-mono)
+  }
+  .delta-label { font: 700 17px var(--font-mono)
+  }
+  .shape-table th { font-size: 17px
+  }
+  .shape-table td { font-size: 17px
+  }
+  .shape-table th { font-size: 15px
+  }
+  .drawer-note { font-size: 18px
+  }
+  .drawer-stat-wide { font-size: 20px !important
+  }
+  .util-diag-head b { font-size: 20px
+  }
+  .util-diag-head span { font-size: 17px
+  }
+  .util-diag-row { font-size: 17px
+  }
+  .util-diag-row b { font: 650 17px var(--font-mono)
+  }
+  .run-row { font: 650 17px var(--font-mono)
+  }
+  .cycle-table th { font-size: 17px
+  }
+  .cycle-table td { font-size: 17px
+  }
+  .cycle-table th { font-size: 15px
+  }
+  .ds-nav { font-size: 22px
+  }
+  .board::before { font: 800 168px/1 var(--font-mono)
+  }
+  .board-header > div > span { font: 750 18px var(--font-mono)
+  }
+  .board-header h1 { font-size: 56px
+  }
+  .board-header p { font-size: 24px
+  }
+  .board-number { font: 750 144px/1 var(--font-mono)
+  }
+  .board-section h2 { font-size: 15.4px
+  }
+  .swatch b { font-size: 18px
+  }
+  .swatch code { font: 16px var(--font-mono)
+  }
+  .board code { font: 16px var(--font-mono)
+  }
+  .ramp-row b { font-size: 18px
+  }
+  .ramp-row span { font-size: 18px
+  }
+  .ramp-row span { font-size: 16px
+  }
+  .model-swatches span { font-size: 18px
+  }
+  .model-swatches i { font: 750 14px var(--font-mono)
+  }
+  .type-display { font-size: 104px
+  }
+  .type-h1 { font-size: 54px
+  }
+  .type-body { font-size: 26px
+  }
+  .type-data { font: 650 32px var(--font-mono)
+  }
+  .radius-row i { font: 16px var(--font-mono)
+  }
+  .primitive-title { font: 16px var(--font-mono)
+  }
+  .primitive-group > label {font:750 14px var(--font-mono)
+  }
+  .primitive-group > div > label {font:750 14px var(--font-mono)
+  }
+  .primitive-panel button { font-size: 18px
+  }
+  .p-resource {font-size:16px
+  }
+  .p-status {font-size:16px
+  }
+  .p-search {font-size:16px
+  }
+  .p-resource i {font:700 12px var(--font-mono)
+  }
+  .p-model i {font:750 14px var(--font-mono)
+  }
+  .p-model b {font-size:18px
+  }
+  .p-model em {font:normal 12px var(--font-mono)
+  }
+  .primitive-panel select {font-size:16px
+  }
+  .p-segment {font:14px var(--font-mono)
+  }
+  .p-table {font-size:16px
+  }
+  .p-table strong {font:750 22px var(--font-mono)
+  }
+  .rubric-examples i {font:normal 16px var(--font-mono)
+  }
+  .p-tooltip {font-size:16px
+  }
+  .logo-hero p {font-size:20px
+  }
+  .logo-variants figcaption {font-size:18px
+  }
+  .logo-variants figcaption code {font-size:14px
+  }
+  .clearspace-mark span {font:700 18px var(--font-mono)
+  }
+  .logo-clearspace h2 {font-size:28px
+  }
+  .logo-clearspace p {font-size:22px
+  }
+  .state-matrix th {font:16px var(--font-mono)
+  }
+  .state-matrix td {font:16px var(--font-mono)
+  }
+  .matrix-note {font-size:18px
+  }
+  .state-samples article>span {font:750 14px var(--font-mono)
+  }
+  .sample-empty i {font:normal 16px var(--font-mono)
+  }
+  .sample-empty b {font-size:18px
+  }
+  .mark-grid figcaption b {font-size:20px
+  }
+  .mark-grid figcaption code {font:14px var(--font-mono)
+  }
+  .mark-sizes code {font:14px var(--font-mono)
+  }
+  .mark-roster-vendor {font-size:20px
+  }
+  .mark-roster-model b {font-size:18px
+  }
+  .mark-roster-model em {font:normal 12px var(--font-mono)
+  }
+  .icon-element-grid>div label {font:750 14px var(--font-mono)
+  }
+}

@@ -1,0 +1,346 @@
+/* ============================================================================
+ * AscendGYM UX v2.0 — incremental stylesheet.
+ * Loaded AFTER the untouched v1 styles.css; only new v2 surfaces and the
+ * handful of overrides the v2 contract requires. All v1 attribute contracts
+ * (body[data-preview-state], body[data-highlight-model], html[data-theme])
+ * stay as-is.
+ * ==========================================================================*/
+
+/* ------------------------------ tones (§7.2) ----------------------------- */
+
+.tone-bad { color: var(--danger); }
+.tone-good { color: var(--compute-dark); }
+.tone-neutral { color: var(--ink); }
+.tone-bad-text { fill: var(--danger); }
+.tone-good-text { fill: var(--compute-dark); }
+.tone-muted { color: var(--muted); }
+
+/* Linked highlight: the v1 stylesheet only enumerated its own mock ids, so
+ * App.vue toggles .hl-match on the hovered entry's elements and this rule
+ * restores them above the generic dim — works for any backend entry id. */
+body[data-highlight-model] [data-model-id] { opacity: .18; }
+[data-model-id].hl-match { opacity: 1 !important; filter: saturate(1.12); }
+
+/* ------------------------------ header (hero) ---------------------------- */
+
+.headline-stats { grid-template-columns: repeat(5, 1fr); }
+
+/* ------------------------------ leaderboard ------------------------------ */
+
+.leader-controls { grid-template-columns: minmax(200px, 1.3fr) auto auto auto auto auto; row-gap: 10px; }
+.leader-controls > label, .leader-controls > .filter-group { min-width: 0; }
+
+.leader-table { min-width: 1254px; }
+.leader-table th small, .leader-table td small { display: block; color: var(--faint); font-weight: 400; }
+.leader-table td .sparkline { display: block; margin-left: auto; }
+
+/* C4 — flagged rows: 40% opacity (baseline_quality ≠ normal) */
+.leader-table tbody tr.row-muted,
+.leader-card.row-muted,
+.rubric-table tbody tr.row-muted { opacity: .4; filter: saturate(.6); }
+.rubric-table tbody tr.row-muted td:first-child { opacity: 1; }
+
+.rank-core-muted { opacity: .45; }
+
+/* agent badge (C1 — the missing agent axis) */
+.agent-badge {
+  --agent-color: var(--muted);
+  display: inline-grid; place-items: center;
+  width: 24px; height: 24px; flex: 0 0 24px;
+  border-radius: 6px;
+  border: 1.5px solid var(--agent-color);
+  color: var(--agent-color);
+  background: color-mix(in srgb, var(--agent-color) 9%, var(--surface));
+  font: 750 8px/1 var(--font-mono);
+  letter-spacing: .02em;
+  cursor: help;
+}
+.agent-badge[data-type="domain"] { --agent-color: var(--compute); }
+.agent-badge[data-type="general"] { --agent-color: var(--cost); }
+.agent-badge[data-size="lg"] { width: 34px; height: 34px; flex-basis: 34px; font-size: 11px; border-radius: 8px; }
+
+.entry-label .model-text small { max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* C4 — flag icon column (row-first) */
+.flag-cell { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; line-height: 1; min-height: 18px; }
+.flag-dot { cursor: help; font-size: 10px; line-height: 1; transition: transform var(--ease); }
+.flag-dot:hover { transform: scale(1.25); }
+.flag-dot[data-level="red"] { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--danger) 55%, transparent)); }
+.flag-none { color: var(--faint); font-size: 9px; }
+
+/* mobile leaderboard cards: v2 carries 4 stats */
+.leader-card-grid { grid-template-columns: repeat(4, 1fr) !important; }
+
+/* ------------------------------ quality-cost (C5) ------------------------ */
+
+.scatter-sublabel { fill: var(--faint); font: 7.5px var(--font-sans); }
+.scatter-point-muted { opacity: .42; }
+/* Marker captions track `--icon-scale` (set per point by ScatterChart.vue).
+   Declared here, after the `font` shorthands above, so the scaled size wins.
+   The type shrinks on a GENTLER curve than the marker (see ScatterChart.vue):
+   a caption at the marker's own scale drops below 6px and stops being legible. */
+.scatter-point .scatter-label { font-size: calc(9px * var(--text-scale, 1)); stroke-width: calc(4px * var(--icon-scale, 1)); }
+.scatter-point .scatter-sublabel { font-size: calc(7.5px * var(--text-scale, 1)); }
+.value-redline { stroke: var(--danger); stroke-width: 1.4; stroke-dasharray: 4 4; }
+.quadrant-label { fill: var(--faint); font: 600 11px var(--font-sans); letter-spacing: .02em; }
+
+.quadrant-legend {
+  display: flex; flex-wrap: wrap; gap: 8px 22px;
+  margin-top: 6px; padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  color: var(--muted); font: 9.5px var(--font-sans);
+}
+.quadrant-legend b { color: var(--ink); margin-right: 4px; }
+
+.quadrant-key { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font: 9px var(--font-mono); white-space: nowrap; }
+.quadrant-key i { width: 18px; height: 0; border-top: 2px dashed var(--danger); }
+
+/* ------------------------------ rubric (v2 signals) ---------------------- */
+
+.rubric-table th.col-context, .rubric-table td.td-context { background: color-mix(in srgb, var(--surface-subtle) 55%, transparent); }
+.rubric-signal.rubric-context { --quality-color: var(--surface-strong); }
+.rubric-signal.rubric-context .rubric-bars i.is-on { background: var(--border-strong); }
+
+/* ------------------------------ operators heatmap ------------------------- */
+
+.heatmap { min-width: 720px; }
+.heat-cell-empty {
+  background: repeating-linear-gradient(45deg, transparent 0 4px, color-mix(in srgb, var(--border) 55%, transparent) 4px 8px), var(--surface-subtle);
+  color: var(--faint);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.heat-cell-empty::before, .heat-cell-empty::after { display: none; }
+.heat-missing { font: 650 8.5px var(--font-sans); letter-spacing: .06em; }
+
+/* ------------------------------ gain (C9) --------------------------------- */
+
+.impulse-geo-ring { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-dasharray: 2.5 2.5; opacity: .75; }
+.impulse-worst { stroke: var(--faint); stroke-width: 1.6; stroke-dasharray: 2 2; }
+.impulse-worst-bad { stroke: var(--danger); }
+.impulse-row:hover .impulse-geo-ring { opacity: 1; }
+
+/* Zero-gain marker. A row whose representative VLR rounds to 0.00% has no
+   direction, so the arrow/trace treatment is replaced by a plain dot sitting on
+   the origin. Deliberately neutral (ink, not the compute accent): it marks the
+   absence of a gain, and must not read as a small positive result. */
+.impulse-flat { fill: var(--surface); stroke: var(--ink); stroke-width: 1.8; }
+.impulse-flat-value { fill: var(--muted); }
+
+.best-values { display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; }
+.best-values small { color: var(--faint); font-size: 7.5px; font-family: var(--font-mono); }
+.best-empty { color: var(--faint); }
+
+/* ------------------------------ duration (C6) ----------------------------- */
+
+.shape-rings {
+  padding: 18px 18px 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 12px;
+  align-content: start;
+}
+.shape-ring-cell {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% 34%, color-mix(in srgb, var(--ring-color) 7%, var(--surface)), var(--surface) 70%);
+  transition: transform var(--ease), border-color var(--ease);
+  cursor: default;
+}
+.shape-ring-cell:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--ring-color) 45%, var(--border)); }
+.shape-ring-cell .timing-dial { width: 74px; height: 74px; }
+.shape-ring-cell .timing-dial-base { stroke: var(--border-strong); stroke-width: 3; }
+.shape-ring-cell .timing-dial-signal { stroke: var(--ring-color); filter: drop-shadow(0 0 3px color-mix(in srgb, var(--ring-color) 38%, transparent)); }
+.shape-ring-center { position: absolute; top: 12px; width: 74px; height: 74px; display: grid; place-content: center; text-align: center; pointer-events: none; }
+.shape-ring-center .matrix-value { font-size: 11px; }
+.shape-ring-center i { font: 700 9px var(--font-mono); font-style: normal; margin-top: 1px; }
+.shape-ring-label { font: 650 8.5px var(--font-mono); color: var(--muted); text-align: center; }
+.shape-ring-label em { font-style: normal; color: var(--faint); margin-left: 4px; }
+
+.shape-rings-summary {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 10px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px;
+}
+.shape-rings-summary b { font: 750 13px var(--font-mono); }
+.worst-chip { font: 650 9px var(--font-mono); padding: 3px 8px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 14%, var(--surface)); color: var(--muted); }
+.worst-chip.is-bad { background: color-mix(in srgb, var(--danger) 12%, var(--surface)); color: var(--danger); }
+
+.ramp-legend.s-lat-legend i { background: linear-gradient(90deg, var(--danger), #ecebe4 55%, var(--compute)); }
+
+.duration-rail-mut { stroke: var(--faint) !important; stroke-dasharray: 3 3; }
+
+/* ------------------------------ hardware (C7) ----------------------------- */
+
+.fingerprint-zero { fill: var(--faint); font: 700 8px var(--font-mono); }
+.unit-bead-hollow { fill: var(--surface); stroke-width: 1.8; }
+.unit-bead-link { stroke-width: 1; stroke-dasharray: 2 2; opacity: .6; }
+
+/* ------------------------------ methodology (C2) -------------------------- */
+
+.method-copy h3 { margin: 0 0 2px; font-size: 11px; letter-spacing: .02em; }
+/* One axis per group. The two axes always stack, so the gap between them is the
+   only thing separating them — it must NOT be zeroed at any width. */
+.method-group { min-width: 0; }
+.method-group + .method-group { margin-top: 22px; }
+
+/* MathML formulas (see lib/mathml.js for why MathML rather than a LaTeX lib).
+   Chromium lays MathML out natively, so there is nothing to position here —
+   only the surrounding presentation. */
+.math-stack { margin: 6px 0 0; display: grid; gap: 10px; }
+.math-block {
+  /* Equations are the content here, so give them the panel's own measure and
+     let long ones scroll rather than wrap (wrapping breaks math semantics). */
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--compute);
+  border-radius: 7px;
+  background: var(--surface-subtle);
+  font-size: 15px;
+  color: var(--ink);
+  overflow-x: auto;
+}
+/* `display="block"` centres the equation; the label is a caption to its right. */
+.math-block + .math-label, .math-label {
+  display: block;
+  margin-top: 3px;
+  color: var(--faint);
+  font: 8.5px var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+/* Variable glossary under each axis. */
+.var-list { margin: 12px 0 0; border-top: 1px solid var(--border); }
+.var-list div { display: grid; grid-template-columns: 68px 1fr; gap: 10px; padding: 5px 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); }
+.var-list dt { color: var(--compute-dark); font-family: var(--font-mono); font-size: 9px; }
+.var-list dd { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.5; }
+
+/* Metric catalog (values + definitions come from the evaluator's `catalog`
+   block). Previously also held the prose glossary, which now lives in
+   README §5 — hence the non-glossary naming. */
+.catalog-block { margin-top: 26px; }
+.catalog-block h3 { margin: 0 0 8px; font-size: 12px; }
+.catalog-table { width: 100%; border-collapse: collapse; }
+.catalog-table th, .catalog-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 9.5px; }
+.catalog-table th { color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-size: 8px; }
+.catalog-table td:nth-child(2) { width: 190px; }
+
+/* ------------------------------ entry drawer (C8) ------------------------- */
+
+.drawer-identity { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.drawer-identity-meta { display: flex; gap: 14px; color: var(--muted); font-size: 8.5px; }
+.drawer-identity-meta b { color: var(--ink); font-family: var(--font-mono); }
+
+.drawer-verdict { margin-top: 0; padding: 14px 16px; border: 1px solid var(--border); border-left-width: 4px; border-radius: 9px; background: var(--surface-subtle); }
+.drawer-verdict.verdict-positive { border-left-color: var(--compute); }
+.drawer-verdict.verdict-mixed { border-left-color: var(--cost); }
+.drawer-verdict.verdict-negative { border-left-color: var(--danger); }
+.drawer-verdict.verdict-excluded { border-left-color: var(--faint); opacity: .75; }
+.verdict-head { display: flex; align-items: center; gap: 10px; }
+.verdict-chip { font: 750 10px var(--font-mono); letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; }
+.verdict-positive .verdict-chip { background: color-mix(in srgb, var(--compute) 14%, var(--surface)); color: var(--compute-dark); }
+.verdict-mixed .verdict-chip { background: color-mix(in srgb, var(--cost) 14%, var(--surface)); color: color-mix(in srgb, var(--cost) 80%, var(--ink)); }
+.verdict-negative .verdict-chip { background: color-mix(in srgb, var(--danger) 14%, var(--surface)); color: var(--danger); }
+.verdict-excluded .verdict-chip { background: color-mix(in srgb, var(--faint) 18%, var(--surface)); color: var(--muted); }
+.verdict-sentence { margin: 9px 0 8px; font-size: 10.5px; line-height: 1.55; color: var(--ink); }
+.verdict-flags { display: flex; gap: 4px; }
+
+.drawer-section-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.drawer-section-row h3 { margin: 0; font-size: 12px; }
+.drawer-op-select { margin-top: -2px; }
+.drawer-op-select label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 9px; }
+.drawer-op-select select { min-height: 30px; font-size: 10px; }
+
+.drawer-radar { display: grid; place-items: center; }
+.drawer-radar svg { width: 100%; max-width: 360px; height: auto; }
+.radar-ring { fill: none; stroke: var(--border); stroke-width: 1; }
+.radar-spoke { stroke: var(--border); stroke-width: 1; }
+.radar-spoke-muted { stroke: var(--faint); stroke-dasharray: 2 3; }
+.radar-axis-label { fill: var(--ink); font: 650 9px var(--font-sans); }
+.radar-axis-muted { fill: var(--faint); }
+.radar-poly { stroke-width: 2; }
+.radar-dot { stroke: var(--surface); stroke-width: 1.2; }
+.radar-dot-value { fill: var(--faint); font: 700 8px var(--font-mono); }
+
+.drawer-anytime svg, .drawer-boxplot svg { width: 100%; height: auto; display: block; }
+.anytime-line { fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.anytime-area { stroke: none; }
+.baseline-s-line { stroke: var(--faint); stroke-width: 1; stroke-dasharray: 3 4; }
+.delta-line { stroke: var(--cost); stroke-width: 1.2; stroke-dasharray: 3 3; opacity: .8; }
+.delta-label { fill: var(--cost); font: 700 8.5px var(--font-mono); }
+.failed-dot { fill: color-mix(in srgb, var(--faint) 25%, transparent); stroke: var(--faint); stroke-width: 1.2; }
+.chart-tick-line { stroke: var(--border); stroke-width: 1; }
+
+.op-row-toggle { cursor: pointer; transition: background var(--ease); }
+.op-row-toggle:hover { background: var(--surface-subtle); }
+.op-expand-cell { padding: 0 !important; background: var(--surface-subtle); }
+.shape-table { width: 100%; border-collapse: collapse; }
+.shape-table th, .shape-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: right; font-size: 8.5px; }
+.shape-table th { color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-size: 7.5px; }
+.shape-table th:first-child, .shape-table td:first-child, .shape-table td:nth-child(2) { text-align: left; }
+.shape-geo-row td { font-weight: 700; border-bottom: 0; }
+.drawer-note { margin: 8px 0 0; color: var(--muted); font-size: 9px; }
+.drawer-note b { color: var(--ink); font-family: var(--font-mono); }
+
+.drawer-stat-wide { font-size: 10px !important; word-break: break-all; }
+
+.util-diag { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.util-diag-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.util-diag-head b { font-size: 10px; }
+.util-diag-head span { font-size: 8.5px; }
+.util-diag-row { display: grid; grid-template-columns: 74px 1fr auto; align-items: center; gap: 10px; margin-top: 6px; font-size: 8.5px; color: var(--muted); }
+.util-diag-row b { font: 650 8.5px var(--font-mono); color: var(--ink); white-space: nowrap; }
+.util-pair { position: relative; height: 14px; border-radius: 999px; background: var(--surface-strong); overflow: hidden; }
+.util-pair i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; }
+.util-pair .util-base { background: color-mix(in srgb, var(--faint) 30%, var(--surface)); height: 100%; }
+.util-pair .util-best { background: color-mix(in srgb, var(--compute) 55%, var(--surface)); height: 45%; top: auto; bottom: 0; }
+
+.run-list { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.run-row { display: grid; grid-template-columns: 1fr 74px 128px 52px 52px auto; gap: 8px; align-items: center; padding: 7px 10px; border-bottom: 1px solid var(--border); font: 650 8.5px var(--font-mono); }
+.run-row:last-child { border-bottom: 0; }
+.run-id { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* agent × model per run: a suite can mix both, so this column is not the
+   entry-level identity repeated. */
+.run-identity { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.run-row .flag-cell { justify-self: end; }
+
+.drawer-boxplot { margin-top: 12px; }
+.box-whisker { stroke: var(--muted); stroke-width: 1.2; }
+.box-rect { fill: color-mix(in srgb, var(--compute) 12%, var(--surface)); stroke: var(--compute); stroke-width: 1.4; }
+.box-median { stroke: var(--ink); stroke-width: 2; }
+.box-dot { fill: var(--surface); stroke: var(--compute); stroke-width: 1.6; }
+
+.cycle-table { width: 100%; border-collapse: collapse; }
+.cycle-table th, .cycle-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: right; font-size: 8.5px; }
+.cycle-table th { color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-size: 7.5px; }
+.cycle-table td:nth-child(2) { text-align: left; }
+.cycle-title { font-family: var(--font-sans); color: var(--ink); max-width: 220px; }
+
+/* ------------------------------ responsive (v2) --------------------------- */
+
+@media (max-width: 1023px) {
+  .leader-controls { grid-template-columns: 1fr 1fr; }
+  .leader-controls .search-field { grid-column: 1 / -1; }
+  .headline-stats { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 833px) {
+  .headline-stats { grid-template-columns: repeat(2, 1fr); }
+  .shape-rings { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .util-diag-row { grid-template-columns: 64px 1fr; }
+  .util-diag-row b { grid-column: 2; }
+  .run-row { grid-template-columns: 1fr 52px 52px; }
+  .run-row .run-id { grid-column: 1 / -1; }
+  .run-row .run-identity { grid-column: 1 / -1; }
+}
+
+@media (max-width: 479px) {
+  .shape-rings { grid-template-columns: 1fr 1fr; }
+  .drawer-verdict { padding: 12px; }
+  .leader-card-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}

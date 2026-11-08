@@ -1,0 +1,5067 @@
+{
+  "meta": {
+    "status": "measured",
+    "updated": "2026-08-31",
+    "note": "AddRmsNorm（world-model × Qwen3_6）为 217 真实 run 产物锚点（AddRmsNorm_orchestrator_20260811，附录 A）；其余 entry 为同一 v2 契约下的示意数据，用于演示完整交互面。",
+    "entries_evaluated": 7,
+    "agents": [
+      {
+        "id": "world-model",
+        "type": "domain",
+        "strategy": "world-model",
+        "version": "v1"
+      },
+      {
+        "id": "k-search",
+        "type": "domain",
+        "strategy": "k-search-tree",
+        "version": "v2"
+      },
+      {
+        "id": "claude-code",
+        "type": "general",
+        "strategy": "general",
+        "version": "2.1"
+      },
+      {
+        "id": "openhands",
+        "type": "general",
+        "strategy": "general",
+        "version": "1.4"
+      }
+    ],
+    "operators": [
+      "AddRmsNorm",
+      "Swiglu",
+      "SparseAttnSharedkv"
+    ],
+    "chips": [
+      "Ascend 910C"
+    ],
+    "model_clusters": [
+      {
+        "id": "DeepSeek-V4",
+        "scenarios": [
+          "decode_b1"
+        ]
+      }
+    ],
+    "runs_total": 18,
+    "tokens_total_k": 55050,
+    "recipe": {
+      "DeepSeek-V4": {
+        "decode_b1": [
+          {
+            "operator": "AddRmsNorm",
+            "G": 1,
+            "n_i": 123
+          },
+          {
+            "operator": "Swiglu",
+            "G": 1,
+            "n_i": 427
+          }
+        ]
+      }
+    },
+    "epsilon_default": 0.01,
+    "metric_directions": {
+      "sts_token": "up",
+      "s_equiv": "up",
+      "ebgs": "up",
+      "vlr_mean": "up",
+      "task_pass_rate": "up",
+      "gate_rate": "up",
+      "best_duration_us": "down",
+      "tokens_total_k": "down",
+      "rounds_median": "down",
+      "wall_time_median_s": "down",
+      "profiling_runs_median": "down",
+      "paos.paos": "up",
+      "vec_ratio": "context",
+      "u": "context"
+    }
+  },
+  "entries": [
+    {
+      "id": "world-model+qwen3-6",
+      "agent": {
+        "id": "world-model",
+        "type": "domain",
+        "strategy": "world-model",
+        "version": "v1"
+      },
+      "engine_model": {
+        "id": "Qwen3_6",
+        "vendor": "Alibaba",
+        "openness": "open",
+        "vendor_mark": "Q",
+        "color": "#0E9B8E"
+      },
+      "weights": "open",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 3,
+      "baseline_quality": "normal",
+      "coverage_operators": 2,
+      "overall": {
+        "sts_token": 2.94,
+        "sts_time": 2.97,
+        "s_equiv": 1.0206,
+        "auls": 0.0217,
+        "ebgs": 1.026,
+        "speedup_mean": 1.026,
+        "compile_pass": 100,
+        "task_pass_rate": 83.4,
+        "candidate_pass_rate": 83.4,
+        "gate_rate": 100,
+        "vlr_mean": 2.53,
+        "best_duration_us": 80.99,
+        "tokens_total_k": 7690,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 67,
+        "wall_time_median_s": 7867,
+        "wall_time_total_s": 15734,
+        "profiling_runs_median": 14,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 100,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0001,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "32,1024",
+            "dtype": "BF16",
+            "s_lat": 0.747
+          },
+          "best_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.188
+          },
+          "ppui_u": 1.074
+        },
+        "cost": {
+          "wasted_round_rate": 0.597,
+          "n_solutions": 31,
+          "n_cycles": 6,
+          "termination_reason": "cycle_limit_reached"
+        },
+        "flags": [
+          "fake_optimization",
+          "shape_regression",
+          "unconverged",
+          "high_waste",
+          "plateau"
+        ],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": 0,
+          "p3_reason": null,
+          "k": 3
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 100,
+          "tokens_k": 6780,
+          "rounds": 113,
+          "wall_time_s": 13841.6,
+          "profiling_runs": 22,
+          "wasted_round_rate": 0.814,
+          "n_solutions": 22,
+          "n_cycles": 4,
+          "termination_reason": "cycle_limit_reached",
+          "baseline_quality": "normal",
+          "task_pass_rate": 100,
+          "candidate_pass_rate": 100,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.059,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.37,
+            "scalar_ratio_best": 0.43,
+            "mte2_ratio_base": 0.244,
+            "mte2_ratio_best": 0.163,
+            "u_base": 0.709,
+            "u_best": 0.73,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.86,
+              "s_lat": 1.017
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 16.48,
+              "s_lat": 1.188
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.6,
+              "s_lat": 0.987
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 13.1,
+              "s_lat": 1.005
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 11.22,
+              "s_lat": 0.747
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.14,
+              "s_lat": 1.019
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 508.067,
+              "wall_sec": 1900,
+              "s": 1.0172,
+              "solution_id": "392ea1f7",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 3012.1,
+              "wall_sec": 5200,
+              "s": 1.021,
+              "solution_id": "8b2c9d41",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 6062.5,
+              "wall_sec": 13841.6,
+              "s": 1.021,
+              "solution_id": "c41a7e02",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 233.4,
+              "wall_sec": 780,
+              "duration_ms": 0.1041,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 812.3,
+              "wall_sec": 2650,
+              "duration_ms": 0.101,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1147.8,
+              "wall_sec": 3720,
+              "duration_ms": 0.1062,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1590.2,
+              "wall_sec": 4890,
+              "duration_ms": 0.0997,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1930.4,
+              "wall_sec": 6040,
+              "duration_ms": 0.1034,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2481.6,
+              "wall_sec": 7420,
+              "duration_ms": 0.1008,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2874.9,
+              "wall_sec": 8610,
+              "duration_ms": 0.1049,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3522.7,
+              "wall_sec": 10150,
+              "duration_ms": 0.0991,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4310.5,
+              "wall_sec": 11480,
+              "duration_ms": 0.1056,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 5204.3,
+              "wall_sec": 12720,
+              "duration_ms": 0.1022,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 5771.9,
+              "wall_sec": 13540,
+              "duration_ms": 0.1037,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 6410.8,
+              "wall_sec": 14020,
+              "duration_ms": 0.1013,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_world-model_20260809",
+              "date": "2026-08-09",
+              "s_bmax": 1.019,
+              "paos": 0.9872,
+              "flags": [
+                "fake_optimization",
+                "shape_regression",
+                "unconverged",
+                "high_waste",
+                "plateau"
+              ],
+              "termination_reason": "cycle_limit_reached",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 5,
+                  "best_s": 1.0152,
+                  "tokens_k": 512
+                },
+                {
+                  "idx": 2,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 6,
+                  "best_s": 1.019,
+                  "tokens_k": 2640
+                },
+                {
+                  "idx": 3,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 4,
+                  "best_s": 1.019,
+                  "tokens_k": 2210
+                },
+                {
+                  "idx": 4,
+                  "action_title": "尾部处理与分支消除",
+                  "attempts": 3,
+                  "best_s": 1.019,
+                  "tokens_k": 1328
+                }
+              ],
+              "best_solution_id": "77b0c2d4",
+              "canonical_code_hash": "5e21aa09c3f7",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            },
+            {
+              "run_id": "AddRmsNorm_orchestrator_20260811",
+              "date": "2026-08-11",
+              "s_bmax": 1.021,
+              "paos": 0.9848,
+              "flags": [
+                "fake_optimization",
+                "shape_regression",
+                "unconverged",
+                "high_waste",
+                "plateau"
+              ],
+              "termination_reason": "cycle_limit_reached",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 5,
+                  "best_s": 1.0172,
+                  "tokens_k": 508
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 6,
+                  "best_s": 1.021,
+                  "tokens_k": 2504
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 4,
+                  "best_s": 1.021,
+                  "tokens_k": 2188
+                },
+                {
+                  "idx": 4,
+                  "action_title": "流水线重叠 (TPipe 双队列)",
+                  "attempts": 3,
+                  "best_s": 1.021,
+                  "tokens_k": 952
+                }
+              ],
+              "best_solution_id": "c41a7e02",
+              "canonical_code_hash": "9f3c1a2e77b1",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            },
+            {
+              "run_id": "AddRmsNorm_world-model_20260813",
+              "date": "2026-08-13",
+              "s_bmax": 1.0229,
+              "paos": 0.9811,
+              "flags": [
+                "fake_optimization",
+                "shape_regression",
+                "unconverged",
+                "high_waste",
+                "plateau"
+              ],
+              "termination_reason": "cycle_limit_reached",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 5,
+                  "best_s": 1.0181,
+                  "tokens_k": 495
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 7,
+                  "best_s": 1.0229,
+                  "tokens_k": 2710
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.0229,
+                  "tokens_k": 2350
+                },
+                {
+                  "idx": 4,
+                  "action_title": "L1 hit 策略与 tile 复用",
+                  "attempts": 3,
+                  "best_s": 1.0229,
+                  "tokens_k": 880
+                }
+              ],
+              "best_solution_id": "d08f3b61",
+              "canonical_code_hash": "b84d20ce11a9",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.021,
+          "s_bmax_time": 1.021,
+          "vlr": 2.06,
+          "auls": 0.0262,
+          "auls_time": 0.0273,
+          "sts_token": 2.81,
+          "sts_time": 2.87,
+          "s_equiv": 1.0197,
+          "paos": 0.9848,
+          "worst_shape": {
+            "shape": "32,1024",
+            "dtype": "BF16",
+            "s_lat": 0.747
+          },
+          "best_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.188
+          },
+          "tokens_to": {
+            "p1": 508067,
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.072,
+          "flags": [
+            "fake_optimization",
+            "shape_regression",
+            "unconverged",
+            "high_waste",
+            "plateau"
+          ],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 725,
+            "etps_gain": 0.9848,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "Swiglu",
+          "bound": "memory",
+          "baseline_ms": 0.0642,
+          "epsilon_used": 0.01,
+          "compile_pass": 100,
+          "tokens_k": 910,
+          "rounds": 21,
+          "wall_time_s": 1892.4,
+          "profiling_runs": 6,
+          "wasted_round_rate": 0.38,
+          "n_solutions": 9,
+          "n_cycles": 2,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 66.7,
+          "candidate_pass_rate": 66.7,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 427,
+            "rep_shape": "256,4096"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.071,
+            "vec_ratio_best": 0.077,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.382,
+            "scalar_ratio_best": 0.446,
+            "mte2_ratio_base": 0.166,
+            "mte2_ratio_best": 0.15,
+            "u_base": 0.612,
+            "u_best": 0.641,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "16,7168",
+              "dtype": "BF16",
+              "t_base_us": 18.4,
+              "t_best_us": 17.83,
+              "s_lat": 1.032
+            },
+            {
+              "shape": "256,4096",
+              "dtype": "BF16",
+              "t_base_us": 64.2,
+              "t_best_us": 63.5,
+              "s_lat": 1.011
+            },
+            {
+              "shape": "1024,7168",
+              "dtype": "BF16",
+              "t_base_us": 121.8,
+              "t_best_us": 121.07,
+              "s_lat": 1.006
+            },
+            {
+              "shape": "4096,7168",
+              "dtype": "FP16",
+              "t_base_us": 246.5,
+              "t_best_us": 243.1,
+              "s_lat": 1.014
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 98.6,
+              "wall_sec": 210,
+              "s": 1.0093,
+              "solution_id": "90c4e95a",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 437.5,
+              "wall_sec": 873.6,
+              "s": 1.0158,
+              "solution_id": "b67a7c1c",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 910,
+              "wall_sec": 1892.4,
+              "s": 1.031,
+              "solution_id": "e68c8652",
+              "cycle_idx": 2
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 194.2,
+              "wall_sec": 421.3,
+              "duration_ms": 0.0601,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 321.3,
+              "wall_sec": 708.3,
+              "duration_ms": 0.0728,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 455.9,
+              "wall_sec": 995.6,
+              "duration_ms": 0.06,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 641.4,
+              "wall_sec": 1361.6,
+              "duration_ms": 0.0658,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 831.8,
+              "wall_sec": 1756.9,
+              "duration_ms": 0.0683,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 910,
+              "wall_sec": 1826.5,
+              "duration_ms": 0.0656,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "Swiglu_world-model_2026-08-14",
+              "date": "2026-08-14",
+              "s_bmax": 1.031,
+              "paos": 1.019,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 4,
+                  "best_s": 1.0041,
+                  "tokens_k": 24
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 1.0151,
+                  "tokens_k": 60
+                }
+              ],
+              "best_solution_id": "54de97bb",
+              "canonical_code_hash": "b1e587f5d20c",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void swiglu(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.031,
+          "s_bmax_time": 1.031,
+          "vlr": 3.01,
+          "auls": 0.0172,
+          "auls_time": 0.0173,
+          "sts_token": 3.06,
+          "sts_time": 3.06,
+          "s_equiv": 1.0214,
+          "paos": 1.0157,
+          "worst_shape": {
+            "shape": "1024,7168",
+            "dtype": "BF16",
+            "s_lat": 1.006
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.032
+          },
+          "tokens_to": {
+            "p1": 437500,
+            "p3": 910000,
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.075,
+          "flags": [],
+          "etps": {
+            "operator": "Swiglu",
+            "etps_base": 36,
+            "etps_best": 37,
+            "etps_gain": 1.0157,
+            "recipe": {
+              "G": 1,
+              "n_i": 427,
+              "rep_shape": "256,4096"
+            },
+            "etps_reason": null
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_world-model_20260809",
+          "date": "2026-08-09",
+          "s_bmax": 1.019,
+          "paos": 0.9872,
+          "flags": [
+            "fake_optimization",
+            "shape_regression",
+            "unconverged",
+            "high_waste",
+            "plateau"
+          ],
+          "termination_reason": "cycle_limit_reached",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 5,
+              "best_s": 1.0152,
+              "tokens_k": 512
+            },
+            {
+              "idx": 2,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 6,
+              "best_s": 1.019,
+              "tokens_k": 2640
+            },
+            {
+              "idx": 3,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 4,
+              "best_s": 1.019,
+              "tokens_k": 2210
+            },
+            {
+              "idx": 4,
+              "action_title": "尾部处理与分支消除",
+              "attempts": 3,
+              "best_s": 1.019,
+              "tokens_k": 1328
+            }
+          ],
+          "best_solution_id": "77b0c2d4",
+          "canonical_code_hash": "5e21aa09c3f7",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        },
+        {
+          "run_id": "AddRmsNorm_orchestrator_20260811",
+          "date": "2026-08-11",
+          "s_bmax": 1.021,
+          "paos": 0.9848,
+          "flags": [
+            "fake_optimization",
+            "shape_regression",
+            "unconverged",
+            "high_waste",
+            "plateau"
+          ],
+          "termination_reason": "cycle_limit_reached",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 5,
+              "best_s": 1.0172,
+              "tokens_k": 508
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 6,
+              "best_s": 1.021,
+              "tokens_k": 2504
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 4,
+              "best_s": 1.021,
+              "tokens_k": 2188
+            },
+            {
+              "idx": 4,
+              "action_title": "流水线重叠 (TPipe 双队列)",
+              "attempts": 3,
+              "best_s": 1.021,
+              "tokens_k": 952
+            }
+          ],
+          "best_solution_id": "c41a7e02",
+          "canonical_code_hash": "9f3c1a2e77b1",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        },
+        {
+          "run_id": "AddRmsNorm_world-model_20260813",
+          "date": "2026-08-13",
+          "s_bmax": 1.0229,
+          "paos": 0.9811,
+          "flags": [
+            "fake_optimization",
+            "shape_regression",
+            "unconverged",
+            "high_waste",
+            "plateau"
+          ],
+          "termination_reason": "cycle_limit_reached",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 5,
+              "best_s": 1.0181,
+              "tokens_k": 495
+            },
+            {
+              "idx": 2,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 7,
+              "best_s": 1.0229,
+              "tokens_k": 2710
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 5,
+              "best_s": 1.0229,
+              "tokens_k": 2350
+            },
+            {
+              "idx": 4,
+              "action_title": "L1 hit 策略与 tile 复用",
+              "attempts": 3,
+              "best_s": 1.0229,
+              "tokens_k": 880
+            }
+          ],
+          "best_solution_id": "d08f3b61",
+          "canonical_code_hash": "b84d20ce11a9",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "k-search+qwen3-6",
+      "agent": {
+        "id": "k-search",
+        "type": "domain",
+        "strategy": "k-search-tree",
+        "version": "v2"
+      },
+      "engine_model": {
+        "id": "Qwen3_6",
+        "vendor": "Alibaba",
+        "openness": "open",
+        "vendor_mark": "Q",
+        "color": "#0E9B8E"
+      },
+      "weights": "open",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 3,
+      "baseline_quality": "normal",
+      "coverage_operators": 2,
+      "overall": {
+        "sts_token": 6.7,
+        "sts_time": 6.7,
+        "s_equiv": 1.0475,
+        "auls": 0.0393,
+        "ebgs": 1.0679,
+        "speedup_mean": 1.068,
+        "compile_pass": 97.1,
+        "task_pass_rate": 82.9,
+        "candidate_pass_rate": 82.9,
+        "gate_rate": 100,
+        "vlr_mean": 6.35,
+        "best_duration_us": 78,
+        "tokens_total_k": 7060,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 59,
+        "wall_time_median_s": 6266.7,
+        "wall_time_total_s": 12533.3,
+        "profiling_runs_median": 11,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 100,
+          "5%": 50,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0437,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "64,256",
+            "dtype": "FP32",
+            "s_lat": 1.021
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.062
+          },
+          "ppui_u": 1.126
+        },
+        "cost": {
+          "wasted_round_rate": 0.275,
+          "n_solutions": 29,
+          "n_cycles": 8,
+          "termination_reason": "improvement_stalled"
+        },
+        "flags": [],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": 1,
+          "p3_reason": null,
+          "k": 3
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 94.1,
+          "tokens_k": 5240,
+          "rounds": 84,
+          "wall_time_s": 9412.8,
+          "profiling_runs": 14,
+          "wasted_round_rate": 0.31,
+          "n_solutions": 17,
+          "n_cycles": 5,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 82.4,
+          "candidate_pass_rate": 82.4,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.069,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.392,
+            "scalar_ratio_best": 0.301,
+            "mte2_ratio_base": 0.14,
+            "mte2_ratio_best": 0.188,
+            "u_base": 0.709,
+            "u_best": 0.744,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.63,
+              "s_lat": 1.053
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 18.99,
+              "s_lat": 1.031
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.18,
+              "s_lat": 1.045
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 12.79,
+              "s_lat": 1.029
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.09,
+              "s_lat": 1.036
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.13,
+              "s_lat": 1.021
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 338.8,
+              "wall_sec": 574,
+              "s": 1.0156,
+              "solution_id": "6907d6d2",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1326.8,
+              "wall_sec": 2474.9,
+              "s": 1.0156,
+              "solution_id": "090c1d47",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2021.6,
+              "wall_sec": 3813.7,
+              "s": 1.0156,
+              "solution_id": "e0076ffb",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2929.2,
+              "wall_sec": 5127.8,
+              "s": 1.0332,
+              "solution_id": "d692525a",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 3796.3,
+              "wall_sec": 6594,
+              "s": 1.0332,
+              "solution_id": "38571c74",
+              "cycle_idx": 4
+            },
+            {
+              "cum_tokens_k": 5240,
+              "wall_sec": 9412.8,
+              "s": 1.052,
+              "solution_id": "a1d930d4",
+              "cycle_idx": 5
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 600.6,
+              "wall_sec": 1060.7,
+              "duration_ms": 0.1131,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 846,
+              "wall_sec": 1467.1,
+              "duration_ms": 0.0964,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1516.3,
+              "wall_sec": 2793.5,
+              "duration_ms": 0.1179,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1696.5,
+              "wall_sec": 3006.2,
+              "duration_ms": 0.0927,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2427.9,
+              "wall_sec": 4284.1,
+              "duration_ms": 0.1171,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3037.7,
+              "wall_sec": 5635.3,
+              "duration_ms": 0.0891,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3206.3,
+              "wall_sec": 5813.6,
+              "duration_ms": 0.0975,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3575.3,
+              "wall_sec": 6686.4,
+              "duration_ms": 0.1138,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3979.9,
+              "wall_sec": 7068.9,
+              "duration_ms": 0.0965,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4287.8,
+              "wall_sec": 8117.9,
+              "duration_ms": 0.0974,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 5092.6,
+              "wall_sec": 9357,
+              "duration_ms": 0.1073,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_k-search_2026-08-10",
+              "date": "2026-08-10",
+              "s_bmax": 1.052,
+              "paos": 1.038,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 3,
+                  "best_s": 1.0103,
+                  "tokens_k": 31
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 1.0236,
+                  "tokens_k": 57
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 7,
+                  "best_s": 1.052,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 5,
+                  "best_s": 1.052,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 5,
+                  "action_title": "尾部处理与分支消除",
+                  "attempts": 6,
+                  "best_s": 1.052,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "5018f1a8",
+              "canonical_code_hash": "ce35a1958bee",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            },
+            {
+              "run_id": "AddRmsNorm_k-search_2026-08-12",
+              "date": "2026-08-12",
+              "s_bmax": 1.0515,
+              "paos": 1.0337,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 1.0064,
+                  "tokens_k": 23
+                },
+                {
+                  "idx": 2,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.0266,
+                  "tokens_k": 62
+                },
+                {
+                  "idx": 3,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 7,
+                  "best_s": 1.0506,
+                  "tokens_k": 99
+                },
+                {
+                  "idx": 4,
+                  "action_title": "尾部处理与分支消除",
+                  "attempts": 7,
+                  "best_s": 1.0515,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 5,
+                  "action_title": "bf16×2 向量宽度对齐",
+                  "attempts": 4,
+                  "best_s": 1.0515,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "60811416",
+              "canonical_code_hash": "cee89b0d317d",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            },
+            {
+              "run_id": "AddRmsNorm_k-search_2026-08-14",
+              "date": "2026-08-14",
+              "s_bmax": 1.0482,
+              "paos": 1.0403,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 7,
+                  "best_s": 1.0106,
+                  "tokens_k": 34
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 4,
+                  "best_s": 1.0277,
+                  "tokens_k": 67
+                },
+                {
+                  "idx": 3,
+                  "action_title": "尾部处理与分支消除",
+                  "attempts": 7,
+                  "best_s": 1.0482,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "bf16×2 向量宽度对齐",
+                  "attempts": 7,
+                  "best_s": 1.0482,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 5,
+                  "action_title": "流水线重叠 (TPipe 双队列)",
+                  "attempts": 8,
+                  "best_s": 1.0482,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "2fdfdb47",
+              "canonical_code_hash": "1a1245bf2dd8",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.052,
+          "s_bmax_time": 1.052,
+          "vlr": 4.94,
+          "auls": 0.0289,
+          "auls_time": 0.029,
+          "sts_token": 5.1,
+          "sts_time": 5.11,
+          "s_equiv": 1.036,
+          "paos": 1.0358,
+          "worst_shape": {
+            "shape": "64,256",
+            "dtype": "FP32",
+            "s_lat": 1.021
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.053
+          },
+          "tokens_to": {
+            "p1": 338800,
+            "p3": 2929200,
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.12,
+          "flags": [],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 1005,
+            "etps_gain": 1.0358,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "Swiglu",
+          "bound": "memory",
+          "baseline_ms": 0.0642,
+          "epsilon_used": 0.01,
+          "compile_pass": 100,
+          "tokens_k": 1820,
+          "rounds": 33,
+          "wall_time_s": 3120.5,
+          "profiling_runs": 8,
+          "wasted_round_rate": 0.24,
+          "n_solutions": 12,
+          "n_cycles": 3,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 83.3,
+          "candidate_pass_rate": 83.3,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 427,
+            "rep_shape": "256,4096"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.071,
+            "vec_ratio_best": 0.081,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.478,
+            "scalar_ratio_best": 0.349,
+            "mte2_ratio_base": 0.162,
+            "mte2_ratio_best": 0.275,
+            "u_base": 0.612,
+            "u_best": 0.663,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "16,7168",
+              "dtype": "BF16",
+              "t_base_us": 18.4,
+              "t_best_us": 17.33,
+              "s_lat": 1.062
+            },
+            {
+              "shape": "256,4096",
+              "dtype": "BF16",
+              "t_base_us": 64.2,
+              "t_best_us": 61.26,
+              "s_lat": 1.048
+            },
+            {
+              "shape": "1024,7168",
+              "dtype": "BF16",
+              "t_base_us": 121.8,
+              "t_best_us": 117,
+              "s_lat": 1.041
+            },
+            {
+              "shape": "4096,7168",
+              "dtype": "FP16",
+              "t_base_us": 246.5,
+              "t_best_us": 233.43,
+              "s_lat": 1.056
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 158.8,
+              "wall_sec": 277.1,
+              "s": 1.0252,
+              "solution_id": "475b6685",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 639.2,
+              "wall_sec": 1083.4,
+              "s": 1.0447,
+              "solution_id": "ea3a4b63",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1039.2,
+              "wall_sec": 1839.9,
+              "s": 1.0447,
+              "solution_id": "f453aa1c",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 1820,
+              "wall_sec": 3120.5,
+              "s": 1.084,
+              "solution_id": "8b0944ac",
+              "cycle_idx": 3
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 309.9,
+              "wall_sec": 537.5,
+              "duration_ms": 0.0695,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 457.8,
+              "wall_sec": 747.3,
+              "duration_ms": 0.0709,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 796.4,
+              "wall_sec": 1438.1,
+              "duration_ms": 0.067,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 989.6,
+              "wall_sec": 1596.6,
+              "duration_ms": 0.0579,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1308.9,
+              "wall_sec": 2166.5,
+              "duration_ms": 0.0586,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1478.4,
+              "wall_sec": 2559.3,
+              "duration_ms": 0.0633,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1759.2,
+              "wall_sec": 2897.5,
+              "duration_ms": 0.0606,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1820,
+              "wall_sec": 3065.7,
+              "duration_ms": 0.0662,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "Swiglu_k-search_2026-08-15",
+              "date": "2026-08-15",
+              "s_bmax": 1.084,
+              "paos": 1.051,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 6,
+                  "best_s": 1.0147,
+                  "tokens_k": 29
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 7,
+                  "best_s": 1.0478,
+                  "tokens_k": 67
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 8,
+                  "best_s": 1.0736,
+                  "tokens_k": 91
+                }
+              ],
+              "best_solution_id": "185ff3ee",
+              "canonical_code_hash": "5797d305d294",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void swiglu(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.084,
+          "s_bmax_time": 1.084,
+          "vlr": 7.75,
+          "auls": 0.0496,
+          "auls_time": 0.0497,
+          "sts_token": 8.3,
+          "sts_time": 8.3,
+          "s_equiv": 1.0592,
+          "paos": 1.0517,
+          "worst_shape": {
+            "shape": "1024,7168",
+            "dtype": "BF16",
+            "s_lat": 1.041
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.062
+          },
+          "tokens_to": {
+            "p1": 158800,
+            "p3": 639200,
+            "p5": 1820000,
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.131,
+          "flags": [],
+          "etps": {
+            "operator": "Swiglu",
+            "etps_base": 36,
+            "etps_best": 38,
+            "etps_gain": 1.0517,
+            "recipe": {
+              "G": 1,
+              "n_i": 427,
+              "rep_shape": "256,4096"
+            },
+            "etps_reason": null
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_k-search_2026-08-10",
+          "date": "2026-08-10",
+          "s_bmax": 1.052,
+          "paos": 1.038,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 3,
+              "best_s": 1.0103,
+              "tokens_k": 31
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 4,
+              "best_s": 1.0236,
+              "tokens_k": 57
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 7,
+              "best_s": 1.052,
+              "tokens_k": 100
+            },
+            {
+              "idx": 4,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 5,
+              "best_s": 1.052,
+              "tokens_k": 100
+            },
+            {
+              "idx": 5,
+              "action_title": "尾部处理与分支消除",
+              "attempts": 6,
+              "best_s": 1.052,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "5018f1a8",
+          "canonical_code_hash": "ce35a1958bee",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        },
+        {
+          "run_id": "AddRmsNorm_k-search_2026-08-12",
+          "date": "2026-08-12",
+          "s_bmax": 1.0515,
+          "paos": 1.0337,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 4,
+              "best_s": 1.0064,
+              "tokens_k": 23
+            },
+            {
+              "idx": 2,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 5,
+              "best_s": 1.0266,
+              "tokens_k": 62
+            },
+            {
+              "idx": 3,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 7,
+              "best_s": 1.0506,
+              "tokens_k": 99
+            },
+            {
+              "idx": 4,
+              "action_title": "尾部处理与分支消除",
+              "attempts": 7,
+              "best_s": 1.0515,
+              "tokens_k": 100
+            },
+            {
+              "idx": 5,
+              "action_title": "bf16×2 向量宽度对齐",
+              "attempts": 4,
+              "best_s": 1.0515,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "60811416",
+          "canonical_code_hash": "cee89b0d317d",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        },
+        {
+          "run_id": "AddRmsNorm_k-search_2026-08-14",
+          "date": "2026-08-14",
+          "s_bmax": 1.0482,
+          "paos": 1.0403,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 7,
+              "best_s": 1.0106,
+              "tokens_k": 34
+            },
+            {
+              "idx": 2,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 4,
+              "best_s": 1.0277,
+              "tokens_k": 67
+            },
+            {
+              "idx": 3,
+              "action_title": "尾部处理与分支消除",
+              "attempts": 7,
+              "best_s": 1.0482,
+              "tokens_k": 100
+            },
+            {
+              "idx": 4,
+              "action_title": "bf16×2 向量宽度对齐",
+              "attempts": 7,
+              "best_s": 1.0482,
+              "tokens_k": 100
+            },
+            {
+              "idx": 5,
+              "action_title": "流水线重叠 (TPipe 双队列)",
+              "attempts": 8,
+              "best_s": 1.0482,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "2fdfdb47",
+          "canonical_code_hash": "1a1245bf2dd8",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "claude-code+gpt-5-6",
+      "agent": {
+        "id": "claude-code",
+        "type": "general",
+        "strategy": "general",
+        "version": "2.1"
+      },
+      "engine_model": {
+        "id": "GPT-5.6",
+        "vendor": "OpenAI",
+        "openness": "closed",
+        "vendor_mark": "G",
+        "color": "#E08A1E"
+      },
+      "weights": "closed",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 1,
+      "baseline_quality": "normal",
+      "coverage_operators": 3,
+      "overall": {
+        "sts_token": 1.47,
+        "sts_time": 1.47,
+        "s_equiv": 1.0102,
+        "auls": 0.0084,
+        "ebgs": 1.0147,
+        "speedup_mean": 1.0147,
+        "compile_pass": 86.7,
+        "task_pass_rate": 60,
+        "candidate_pass_rate": 60,
+        "gate_rate": 100,
+        "vlr_mean": 1.38,
+        "best_duration_us": 100.39,
+        "tokens_total_k": 13270,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 76,
+        "wall_time_median_s": 8204.3,
+        "wall_time_total_s": 25550.9,
+        "profiling_runs_median": 12,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 66.7,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0046,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "256,4096",
+            "dtype": "BF16",
+            "s_lat": 0.968
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.031
+          },
+          "ppui_u": 1.031
+        },
+        "cost": {
+          "wasted_round_rate": 0.447,
+          "n_solutions": 46,
+          "n_cycles": 12,
+          "termination_reason": "improvement_stalled"
+        },
+        "flags": [
+          "fake_optimization",
+          "plateau"
+        ],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": null,
+          "p3_reason": "k_lt_3",
+          "k": 1
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 86.7,
+          "tokens_k": 4180,
+          "rounds": 76,
+          "wall_time_s": 8204.3,
+          "profiling_runs": 12,
+          "wasted_round_rate": 0.44,
+          "n_solutions": 15,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 60,
+          "candidate_pass_rate": 60,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.062,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.421,
+            "scalar_ratio_best": 0.346,
+            "mte2_ratio_base": 0.158,
+            "mte2_ratio_best": 0.269,
+            "u_base": 0.709,
+            "u_best": 0.718,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.92,
+              "s_lat": 1.009
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 19.64,
+              "s_lat": 0.997
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.47,
+              "s_lat": 1.004
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 13.15,
+              "s_lat": 1.001
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.33,
+              "s_lat": 1.006
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.25,
+              "s_lat": 0.998
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 279.8,
+              "wall_sec": 555.6,
+              "s": 1.0042,
+              "solution_id": "233b7ceb",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1210.6,
+              "wall_sec": 2245.9,
+              "s": 1.0042,
+              "solution_id": "250c5d5f",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1991.8,
+              "wall_sec": 3809.7,
+              "s": 1.0074,
+              "solution_id": "4a4159a8",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2762.4,
+              "wall_sec": 5567.5,
+              "s": 1.0074,
+              "solution_id": "f84f76e7",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 4180,
+              "wall_sec": 8204.3,
+              "s": 1.014,
+              "solution_id": "c9fff640",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 518.3,
+              "wall_sec": 1041,
+              "duration_ms": 0.1022,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 843.2,
+              "wall_sec": 1644.9,
+              "duration_ms": 0.0877,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1487,
+              "wall_sec": 3057.2,
+              "duration_ms": 0.1156,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1642.6,
+              "wall_sec": 3069,
+              "duration_ms": 0.0926,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2336.3,
+              "wall_sec": 4331.3,
+              "duration_ms": 0.095,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2465,
+              "wall_sec": 4684.4,
+              "duration_ms": 0.1154,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2957.7,
+              "wall_sec": 5484.4,
+              "duration_ms": 0.1095,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3312.7,
+              "wall_sec": 6350.5,
+              "duration_ms": 0.1047,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4119.7,
+              "wall_sec": 7921.6,
+              "duration_ms": 0.0941,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4180,
+              "wall_sec": 8093.6,
+              "duration_ms": 0.1035,
+              "status": "compile_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_claude-code_2026-08-12",
+              "date": "2026-08-12",
+              "s_bmax": 1.014,
+              "paos": 1.002,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 6,
+                  "best_s": 1.0019,
+                  "tokens_k": 24
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 1.0085,
+                  "tokens_k": 70
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 7,
+                  "best_s": 1.014,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 7,
+                  "best_s": 1.014,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "b1e4a6b3",
+              "canonical_code_hash": "067a909245ff",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.014,
+          "s_bmax_time": 1.014,
+          "vlr": 1.38,
+          "auls": 0.0076,
+          "auls_time": 0.0077,
+          "sts_token": 1.39,
+          "sts_time": 1.39,
+          "s_equiv": 1.0096,
+          "paos": 1.0025,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 0.997
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.009
+          },
+          "tokens_to": {
+            "p1": 4180000,
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.031,
+          "flags": [
+            "plateau"
+          ],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 976,
+            "etps_gain": 1.0025,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "Swiglu",
+          "bound": "memory",
+          "baseline_ms": 0.0642,
+          "epsilon_used": 0.01,
+          "compile_pass": 88.9,
+          "tokens_k": 5230,
+          "rounds": 91,
+          "wall_time_s": 10233.7,
+          "profiling_runs": 13,
+          "wasted_round_rate": 0.49,
+          "n_solutions": 18,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 55.6,
+          "candidate_pass_rate": 55.6,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 427,
+            "rep_shape": "256,4096"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.071,
+            "vec_ratio_best": 0.07,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.375,
+            "scalar_ratio_best": 0.351,
+            "mte2_ratio_base": 0.165,
+            "mte2_ratio_best": 0.181,
+            "u_base": 0.612,
+            "u_best": 0.622,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "16,7168",
+              "dtype": "BF16",
+              "t_base_us": 18.4,
+              "t_best_us": 17.85,
+              "s_lat": 1.031
+            },
+            {
+              "shape": "256,4096",
+              "dtype": "BF16",
+              "t_base_us": 64.2,
+              "t_best_us": 66.32,
+              "s_lat": 0.968
+            },
+            {
+              "shape": "1024,7168",
+              "dtype": "BF16",
+              "t_base_us": 121.8,
+              "t_best_us": 123.15,
+              "s_lat": 0.989
+            },
+            {
+              "shape": "4096,7168",
+              "dtype": "FP16",
+              "t_base_us": 246.5,
+              "t_best_us": 243.58,
+              "s_lat": 1.012
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 314.8,
+              "wall_sec": 630,
+              "s": 1.0066,
+              "solution_id": "bf193221",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1136.8,
+              "wall_sec": 2352.9,
+              "s": 1.0066,
+              "solution_id": "41495454",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2059.5,
+              "wall_sec": 3889.9,
+              "s": 1.0109,
+              "solution_id": "94be944d",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2954.7,
+              "wall_sec": 6121.3,
+              "s": 1.0109,
+              "solution_id": "9f655bc0",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 3598.8,
+              "wall_sec": 7172.5,
+              "s": 1.0174,
+              "solution_id": "d8a1cd0c",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 5230,
+              "wall_sec": 10233.7,
+              "s": 1.022,
+              "solution_id": "8c0326d4",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 605.9,
+              "wall_sec": 1225.3,
+              "duration_ms": 0.0666,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 868.9,
+              "wall_sec": 1733.9,
+              "duration_ms": 0.0565,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1416.3,
+              "wall_sec": 2641.5,
+              "duration_ms": 0.0618,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1841.1,
+              "wall_sec": 3448.6,
+              "duration_ms": 0.0704,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2437,
+              "wall_sec": 4720,
+              "duration_ms": 0.0723,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2388.3,
+              "wall_sec": 4549,
+              "duration_ms": 0.0581,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3441.2,
+              "wall_sec": 6673,
+              "duration_ms": 0.0675,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3685.6,
+              "wall_sec": 7175.7,
+              "duration_ms": 0.0567,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4034.3,
+              "wall_sec": 8100.7,
+              "duration_ms": 0.0698,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4591.9,
+              "wall_sec": 8612.2,
+              "duration_ms": 0.0568,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 5230,
+              "wall_sec": 10233.7,
+              "duration_ms": 0.057,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 5109.4,
+              "wall_sec": 9991.4,
+              "duration_ms": 0.0624,
+              "status": "compile_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "Swiglu_claude-code_2026-08-13",
+              "date": "2026-08-13",
+              "s_bmax": 1.022,
+              "paos": 0.9997,
+              "flags": [
+                "fake_optimization"
+              ],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 4,
+                  "best_s": 1.0023,
+                  "tokens_k": 20
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 1.0074,
+                  "tokens_k": 46
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 8,
+                  "best_s": 1.0182,
+                  "tokens_k": 87
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 6,
+                  "best_s": 1.022,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "a8dddf95",
+              "canonical_code_hash": "0212876a9a1d",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void swiglu(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.022,
+          "s_bmax_time": 1.022,
+          "vlr": 2.15,
+          "auls": 0.0132,
+          "auls_time": 0.0132,
+          "sts_token": 2.23,
+          "sts_time": 2.23,
+          "s_equiv": 1.0156,
+          "paos": 0.9997,
+          "worst_shape": {
+            "shape": "256,4096",
+            "dtype": "BF16",
+            "s_lat": 0.968
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.031
+          },
+          "tokens_to": {
+            "p1": 2059500,
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.026,
+          "flags": [
+            "fake_optimization"
+          ],
+          "etps": {
+            "operator": "Swiglu",
+            "etps_base": 36,
+            "etps_best": 35,
+            "etps_gain": 0.9997,
+            "recipe": {
+              "G": 1,
+              "n_i": 427,
+              "rep_shape": "256,4096"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "SparseAttnSharedkv",
+          "bound": "memory",
+          "baseline_ms": 0.2896,
+          "epsilon_used": 0.01,
+          "compile_pass": 84.6,
+          "tokens_k": 3860,
+          "rounds": 64,
+          "wall_time_s": 7112.9,
+          "profiling_runs": 11,
+          "wasted_round_rate": 0.41,
+          "n_solutions": 13,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 61.5,
+          "candidate_pass_rate": 61.5,
+          "gate_rate": 100,
+          "recipe": null,
+          "utilization": {
+            "vec_ratio_base": 0.082,
+            "vec_ratio_best": 0.086,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.333,
+            "scalar_ratio_best": 0.365,
+            "mte2_ratio_base": 0.133,
+            "mte2_ratio_best": 0.229,
+            "u_base": 0.534,
+            "u_best": 0.551,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,1,64,1024,128",
+              "dtype": "BF16",
+              "t_base_us": 148.2,
+              "t_best_us": 145.44,
+              "s_lat": 1.019
+            },
+            {
+              "shape": "1,1,256,2048,128",
+              "dtype": "BF16",
+              "t_base_us": 289.6,
+              "t_best_us": 288.45,
+              "s_lat": 1.004
+            },
+            {
+              "shape": "1,1,1024,4096,128",
+              "dtype": "FP16",
+              "t_base_us": 512.4,
+              "t_best_us": 505.82,
+              "s_lat": 1.013
+            },
+            {
+              "shape": "1,2,128,1024,128",
+              "dtype": "BF16",
+              "t_base_us": 96.7,
+              "t_best_us": 95.65,
+              "s_lat": 1.011
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 305.4,
+              "wall_sec": 570.9,
+              "s": 1.0024,
+              "solution_id": "8426b66c",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1191,
+              "wall_sec": 2118.3,
+              "s": 1.0024,
+              "solution_id": "4314f5b0",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2193.8,
+              "wall_sec": 4247.6,
+              "s": 1.0044,
+              "solution_id": "00062f84",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2795.8,
+              "wall_sec": 5114.3,
+              "s": 1.0054,
+              "solution_id": "de0d028a",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 3860,
+              "wall_sec": 7112.9,
+              "s": 1.008,
+              "solution_id": "90c37b7a",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 544,
+              "wall_sec": 1057.6,
+              "duration_ms": 0.2582,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 873.2,
+              "wall_sec": 1665.4,
+              "duration_ms": 0.2532,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1466.1,
+              "wall_sec": 2658.1,
+              "duration_ms": 0.2635,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1659.6,
+              "wall_sec": 3099.7,
+              "duration_ms": 0.2871,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2544.7,
+              "wall_sec": 4667,
+              "duration_ms": 0.2685,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2833.9,
+              "wall_sec": 5300.9,
+              "duration_ms": 0.3125,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3321,
+              "wall_sec": 6324.2,
+              "duration_ms": 0.3112,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3320.5,
+              "wall_sec": 5870.3,
+              "duration_ms": 0.2911,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "SparseAttnSharedkv_claude-code_2026-08-14",
+              "date": "2026-08-14",
+              "s_bmax": 1.008,
+              "paos": 1.011,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 3,
+                  "best_s": 1.0018,
+                  "tokens_k": 34
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 7,
+                  "best_s": 1.0046,
+                  "tokens_k": 68
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 6,
+                  "best_s": 1.008,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 5,
+                  "best_s": 1.008,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "a7137429",
+              "canonical_code_hash": "ea99930ce0db",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void sparseattnsharedkv(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.008,
+          "s_bmax_time": 1.008,
+          "vlr": 0.79,
+          "auls": 0.0045,
+          "auls_time": 0.0044,
+          "sts_token": 0.8,
+          "sts_time": 0.79,
+          "s_equiv": 1.0055,
+          "paos": 1.0117,
+          "worst_shape": {
+            "shape": "1,1,256,2048,128",
+            "dtype": "BF16",
+            "s_lat": 1.004
+          },
+          "best_shape": {
+            "shape": "1,1,64,1024,128",
+            "dtype": "BF16",
+            "s_lat": 1.019
+          },
+          "tokens_to": {
+            "p1": null,
+            "p1_reason": "never_reached",
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.036,
+          "flags": [
+            "plateau"
+          ],
+          "etps": {
+            "etps_base": null,
+            "etps_reason": "not_in_recipe"
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_claude-code_2026-08-12",
+          "date": "2026-08-12",
+          "s_bmax": 1.014,
+          "paos": 1.002,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 6,
+              "best_s": 1.0019,
+              "tokens_k": 24
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 4,
+              "best_s": 1.0085,
+              "tokens_k": 70
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 7,
+              "best_s": 1.014,
+              "tokens_k": 100
+            },
+            {
+              "idx": 4,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 7,
+              "best_s": 1.014,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "b1e4a6b3",
+          "canonical_code_hash": "067a909245ff",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "claude-code+deepseek-v3-2",
+      "agent": {
+        "id": "claude-code",
+        "type": "general",
+        "strategy": "general",
+        "version": "2.1"
+      },
+      "engine_model": {
+        "id": "DeepSeek-V3.2",
+        "vendor": "DeepSeek",
+        "openness": "open",
+        "vendor_mark": "D",
+        "color": "#3F67D5"
+      },
+      "weights": "open",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 1,
+      "baseline_quality": "saturated",
+      "coverage_operators": 2,
+      "overall": {
+        "sts_token": 1.88,
+        "sts_time": 1.88,
+        "s_equiv": 1.0131,
+        "auls": 0.0104,
+        "ebgs": 1.019,
+        "speedup_mean": 1.019,
+        "compile_pass": 91.7,
+        "task_pass_rate": 66.7,
+        "candidate_pass_rate": 66.7,
+        "gate_rate": 100,
+        "vlr_mean": 1.86,
+        "best_duration_us": 99.9,
+        "tokens_total_k": 3320,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 58,
+        "wall_time_median_s": 5961.2,
+        "wall_time_total_s": 5961.2,
+        "profiling_runs_median": 9,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 100,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0062,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.001
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.012
+          },
+          "ppui_u": 1.024
+        },
+        "cost": {
+          "wasted_round_rate": 0.36,
+          "n_solutions": 12,
+          "n_cycles": 3,
+          "termination_reason": "improvement_stalled"
+        },
+        "flags": [
+          "baseline_abnormal"
+        ],
+        "excluded_operators": [
+          "Swiglu"
+        ],
+        "reliability": {
+          "p3": null,
+          "p3_reason": "k_lt_3",
+          "k": 1
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 91.7,
+          "tokens_k": 3320,
+          "rounds": 58,
+          "wall_time_s": 5961.2,
+          "profiling_runs": 9,
+          "wasted_round_rate": 0.36,
+          "n_solutions": 12,
+          "n_cycles": 3,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 66.7,
+          "candidate_pass_rate": 66.7,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.063,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.425,
+            "scalar_ratio_best": 0.402,
+            "mte2_ratio_base": 0.201,
+            "mte2_ratio_best": 0.238,
+            "u_base": 0.709,
+            "u_best": 0.716,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.9,
+              "s_lat": 1.012
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 19.56,
+              "s_lat": 1.001
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.44,
+              "s_lat": 1.008
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 13.12,
+              "s_lat": 1.003
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.34,
+              "s_lat": 1.005
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.2,
+              "s_lat": 1.008
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 250,
+              "wall_sec": 459.3,
+              "s": 1.0057,
+              "solution_id": "9fccf376",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1156.3,
+              "wall_sec": 1989,
+              "s": 1.0057,
+              "solution_id": "91ed379e",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1849.7,
+              "wall_sec": 3157,
+              "s": 1.0113,
+              "solution_id": "71143f3b",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 3320,
+              "wall_sec": 5961.2,
+              "s": 1.019,
+              "solution_id": "2907ca67",
+              "cycle_idx": 3
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 601.1,
+              "wall_sec": 1098.8,
+              "duration_ms": 0.1127,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 909.3,
+              "wall_sec": 1622.2,
+              "duration_ms": 0.0889,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1296.7,
+              "wall_sec": 2297.5,
+              "duration_ms": 0.1127,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1642.6,
+              "wall_sec": 2772.7,
+              "duration_ms": 0.0953,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2282.2,
+              "wall_sec": 4066.9,
+              "duration_ms": 0.0991,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2475.2,
+              "wall_sec": 4603,
+              "duration_ms": 0.1143,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3309,
+              "wall_sec": 5840.4,
+              "duration_ms": 0.1009,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3149,
+              "wall_sec": 5521.1,
+              "duration_ms": 0.0905,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_claude-code_2026-08-12",
+              "date": "2026-08-12",
+              "s_bmax": 1.019,
+              "paos": 1.006,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 3,
+                  "best_s": 1.0025,
+                  "tokens_k": 24
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 3,
+                  "best_s": 1.0088,
+                  "tokens_k": 58
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.016,
+                  "tokens_k": 89
+                }
+              ],
+              "best_solution_id": "7200c4b1",
+              "canonical_code_hash": "2fdf6a486751",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.019,
+          "s_bmax_time": 1.019,
+          "vlr": 1.86,
+          "auls": 0.0104,
+          "auls_time": 0.0105,
+          "sts_token": 1.88,
+          "sts_time": 1.88,
+          "s_equiv": 1.0131,
+          "paos": 1.0062,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.001
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.012
+          },
+          "tokens_to": {
+            "p1": 1849700,
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.024,
+          "flags": [],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 975,
+            "etps_gain": 1.0062,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "Swiglu",
+          "bound": "memory",
+          "baseline_ms": 0.0642,
+          "epsilon_used": 0.01,
+          "compile_pass": 100,
+          "tokens_k": 2910,
+          "rounds": 47,
+          "wall_time_s": 4102.6,
+          "profiling_runs": 5,
+          "wasted_round_rate": 0.58,
+          "n_solutions": 10,
+          "n_cycles": 3,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "saturated",
+          "task_pass_rate": 100,
+          "candidate_pass_rate": 100,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 427,
+            "rep_shape": "256,4096"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.071,
+            "vec_ratio_best": 0.071,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.471,
+            "scalar_ratio_best": 0.378,
+            "mte2_ratio_base": 0.174,
+            "mte2_ratio_best": 0.189,
+            "u_base": 0.612,
+            "u_best": 0.615,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "16,7168",
+              "dtype": "BF16",
+              "t_base_us": 18.4,
+              "t_best_us": 4.47,
+              "s_lat": 4.116
+            },
+            {
+              "shape": "256,4096",
+              "dtype": "BF16",
+              "t_base_us": 64.2,
+              "t_best_us": 15.97,
+              "s_lat": 4.02
+            },
+            {
+              "shape": "1024,7168",
+              "dtype": "BF16",
+              "t_base_us": 121.8,
+              "t_best_us": 29.85,
+              "s_lat": 4.08
+            },
+            {
+              "shape": "4096,7168",
+              "dtype": "FP16",
+              "t_base_us": 246.5,
+              "t_best_us": 62.41,
+              "s_lat": 3.95
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 306.2,
+              "wall_sec": 431.3,
+              "s": 1.93,
+              "solution_id": "bca59255",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1463.6,
+              "wall_sec": 2008.6,
+              "s": 2.7323,
+              "solution_id": "a0fd3165",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2910,
+              "wall_sec": 4102.6,
+              "s": 4.1,
+              "solution_id": "27c73c48",
+              "cycle_idx": 3
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 639.9,
+              "wall_sec": 886,
+              "duration_ms": 0.0553,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 871.2,
+              "wall_sec": 1203.6,
+              "duration_ms": 0.0567,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1127,
+              "wall_sec": 1643.8,
+              "duration_ms": 0.0615,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1612.3,
+              "wall_sec": 2403.6,
+              "duration_ms": 0.0678,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2213.9,
+              "wall_sec": 3135.4,
+              "duration_ms": 0.0741,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2405.4,
+              "wall_sec": 3430.5,
+              "duration_ms": 0.0625,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2910,
+              "wall_sec": 3944,
+              "duration_ms": 0.067,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "Swiglu_claude-code_2026-08-13",
+              "date": "2026-08-13",
+              "s_bmax": 4.1,
+              "paos": 4.04,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 3,
+                  "best_s": 1.394,
+                  "tokens_k": 23
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 4,
+                  "best_s": 2.3491,
+                  "tokens_k": 55
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 3,
+                  "best_s": 3.2867,
+                  "tokens_k": 80
+                }
+              ],
+              "best_solution_id": "59ef7155",
+              "canonical_code_hash": "aeb29b971976",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void swiglu(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 4.1,
+          "s_bmax_time": 4.1,
+          "vlr": 75.61,
+          "auls": 1.1197,
+          "auls_time": 1.1359,
+          "sts_token": 157.77,
+          "sts_time": 158.58,
+          "s_equiv": 2.9849,
+          "paos": 4.041,
+          "worst_shape": {
+            "shape": "4096,7168",
+            "dtype": "FP16",
+            "s_lat": 3.95
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 4.116
+          },
+          "tokens_to": {
+            "p1": 306200,
+            "p3": 306200,
+            "p5": 306200,
+            "p10": 306200
+          },
+          "ppui_u": 1.008,
+          "flags": [
+            "high_waste"
+          ],
+          "etps": {
+            "operator": "Swiglu",
+            "etps_base": 36,
+            "etps_best": 147,
+            "etps_gain": 4.041,
+            "recipe": {
+              "G": 1,
+              "n_i": 427,
+              "rep_shape": "256,4096"
+            },
+            "etps_reason": null
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_claude-code_2026-08-12",
+          "date": "2026-08-12",
+          "s_bmax": 1.019,
+          "paos": 1.006,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 3,
+              "best_s": 1.0025,
+              "tokens_k": 24
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 3,
+              "best_s": 1.0088,
+              "tokens_k": 58
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 5,
+              "best_s": 1.016,
+              "tokens_k": 89
+            }
+          ],
+          "best_solution_id": "7200c4b1",
+          "canonical_code_hash": "2fdf6a486751",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "openhands+glm-5-2",
+      "agent": {
+        "id": "openhands",
+        "type": "general",
+        "strategy": "general",
+        "version": "1.4"
+      },
+      "engine_model": {
+        "id": "GLM-5.2",
+        "vendor": "Zhipu",
+        "openness": "open",
+        "vendor_mark": "Z",
+        "color": "#8C58C6"
+      },
+      "weights": "open",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 1,
+      "baseline_quality": "normal",
+      "coverage_operators": 1,
+      "overall": {
+        "sts_token": 0.91,
+        "sts_time": 0.92,
+        "s_equiv": 1.0063,
+        "auls": 0.0053,
+        "ebgs": 1.009,
+        "speedup_mean": 1.009,
+        "compile_pass": 81.8,
+        "task_pass_rate": 54.5,
+        "candidate_pass_rate": 54.5,
+        "gate_rate": 100,
+        "vlr_mean": 0.89,
+        "best_duration_us": 100.89,
+        "tokens_total_k": 2640,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 44,
+        "wall_time_median_s": 4890.1,
+        "wall_time_total_s": 4890.1,
+        "profiling_runs_median": 7,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 0,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 0.993,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 0.986
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 0.999
+          },
+          "ppui_u": 1.007
+        },
+        "cost": {
+          "wasted_round_rate": 0.52,
+          "n_solutions": 11,
+          "n_cycles": 3,
+          "termination_reason": "cycle_limit_reached"
+        },
+        "flags": [
+          "unconverged",
+          "high_waste",
+          "plateau"
+        ],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": null,
+          "p3_reason": "k_lt_3",
+          "k": 1
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 81.8,
+          "tokens_k": 2640,
+          "rounds": 44,
+          "wall_time_s": 4890.1,
+          "profiling_runs": 7,
+          "wasted_round_rate": 0.52,
+          "n_solutions": 11,
+          "n_cycles": 3,
+          "termination_reason": "cycle_limit_reached",
+          "baseline_quality": "normal",
+          "task_pass_rate": 54.5,
+          "candidate_pass_rate": 54.5,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.061,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.45,
+            "scalar_ratio_best": 0.439,
+            "mte2_ratio_base": 0.23,
+            "mte2_ratio_best": 0.21,
+            "u_base": 0.709,
+            "u_best": 0.711,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.99,
+              "s_lat": 0.999
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 19.86,
+              "s_lat": 0.986
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.54,
+              "s_lat": 0.995
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 13.28,
+              "s_lat": 0.991
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.41,
+              "s_lat": 0.996
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.29,
+              "s_lat": 0.991
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 254.2,
+              "wall_sec": 467.8,
+              "s": 1.0027,
+              "solution_id": "40a12a47",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1038.2,
+              "wall_sec": 1863.4,
+              "s": 1.0049,
+              "solution_id": "7b1b10a4",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1534.8,
+              "wall_sec": 2937.5,
+              "s": 1.0049,
+              "solution_id": "70879c79",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2640,
+              "wall_sec": 4890.1,
+              "s": 1.009,
+              "solution_id": "e138fa58",
+              "cycle_idx": 3
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 478.3,
+              "wall_sec": 870.6,
+              "duration_ms": 0.1094,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 682.9,
+              "wall_sec": 1278.4,
+              "duration_ms": 0.107,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1150.7,
+              "wall_sec": 2022.4,
+              "duration_ms": 0.099,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1480.4,
+              "wall_sec": 2793.4,
+              "duration_ms": 0.1075,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1928.4,
+              "wall_sec": 3577.3,
+              "duration_ms": 0.0978,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2021.5,
+              "wall_sec": 3816.5,
+              "duration_ms": 0.1089,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 2640,
+              "wall_sec": 4816.4,
+              "duration_ms": 0.1169,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_openhands_2026-08-15",
+              "date": "2026-08-15",
+              "s_bmax": 1.009,
+              "paos": 0.993,
+              "flags": [
+                "unconverged"
+              ],
+              "termination_reason": "cycle_limit_reached",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 8,
+                  "best_s": 1.0019,
+                  "tokens_k": 33
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 8,
+                  "best_s": 1.0058,
+                  "tokens_k": 73
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 3,
+                  "best_s": 1.009,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "c596b745",
+              "canonical_code_hash": "1943603b9bcf",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.009,
+          "s_bmax_time": 1.009,
+          "vlr": 0.89,
+          "auls": 0.0053,
+          "auls_time": 0.0054,
+          "sts_token": 0.91,
+          "sts_time": 0.91,
+          "s_equiv": 1.0064,
+          "paos": 0.993,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 0.986
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 0.999
+          },
+          "tokens_to": {
+            "p1": null,
+            "p1_reason": "never_reached",
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.007,
+          "flags": [
+            "unconverged",
+            "high_waste",
+            "plateau"
+          ],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 967,
+            "etps_gain": 0.993,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_openhands_2026-08-15",
+          "date": "2026-08-15",
+          "s_bmax": 1.009,
+          "paos": 0.993,
+          "flags": [
+            "unconverged"
+          ],
+          "termination_reason": "cycle_limit_reached",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 8,
+              "best_s": 1.0019,
+              "tokens_k": 33
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 8,
+              "best_s": 1.0058,
+              "tokens_k": 73
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 3,
+              "best_s": 1.009,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "c596b745",
+          "canonical_code_hash": "1943603b9bcf",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "world-model+deepseek-v3-2",
+      "agent": {
+        "id": "world-model",
+        "type": "domain",
+        "strategy": "world-model",
+        "version": "v1"
+      },
+      "engine_model": {
+        "id": "DeepSeek-V3.2",
+        "vendor": "DeepSeek",
+        "openness": "open",
+        "vendor_mark": "D",
+        "color": "#3F67D5"
+      },
+      "weights": "open",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 1,
+      "baseline_quality": "normal",
+      "coverage_operators": 2,
+      "overall": {
+        "sts_token": 3.29,
+        "sts_time": 3.31,
+        "s_equiv": 1.023,
+        "auls": 0.0183,
+        "ebgs": 1.0335,
+        "speedup_mean": 1.0335,
+        "compile_pass": 94.3,
+        "task_pass_rate": 71.7,
+        "candidate_pass_rate": 71.7,
+        "gate_rate": 100,
+        "vlr_mean": 3.24,
+        "best_duration_us": 80.45,
+        "tokens_total_k": 10830,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 88,
+        "wall_time_median_s": 9709.8,
+        "wall_time_total_s": 19419.6,
+        "profiling_runs_median": 14,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 100,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0179,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.008
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.031
+          },
+          "ppui_u": 1.071
+        },
+        "cost": {
+          "wasted_round_rate": 0.31,
+          "n_solutions": 35,
+          "n_cycles": 8,
+          "termination_reason": "improvement_stalled"
+        },
+        "flags": [],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": null,
+          "p3_reason": "k_lt_3",
+          "k": 1
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 93.8,
+          "tokens_k": 4720,
+          "rounds": 79,
+          "wall_time_s": 8931.4,
+          "profiling_runs": 13,
+          "wasted_round_rate": 0.29,
+          "n_solutions": 16,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 75,
+          "candidate_pass_rate": 75,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.067,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.372,
+            "scalar_ratio_best": 0.442,
+            "mte2_ratio_base": 0.14,
+            "mte2_ratio_best": 0.242,
+            "u_base": 0.709,
+            "u_best": 0.733,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.84,
+              "s_lat": 1.02
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 19.42,
+              "s_lat": 1.008
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.38,
+              "s_lat": 1.016
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 13.02,
+              "s_lat": 1.011
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.27,
+              "s_lat": 1.013
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.18,
+              "s_lat": 1.012
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 312.1,
+              "wall_sec": 607.7,
+              "s": 1.0078,
+              "solution_id": "ca4d814f",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1155.4,
+              "wall_sec": 2243.2,
+              "s": 1.0078,
+              "solution_id": "98e2f38c",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2015.4,
+              "wall_sec": 4042.3,
+              "s": 1.0078,
+              "solution_id": "e91831de",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2850.9,
+              "wall_sec": 5678.1,
+              "s": 1.0155,
+              "solution_id": "bfae3af3",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 3994.6,
+              "wall_sec": 7264.3,
+              "s": 1.0155,
+              "solution_id": "bd530a7b",
+              "cycle_idx": 4
+            },
+            {
+              "cum_tokens_k": 4720,
+              "wall_sec": 8931.4,
+              "s": 1.026,
+              "solution_id": "a7f77c21",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 628,
+              "wall_sec": 1170.2,
+              "duration_ms": 0.0937,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 845.9,
+              "wall_sec": 1650.2,
+              "duration_ms": 0.1172,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1542.4,
+              "wall_sec": 2979.9,
+              "duration_ms": 0.0904,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1647.8,
+              "wall_sec": 2938.6,
+              "duration_ms": 0.103,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2267.9,
+              "wall_sec": 4080.8,
+              "duration_ms": 0.113,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2857.4,
+              "wall_sec": 5530.2,
+              "duration_ms": 0.1101,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2939.5,
+              "wall_sec": 5627,
+              "duration_ms": 0.1071,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3443.5,
+              "wall_sec": 6506.9,
+              "duration_ms": 0.0938,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4479.8,
+              "wall_sec": 8812.8,
+              "duration_ms": 0.117,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4022.3,
+              "wall_sec": 7777.7,
+              "duration_ms": 0.0922,
+              "status": "compile_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_world-model_2026-08-14",
+              "date": "2026-08-14",
+              "s_bmax": 1.026,
+              "paos": 1.014,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 6,
+                  "best_s": 1.0025,
+                  "tokens_k": 19
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 7,
+                  "best_s": 1.0104,
+                  "tokens_k": 52
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.022,
+                  "tokens_k": 89
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 7,
+                  "best_s": 1.026,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "b0da327d",
+              "canonical_code_hash": "73e801ada39e",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.026,
+          "s_bmax_time": 1.026,
+          "vlr": 2.53,
+          "auls": 0.0138,
+          "auls_time": 0.0137,
+          "sts_token": 2.54,
+          "sts_time": 2.54,
+          "s_equiv": 1.0178,
+          "paos": 1.0133,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.008
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.02
+          },
+          "tokens_to": {
+            "p1": 2850900,
+            "p3": null,
+            "p3_reason": "never_reached",
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.082,
+          "flags": [],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 983,
+            "etps_gain": 1.0133,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "Swiglu",
+          "bound": "memory",
+          "baseline_ms": 0.0642,
+          "epsilon_used": 0.01,
+          "compile_pass": 94.7,
+          "tokens_k": 6110,
+          "rounds": 96,
+          "wall_time_s": 10488.2,
+          "profiling_runs": 15,
+          "wasted_round_rate": 0.33,
+          "n_solutions": 19,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 68.4,
+          "candidate_pass_rate": 68.4,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 427,
+            "rep_shape": "256,4096"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.071,
+            "vec_ratio_best": 0.074,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.455,
+            "scalar_ratio_best": 0.406,
+            "mte2_ratio_base": 0.201,
+            "mte2_ratio_best": 0.184,
+            "u_base": 0.612,
+            "u_best": 0.635,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "16,7168",
+              "dtype": "BF16",
+              "t_base_us": 18.4,
+              "t_best_us": 17.85,
+              "s_lat": 1.031
+            },
+            {
+              "shape": "256,4096",
+              "dtype": "BF16",
+              "t_base_us": 64.2,
+              "t_best_us": 63.13,
+              "s_lat": 1.017
+            },
+            {
+              "shape": "1024,7168",
+              "dtype": "BF16",
+              "t_base_us": 121.8,
+              "t_best_us": 118.95,
+              "s_lat": 1.024
+            },
+            {
+              "shape": "4096,7168",
+              "dtype": "FP16",
+              "t_base_us": 246.5,
+              "t_best_us": 242.14,
+              "s_lat": 1.018
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 296.6,
+              "wall_sec": 525.7,
+              "s": 1.0123,
+              "solution_id": "ca8c72da",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1234.2,
+              "wall_sec": 2027.5,
+              "s": 1.0123,
+              "solution_id": "35a5f7b9",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2199,
+              "wall_sec": 3950.8,
+              "s": 1.0123,
+              "solution_id": "b8c7abea",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 3436.6,
+              "wall_sec": 5545.4,
+              "s": 1.0285,
+              "solution_id": "e0f82c62",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 4169,
+              "wall_sec": 7487.6,
+              "s": 1.0285,
+              "solution_id": "32f28447",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 4957.8,
+              "wall_sec": 8791,
+              "s": 1.0285,
+              "solution_id": "31d8ebb8",
+              "cycle_idx": 4
+            },
+            {
+              "cum_tokens_k": 6110,
+              "wall_sec": 10488.2,
+              "s": 1.041,
+              "solution_id": "90ccae82",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 621.3,
+              "wall_sec": 1103.6,
+              "duration_ms": 0.0555,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 872.8,
+              "wall_sec": 1428,
+              "duration_ms": 0.0594,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1642.2,
+              "wall_sec": 2912.4,
+              "duration_ms": 0.0583,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1935.6,
+              "wall_sec": 3482.1,
+              "duration_ms": 0.06,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2340,
+              "wall_sec": 3795.3,
+              "duration_ms": 0.0614,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3067.2,
+              "wall_sec": 5510.6,
+              "duration_ms": 0.0605,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3354.9,
+              "wall_sec": 5975.2,
+              "duration_ms": 0.0594,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3682.7,
+              "wall_sec": 6157.8,
+              "duration_ms": 0.0688,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4257.8,
+              "wall_sec": 7103.8,
+              "duration_ms": 0.0613,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 5131.9,
+              "wall_sec": 8716.3,
+              "duration_ms": 0.0622,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4939.5,
+              "wall_sec": 8499.6,
+              "duration_ms": 0.0691,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 5776.8,
+              "wall_sec": 10098.9,
+              "duration_ms": 0.0559,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "Swiglu_world-model_2026-08-15",
+              "date": "2026-08-15",
+              "s_bmax": 1.041,
+              "paos": 1.022,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 4,
+                  "best_s": 1.0066,
+                  "tokens_k": 27
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 3,
+                  "best_s": 1.0212,
+                  "tokens_k": 62
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 4,
+                  "best_s": 1.0342,
+                  "tokens_k": 88
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 8,
+                  "best_s": 1.041,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "baee6109",
+              "canonical_code_hash": "4bf837900585",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void swiglu(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.041,
+          "s_bmax_time": 1.041,
+          "vlr": 3.94,
+          "auls": 0.0227,
+          "auls_time": 0.0235,
+          "sts_token": 4.03,
+          "sts_time": 4.08,
+          "s_equiv": 1.0283,
+          "paos": 1.0225,
+          "worst_shape": {
+            "shape": "256,4096",
+            "dtype": "BF16",
+            "s_lat": 1.017
+          },
+          "best_shape": {
+            "shape": "16,7168",
+            "dtype": "BF16",
+            "s_lat": 1.031
+          },
+          "tokens_to": {
+            "p1": 296600,
+            "p3": 6110000,
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.059,
+          "flags": [],
+          "etps": {
+            "operator": "Swiglu",
+            "etps_base": 36,
+            "etps_best": 37,
+            "etps_gain": 1.0225,
+            "recipe": {
+              "G": 1,
+              "n_i": 427,
+              "rep_shape": "256,4096"
+            },
+            "etps_reason": null
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_world-model_2026-08-14",
+          "date": "2026-08-14",
+          "s_bmax": 1.026,
+          "paos": 1.014,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 6,
+              "best_s": 1.0025,
+              "tokens_k": 19
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 7,
+              "best_s": 1.0104,
+              "tokens_k": 52
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 5,
+              "best_s": 1.022,
+              "tokens_k": 89
+            },
+            {
+              "idx": 4,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 7,
+              "best_s": 1.026,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "b0da327d",
+          "canonical_code_hash": "73e801ada39e",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    },
+    {
+      "id": "k-search+gpt-5-6",
+      "agent": {
+        "id": "k-search",
+        "type": "domain",
+        "strategy": "k-search-tree",
+        "version": "v2"
+      },
+      "engine_model": {
+        "id": "GPT-5.6",
+        "vendor": "OpenAI",
+        "openness": "closed",
+        "vendor_mark": "G",
+        "color": "#E08A1E"
+      },
+      "weights": "closed",
+      "links": {
+        "report": "#"
+      },
+      "k_group": 1,
+      "baseline_quality": "normal",
+      "coverage_operators": 2,
+      "overall": {
+        "sts_token": 3.96,
+        "sts_time": 3.97,
+        "s_equiv": 1.0278,
+        "auls": 0.0227,
+        "ebgs": 1.04,
+        "speedup_mean": 1.04,
+        "compile_pass": 93.7,
+        "task_pass_rate": 74.6,
+        "candidate_pass_rate": 74.6,
+        "gate_rate": 100,
+        "vlr_mean": 3.84,
+        "best_duration_us": 188.79,
+        "tokens_total_k": 10240,
+        "api_cost_usd": null,
+        "api_cost_usd_reason": "pricing_table_not_configured",
+        "rounds_median": 82,
+        "wall_time_median_s": 8957,
+        "wall_time_total_s": 17914,
+        "profiling_runs_median": 13,
+        "tool_call_acc": null,
+        "tool_call_acc_reason": "pending_backend",
+        "eir": {
+          "1%": 100,
+          "5%": 0,
+          "10%": 0
+        },
+        "paos": {
+          "paos": 1.0355,
+          "pkai": null,
+          "ptei": null,
+          "etps_gain": null,
+          "s_lat_geo": null,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.022
+          },
+          "best_shape": {
+            "shape": "1,1,64,1024,128",
+            "dtype": "BF16",
+            "s_lat": 1.052
+          },
+          "ppui_u": 1.086
+        },
+        "cost": {
+          "wasted_round_rate": 0.31,
+          "n_solutions": 32,
+          "n_cycles": 9,
+          "termination_reason": "improvement_stalled"
+        },
+        "flags": [],
+        "excluded_operators": [],
+        "reliability": {
+          "p3": null,
+          "p3_reason": "k_lt_3",
+          "k": 1
+        }
+      },
+      "per_operator": [
+        {
+          "operator": "AddRmsNorm",
+          "bound": "memory",
+          "baseline_ms": 0.1018,
+          "epsilon_used": 0.01,
+          "compile_pass": 94.4,
+          "tokens_k": 5930,
+          "rounds": 92,
+          "wall_time_s": 10112.7,
+          "profiling_runs": 16,
+          "wasted_round_rate": 0.35,
+          "n_solutions": 18,
+          "n_cycles": 5,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 77.8,
+          "candidate_pass_rate": 77.8,
+          "gate_rate": 100,
+          "recipe": {
+            "G": 1,
+            "n_i": 123,
+            "rep_shape": "32,1024"
+          },
+          "utilization": {
+            "vec_ratio_base": 0.064,
+            "vec_ratio_best": 0.068,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.408,
+            "scalar_ratio_best": 0.438,
+            "mte2_ratio_base": 0.252,
+            "mte2_ratio_best": 0.253,
+            "u_base": 0.709,
+            "u_best": 0.739,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,2,4,128,64",
+              "dtype": "FP32",
+              "t_base_us": 6.98,
+              "t_best_us": 6.71,
+              "s_lat": 1.04
+            },
+            {
+              "shape": "2,16,32,64",
+              "dtype": "FP32",
+              "t_base_us": 19.58,
+              "t_best_us": 19.16,
+              "s_lat": 1.022
+            },
+            {
+              "shape": "2,256,128",
+              "dtype": "FP16",
+              "t_base_us": 7.5,
+              "t_best_us": 7.26,
+              "s_lat": 1.033
+            },
+            {
+              "shape": "2,64,128",
+              "dtype": "BF16",
+              "t_base_us": 13.16,
+              "t_best_us": 12.83,
+              "s_lat": 1.026
+            },
+            {
+              "shape": "32,1024",
+              "dtype": "BF16",
+              "t_base_us": 8.38,
+              "t_best_us": 8.13,
+              "s_lat": 1.031
+            },
+            {
+              "shape": "64,256",
+              "dtype": "FP32",
+              "t_base_us": 5.24,
+              "t_best_us": 5.12,
+              "s_lat": 1.023
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 315.1,
+              "wall_sec": 522.9,
+              "s": 1.0141,
+              "solution_id": "8a39c60a",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1292.9,
+              "wall_sec": 2184.8,
+              "s": 1.0141,
+              "solution_id": "c883e732",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2131.3,
+              "wall_sec": 3616.3,
+              "s": 1.0141,
+              "solution_id": "4ed72928",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 3080.6,
+              "wall_sec": 5099.8,
+              "s": 1.0301,
+              "solution_id": "6e8859dc",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 3932.5,
+              "wall_sec": 6328.5,
+              "s": 1.0301,
+              "solution_id": "d2cc0242",
+              "cycle_idx": 4
+            },
+            {
+              "cum_tokens_k": 5930,
+              "wall_sec": 10112.7,
+              "s": 1.047,
+              "solution_id": "939364cd",
+              "cycle_idx": 5
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 714.9,
+              "wall_sec": 1150.2,
+              "duration_ms": 0.0877,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 909.1,
+              "wall_sec": 1559.3,
+              "duration_ms": 0.0908,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1521.2,
+              "wall_sec": 2716.7,
+              "duration_ms": 0.0901,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1829.3,
+              "wall_sec": 3185.9,
+              "duration_ms": 0.0943,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2396.1,
+              "wall_sec": 3950.7,
+              "duration_ms": 0.1021,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3239.2,
+              "wall_sec": 5731.9,
+              "duration_ms": 0.1152,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 3287.6,
+              "wall_sec": 5763.4,
+              "duration_ms": 0.1152,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4115.4,
+              "wall_sec": 7218.7,
+              "duration_ms": 0.1109,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 5023.1,
+              "wall_sec": 9078.3,
+              "duration_ms": 0.0949,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 4912.2,
+              "wall_sec": 7876.3,
+              "duration_ms": 0.0945,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 5374.5,
+              "wall_sec": 9332.8,
+              "duration_ms": 0.0892,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 5476.2,
+              "wall_sec": 9265.2,
+              "duration_ms": 0.0876,
+              "status": "compile_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "AddRmsNorm_k-search_2026-08-13",
+              "date": "2026-08-13",
+              "s_bmax": 1.047,
+              "paos": 1.029,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 7,
+                  "best_s": 1.0155,
+                  "tokens_k": 45
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 6,
+                  "best_s": 1.0347,
+                  "tokens_k": 81
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.0469,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 5,
+                  "best_s": 1.047,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 5,
+                  "action_title": "尾部处理与分支消除",
+                  "attempts": 6,
+                  "best_s": 1.047,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "9037d18e",
+              "canonical_code_hash": "1dab6c1f8e8e",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.047,
+          "s_bmax_time": 1.047,
+          "vlr": 4.49,
+          "auls": 0.0263,
+          "auls_time": 0.0264,
+          "sts_token": 4.63,
+          "sts_time": 4.63,
+          "s_equiv": 1.0326,
+          "paos": 1.0291,
+          "worst_shape": {
+            "shape": "2,16,32,64",
+            "dtype": "FP32",
+            "s_lat": 1.022
+          },
+          "best_shape": {
+            "shape": "1,2,4,128,64",
+            "dtype": "FP32",
+            "s_lat": 1.04
+          },
+          "tokens_to": {
+            "p1": 315100,
+            "p3": 5930000,
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.103,
+          "flags": [],
+          "etps": {
+            "operator": "AddRmsNorm",
+            "etps_base": 970,
+            "etps_best": 1000,
+            "etps_gain": 1.0291,
+            "recipe": {
+              "G": 1,
+              "n_i": 123,
+              "rep_shape": "32,1024"
+            },
+            "etps_reason": null
+          }
+        },
+        {
+          "operator": "SparseAttnSharedkv",
+          "bound": "memory",
+          "baseline_ms": 0.2896,
+          "epsilon_used": 0.01,
+          "compile_pass": 92.9,
+          "tokens_k": 4310,
+          "rounds": 71,
+          "wall_time_s": 7801.3,
+          "profiling_runs": 10,
+          "wasted_round_rate": 0.27,
+          "n_solutions": 14,
+          "n_cycles": 4,
+          "termination_reason": "improvement_stalled",
+          "baseline_quality": "normal",
+          "task_pass_rate": 71.4,
+          "candidate_pass_rate": 71.4,
+          "gate_rate": 100,
+          "recipe": null,
+          "utilization": {
+            "vec_ratio_base": 0.082,
+            "vec_ratio_best": 0.089,
+            "mac_ratio_base": null,
+            "mac_ratio_base_reason": "zero_col_vector_op",
+            "mac_ratio_best": null,
+            "mac_ratio_best_reason": "zero_col_vector_op",
+            "scalar_ratio_base": 0.461,
+            "scalar_ratio_best": 0.301,
+            "mte2_ratio_base": 0.15,
+            "mte2_ratio_best": 0.193,
+            "u_base": 0.534,
+            "u_best": 0.566,
+            "l2_bw": null,
+            "l2_bw_reason": "not_collected",
+            "hbm_bw": null,
+            "hbm_bw_reason": "not_collected",
+            "overlap": null,
+            "overlap_reason": "not_collected"
+          },
+          "duration_by_shape": [
+            {
+              "shape": "1,1,64,1024,128",
+              "dtype": "BF16",
+              "t_base_us": 148.2,
+              "t_best_us": 140.87,
+              "s_lat": 1.052
+            },
+            {
+              "shape": "1,1,256,2048,128",
+              "dtype": "BF16",
+              "t_base_us": 289.6,
+              "t_best_us": 280.08,
+              "s_lat": 1.034
+            },
+            {
+              "shape": "1,1,1024,4096,128",
+              "dtype": "FP16",
+              "t_base_us": 512.4,
+              "t_best_us": 490.8,
+              "s_lat": 1.044
+            },
+            {
+              "shape": "1,2,128,1024,128",
+              "dtype": "BF16",
+              "t_base_us": 96.7,
+              "t_best_us": 93.16,
+              "s_lat": 1.038
+            }
+          ],
+          "anytime": [
+            {
+              "cum_tokens_k": 0,
+              "wall_sec": 0,
+              "s": 1
+            },
+            {
+              "cum_tokens_k": 337.7,
+              "wall_sec": 628.3,
+              "s": 1.0099,
+              "solution_id": "74e11b54",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 1150.8,
+              "wall_sec": 2110,
+              "s": 1.0099,
+              "solution_id": "619c73d6",
+              "cycle_idx": 1
+            },
+            {
+              "cum_tokens_k": 2019.1,
+              "wall_sec": 3702.8,
+              "s": 1.0201,
+              "solution_id": "cb56d406",
+              "cycle_idx": 2
+            },
+            {
+              "cum_tokens_k": 2996.4,
+              "wall_sec": 5356.7,
+              "s": 1.0201,
+              "solution_id": "26a0b8bc",
+              "cycle_idx": 3
+            },
+            {
+              "cum_tokens_k": 4310,
+              "wall_sec": 7801.3,
+              "s": 1.033,
+              "solution_id": "525ebd90",
+              "cycle_idx": 4
+            }
+          ],
+          "anytime_failed": [
+            {
+              "cum_tokens_k": 632.6,
+              "wall_sec": 1163.7,
+              "duration_ms": 0.2751,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 946.1,
+              "wall_sec": 1750.8,
+              "duration_ms": 0.2746,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 1633.7,
+              "wall_sec": 2996.3,
+              "duration_ms": 0.3029,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 1852.1,
+              "wall_sec": 3376.1,
+              "duration_ms": 0.2756,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2660.5,
+              "wall_sec": 4624.6,
+              "duration_ms": 0.2746,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 2688.2,
+              "wall_sec": 5087.9,
+              "duration_ms": 0.251,
+              "status": "test_failed"
+            },
+            {
+              "cum_tokens_k": 3514.8,
+              "wall_sec": 6454.1,
+              "duration_ms": 0.2723,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4013.9,
+              "wall_sec": 7400.1,
+              "duration_ms": 0.3249,
+              "status": "compile_failed"
+            },
+            {
+              "cum_tokens_k": 4310,
+              "wall_sec": 7759.8,
+              "duration_ms": 0.3345,
+              "status": "test_failed"
+            }
+          ],
+          "runs": [
+            {
+              "run_id": "SparseAttnSharedkv_k-search_2026-08-15",
+              "date": "2026-08-15",
+              "s_bmax": 1.033,
+              "paos": 1.041,
+              "flags": [],
+              "termination_reason": "improvement_stalled",
+              "cycles": [
+                {
+                  "idx": 1,
+                  "action_title": "基线向量化与分块 (tile & double buffer)",
+                  "attempts": 3,
+                  "best_s": 1.0062,
+                  "tokens_k": 30
+                },
+                {
+                  "idx": 2,
+                  "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+                  "attempts": 5,
+                  "best_s": 1.0166,
+                  "tokens_k": 61
+                },
+                {
+                  "idx": 3,
+                  "action_title": "L2 分块尺寸与 cache 调优",
+                  "attempts": 5,
+                  "best_s": 1.033,
+                  "tokens_k": 100
+                },
+                {
+                  "idx": 4,
+                  "action_title": "Broadcast 融合，减少 MTE2 读",
+                  "attempts": 4,
+                  "best_s": 1.033,
+                  "tokens_k": 100
+                }
+              ],
+              "best_solution_id": "9542ca91",
+              "canonical_code_hash": "dd756732012e",
+              "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void sparseattnsharedkv(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+            }
+          ],
+          "s_bmax": 1.033,
+          "s_bmax_time": 1.033,
+          "vlr": 3.19,
+          "auls": 0.0191,
+          "auls_time": 0.0191,
+          "sts_token": 3.3,
+          "sts_time": 3.3,
+          "s_equiv": 1.0231,
+          "paos": 1.042,
+          "worst_shape": {
+            "shape": "1,1,256,2048,128",
+            "dtype": "BF16",
+            "s_lat": 1.034
+          },
+          "best_shape": {
+            "shape": "1,1,64,1024,128",
+            "dtype": "BF16",
+            "s_lat": 1.052
+          },
+          "tokens_to": {
+            "p1": 2019100,
+            "p3": 4310000,
+            "p5": null,
+            "p5_reason": "never_reached",
+            "p10": null,
+            "p10_reason": "never_reached"
+          },
+          "ppui_u": 1.069,
+          "flags": [],
+          "etps": {
+            "etps_base": null,
+            "etps_reason": "not_in_recipe"
+          }
+        }
+      ],
+      "runs_for_reliability": [
+        {
+          "run_id": "AddRmsNorm_k-search_2026-08-13",
+          "date": "2026-08-13",
+          "s_bmax": 1.047,
+          "paos": 1.029,
+          "flags": [],
+          "termination_reason": "improvement_stalled",
+          "cycles": [
+            {
+              "idx": 1,
+              "action_title": "基线向量化与分块 (tile & double buffer)",
+              "attempts": 7,
+              "best_s": 1.0155,
+              "tokens_k": 45
+            },
+            {
+              "idx": 2,
+              "action_title": "Vector reduce 融合 (VADD→REDUCE)",
+              "attempts": 6,
+              "best_s": 1.0347,
+              "tokens_k": 81
+            },
+            {
+              "idx": 3,
+              "action_title": "L2 分块尺寸与 cache 调优",
+              "attempts": 5,
+              "best_s": 1.0469,
+              "tokens_k": 100
+            },
+            {
+              "idx": 4,
+              "action_title": "Broadcast 融合，减少 MTE2 读",
+              "attempts": 5,
+              "best_s": 1.047,
+              "tokens_k": 100
+            },
+            {
+              "idx": 5,
+              "action_title": "尾部处理与分支消除",
+              "attempts": 6,
+              "best_s": 1.047,
+              "tokens_k": 100
+            }
+          ],
+          "best_solution_id": "9037d18e",
+          "canonical_code_hash": "1dab6c1f8e8e",
+          "code_excerpt": "// best_solution 392ea1f7 · canonical 9f3c1a2e (illustrative)\nextern \"C\" __global__ __aicore__ void addrmsnorm(GM_ADDR in0, GM_ADDR in1, GM_ADDR out) {\n  TPipe pipe;\n  TQue<QuePosition::VECIN, 2> inQ;\n  TQue<QuePosition::VECOUT, 2> outQ;\n  pipe.InitBuffer(inQ, 2, TILE_BYTES);\n  pipe.InitBuffer(outQ, 2, TILE_BYTES);\n  // tile copy-in -> compute -> fused write-out\n  CopyIn(); Compute(); WriteOut();\n}"
+        }
+      ],
+      "reliability_operator": "AddRmsNorm"
+    }
+  ]
+}

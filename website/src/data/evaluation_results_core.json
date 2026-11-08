@@ -1,0 +1,43 @@
+{
+  "n_runs": 17,
+  "generators": {
+    "agents": [
+      {
+        "id": "claude-code"
+      }
+    ],
+    "engine_models": [
+      {
+        "id": "claude-opus-5"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "task_id": "add_rms_norm-claude-native-claude-claude-opus-5-20260926-232241",
+      "status": "passed",
+      "identity": {
+        "agent": {
+          "id": "claude-code"
+        },
+        "engine_model": {
+          "id": "claude-opus-5"
+        }
+      },
+      "accuracy": {
+        "TaskPass": 1,
+        "CandidatePassRate": 0.9148936170212766
+      },
+      "cost": {
+        "TotalTokens": 78532790.0,
+        "TotalWallClockSec": 33267.374255142175,
+        "LLMRounds": 1326.0
+      },
+      "durations": {
+        "BaselineMs": 0.011165485714285713,
+        "BestMs": 0.004642971428571428,
+        "Speedup": 2.4048146507162897
+      }
+    }
+  ]
+}

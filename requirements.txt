@@ -1,0 +1,25 @@
+# AscendGYM evaluation packages - minimum Python dependencies
+# Python >= 3.10
+
+# --- bare client (bare_harness/client_v2) ---
+requests
+PyYAML
+httpx
+urllib3
+pydantic
+truststore
+
+# --- bare Backend (bare_harness/Backend) ---
+flask
+flask-cors
+numpy
+pandas
+loguru
+pyomo
+
+# --- optional ---
+# openpyxl         # Excel profiling input (profile_op_summary)
+# transformers     # bare_client --context-tokenizer
+# torch            # gemm shapes.py / tests only (not in startup path)
+
+# native_bench itself is stdlib-only.

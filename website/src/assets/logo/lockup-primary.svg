@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 104" role="img" aria-label="AscendGYM logo">
+  <g transform="translate(4 4) scale(.92)">
+    <circle cx="48" cy="48" r="38" fill="none" stroke="#0E9B8E" stroke-width="4"/>
+    <path d="M18 30A38 38 0 0 1 70 14M78 66A38 38 0 0 1 27 80" fill="none" stroke="#E08A1E" stroke-width="4" stroke-linecap="round"/>
+    <rect x="28" y="28" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#14161A" stroke-width="3"/>
+    <path d="M35 35h8v8h-8zm11 0h8v8h-8zm11 0h4v8h-4zM35 46h8v8h-8zm11 0h8v8h-8zm11 0h4v8h-4zM35 57h8v4h-8zm11 0h8v4h-8zm11 0h4v4h-4z" fill="#0E9B8E"/>
+    <rect x="46" y="46" width="8" height="8" rx="2" fill="#E08A1E"/>
+  </g>
+  <text x="112" y="53" fill="#14161A" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="720">Ascend<tspan fill="#0E9B8E">GYM</tspan></text>
+  <text x="113" y="83" fill="#0E9B8E" font-family="JetBrains Mono,monospace" font-size="16" font-weight="700" letter-spacing="4">AGENTIC KERNEL BENCHMARK</text>
+</svg>

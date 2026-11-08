@@ -1,0 +1,354 @@
+entry_id,harness_id,model_id,operator,run_id,source_summary
+claude-code+claude-opus-5,claude-code,claude-opus-5,add_rms_norm,add_rms_norm-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,clipped_swiglu,clipped_swiglu-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,fused_gdn_gating,fused_gdn_gating-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,hc_post,hc_post-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,interleave_rope,interleave_rope-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,lightning_indexer,lightning_indexer-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,mla_prolog,mla_prolog-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,moe_fused_topk,moe_fused_topk-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,moe_gating_top_k,moe_gating_top_k-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,moe_token_unpermute,moe_token_unpermute-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,rms_norm,rms_norm-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,sparse_flash_attention,sparse_flash_attention-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+claude-opus-5,claude-code,claude-opus-5,swi_glu,swi_glu-claude-native-claude-claude-opus-5-20260926-232241,claude-code-claude-opus-5.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,add_rms_norm,add_rms_norm-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,clipped_swiglu,clipped_swiglu-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,fused_gdn_gating,fused_gdn_gating-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,hc_post,hc_post-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,interleave_rope,interleave_rope-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,lightning_indexer,lightning_indexer-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,mla_prolog,mla_prolog-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,moe_fused_topk,moe_fused_topk-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,moe_gating_top_k,moe_gating_top_k-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,moe_token_unpermute,moe_token_unpermute-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,rms_norm,rms_norm-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,sparse_flash_attention,sparse_flash_attention-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+gpt-5.6-terra,claude-code,gpt-5.6-terra,swi_glu,swi_glu-claude-native-claude-gpt-5.6-terra-20260926-123021,claude-code-gpt-5-6-terra.json
+claude-code+glm-5.3,claude-code,glm-5.3,add_rms_norm,add_rms_norm-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,clipped_swiglu,clipped_swiglu-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,fused_gdn_gating,fused_gdn_gating-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,hc_post,hc_post-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,interleave_rope,interleave_rope-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,lightning_indexer,lightning_indexer-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,mla_prolog,mla_prolog-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,moe_fused_topk,moe_fused_topk-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,moe_gating_top_k,moe_gating_top_k-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,moe_token_unpermute,moe_token_unpermute-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,rms_norm,rms_norm-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,sparse_flash_attention,sparse_flash_attention-claude-native-claude-glm-5.3-20260925-144307,claude-code-glm-5-3.json
+claude-code+glm-5.3,claude-code,glm-5.3,swi_glu,swi_glu-claude-native-claude-glm-5.3-20260927-182722,claude-code-glm-5-3.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,add_rms_norm,add_rms_norm-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,clipped_swiglu,clipped_swiglu-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,fused_gdn_gating,fused_gdn_gating-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,hc_post,hc_post-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,interleave_rope,interleave_rope-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,lightning_indexer,lightning_indexer-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,mla_prolog,mla_prolog-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,moe_fused_topk,moe_fused_topk-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,moe_gating_top_k,moe_gating_top_k-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,moe_token_unpermute,moe_token_unpermute-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,rms_norm,rms_norm-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,sparse_flash_attention,sparse_flash_attention-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.5-122B,claude-code,Qwen3.5-122B,swi_glu,swi_glu-claude-native-claude-qwen3.5-122b-a10b-20260921-211801,claude-code-qwen3-5-122b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,add_rms_norm,add_rms_norm-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,clipped_swiglu,clipped_swiglu-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,fused_gdn_gating,fused_gdn_gating-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,hc_post,hc_post-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,interleave_rope,interleave_rope-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,lightning_indexer,lightning_indexer-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,mla_prolog,mla_prolog-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,moe_fused_topk,moe_fused_topk-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,moe_gating_top_k,moe_gating_top_k-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,moe_token_unpermute,moe_token_unpermute-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,rms_norm,rms_norm-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,sparse_flash_attention,sparse_flash_attention-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+Qwen3.6-35B,claude-code,Qwen3.6-35B,swi_glu,swi_glu-claude-native-claude-qwen3.6-35b-a3b-20260922-181117,claude-code-qwen3-6-35b.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,add_rms_norm,add_rms_norm-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,clipped_swiglu,clipped_swiglu-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,fused_gdn_gating,fused_gdn_gating-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,hc_post,hc_post-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,hc_pre_sinkhorn,hc_pre_sinkhorn-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,interleave_rope,interleave_rope-claude-native-claude-DeepSeek-V4-Flash-BF16-rocky146-full-supplement-20261015-235613,data_glm_sup/supplement_runs.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,lightning_indexer,lightning_indexer-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,mla_prolog,mla_prolog-claude-native-claude-DeepSeek-V4-Flash-BF16-mla-poison126-recovery-20261019-111500,data_glm_sup/supplement_runs.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,moe_fused_topk,moe_fused_topk-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,moe_gating_top_k,moe_gating_top_k-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,moe_token_unpermute,moe_token_unpermute-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,recurrent_gated_delta_rule,recurrent_gated_delta_rule-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,rms_norm,rms_norm-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,rope_with_sin_cos_cache,rope_with_sin_cos_cache-claude-native-claude-DeepSeek-V4-Flash-BF16-rope-remaining29-model216-twi-20261020-004000,data_glm_sup/supplement_runs.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,sparse_flash_attention,sparse_flash_attention-claude-native-claude-DeepSeek-V4-Flash-BF16-jin-model176-sparse-parallel-20261016-162800,data_glm_sup/supplement_runs.json
+claude-code+DeepSeek-V4-Flash-BF16,claude-code,DeepSeek-V4-Flash-BF16,swi_glu,swi_glu-claude-native-claude-DeepSeek-V4-Flash-BF16-20260925-225407,claude-code-deepseek-v4-flash-bf16.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,add_rms_norm,add_rms_norm-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,clipped_swiglu,clipped_swiglu-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,fused_gdn_gating,fused_gdn_gating-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,hc_post,hc_post-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,hc_pre_sinkhorn,hc_pre_sinkhorn-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,interleave_rope,interleave_rope-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,lightning_indexer,lightning_indexer-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,mla_prolog,mla_prolog-codex-native-codex-gpt-5.6-terra-backfill-20261020-192009,native_backfill_20261021.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,moe_fused_topk,moe_fused_topk-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,moe_gating_top_k,moe_gating_top_k-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,moe_token_unpermute,moe_token_unpermute-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,recurrent_gated_delta_rule,recurrent_gated_delta_rule-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,rms_norm,rms_norm-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,rope_with_sin_cos_cache,rope_with_sin_cos_cache-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,sparse_flash_attention,sparse_flash_attention-codex-native-codex-gpt-5.6-terra-20260927-110129,native_codex_speedup_supplement.json
+codex+gpt-5.6-terra,codex,gpt-5.6-terra,swi_glu,swi_glu-codex-native-codex-gpt-5.6-terra-20260927-110129,codex-gpt-5-6-terra.json
+codex+glm-5.3,codex,glm-5.3,add_rms_norm,add_rms_norm-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,clipped_swiglu,clipped_swiglu-codex-native-codex-glm-5.3-bigmodel-backfill-20261020-192009,native_backfill_20261021.json
+codex+glm-5.3,codex,glm-5.3,fused_gdn_gating,fused_gdn_gating-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,hc_post,hc_post-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,hc_pre_sinkhorn,hc_pre_sinkhorn-codex-native-codex-glm-5.3-bigmodel-backfill-20261020-192009,native_backfill_20261021.json
+codex+glm-5.3,codex,glm-5.3,interleave_rope,interleave_rope-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,lightning_indexer,lightning_indexer-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,mla_prolog,mla_prolog-codex-native-codex-glm-5.3-bigmodel-backfill-20261020-192009,native_backfill_20261021.json
+codex+glm-5.3,codex,glm-5.3,moe_fused_topk,moe_fused_topk-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,moe_gating_top_k,moe_gating_top_k-codex-native-codex-glm-5.3-bigmodel-backfill-20261020-192009,native_backfill_20261021.json
+codex+glm-5.3,codex,glm-5.3,moe_token_unpermute,moe_token_unpermute-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,recurrent_gated_delta_rule,recurrent_gated_delta_rule-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,rms_norm,rms_norm-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,rope_with_sin_cos_cache,rope_with_sin_cos_cache-codex-native-codex-glm-5.3-bigmodel-backfill-20261020-192009,native_backfill_20261021.json
+codex+glm-5.3,codex,glm-5.3,sparse_flash_attention,sparse_flash_attention-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+glm-5.3,codex,glm-5.3,swi_glu,swi_glu-codex-native-codex-glm-5.3-20260925-014051,codex-glm-5-3.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,add_rms_norm,add_rms_norm-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,clipped_swiglu,clipped_swiglu-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,fused_gdn_gating,fused_gdn_gating-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,hc_post,hc_post-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,hc_pre_sinkhorn,hc_pre_sinkhorn-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,interleave_rope,interleave_rope-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,lightning_indexer,lightning_indexer-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,mla_prolog,mla_prolog-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,moe_fused_topk,moe_fused_topk-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,moe_gating_top_k,moe_gating_top_k-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,moe_token_unpermute,moe_token_unpermute-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,rms_norm,rms_norm-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,sparse_flash_attention,sparse_flash_attention-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.5-122B,codex,Qwen3.5-122B,swi_glu,swi_glu-codex-native-codex-qwen3.5-122b-a10b-20260921-211744,codex-qwen3-5-122b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,add_rms_norm,add_rms_norm-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,clipped_swiglu,clipped_swiglu-codex-native-codex-qwen3.6-35b-a3b-20260923-120543-r3,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,fused_gdn_gating,fused_gdn_gating-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,hc_post,hc_post-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,hc_pre_sinkhorn,hc_pre_sinkhorn-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,interleave_rope,interleave_rope-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,lightning_indexer,lightning_indexer-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,mla_prolog,mla_prolog-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,moe_fused_topk,moe_fused_topk-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,moe_gating_top_k,moe_gating_top_k-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,moe_token_unpermute,moe_token_unpermute-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,rms_norm,rms_norm-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,sparse_flash_attention,sparse_flash_attention-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+Qwen3.6-35B,codex,Qwen3.6-35B,swi_glu,swi_glu-codex-native-codex-qwen3.6-35b-a3b-20260923-120543,codex-qwen3-6-35b.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,add_rms_norm,add_rms_norm-codex-native-codex-DeepSeek-V4-Flash-BF16-add-remaining3-hika-20261019-171500,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,clipped_swiglu,clipped_swiglu-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,fused_gdn_gating,fused_gdn_gating-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-new116-20261015-154736,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,hc_post,hc_post-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,hc_pre_sinkhorn,hc_pre_sinkhorn-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,interleave_rope,interleave_rope-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,lightning_indexer,lightning_indexer-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,mla_prolog,mla_prolog-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-new116-20261015-154736,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,moe_fused_topk,moe_fused_topk-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-20261014-182746,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,moe_gating_top_k,moe_gating_top_k-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,moe_token_unpermute,moe_token_unpermute-codex-native-codex-DeepSeek-V4-Flash-BF16-unpermute-remaining69-20261018-054745,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,recurrent_gated_delta_rule,recurrent_gated_delta_rule-codex-native-codex-DeepSeek-V4-Flash-BF16-20260925-225407,codex-deepseek-v4-flash-bf16.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,rms_norm,rms_norm-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-new116-20261015-154736,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,rope_with_sin_cos_cache,rope_with_sin_cos_cache-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-20261014-182746,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,sparse_flash_attention,sparse_flash_attention-codex-native-codex-DeepSeek-V4-Flash-BF16-sparse-hika-20261017-170729,data_glm_sup/supplement_runs.json
+codex+DeepSeek-V4-Flash-BF16,codex,DeepSeek-V4-Flash-BF16,swi_glu,swi_glu-codex-native-codex-DeepSeek-V4-Flash-BF16-supplement-20261014-182746,data_glm_sup/supplement_runs.json
+opencode+claude-opus-5,opencode,claude-opus-5,add_rms_norm,add_rms_norm-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,clipped_swiglu,clipped_swiglu-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,hc_post,hc_post-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,interleave_rope,interleave_rope-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,lightning_indexer,lightning_indexer-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,mla_prolog,mla_prolog-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,moe_fused_topk,moe_fused_topk-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,rms_norm,rms_norm-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+claude-opus-5,opencode,claude-opus-5,swi_glu,swi_glu-opencode-native-opencode-claude-opus-5-20260926-231949,opencode-claude-opus-5.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,add_rms_norm,add_rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,clipped_swiglu,clipped_swiglu-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,hc_post,hc_post-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,interleave_rope,interleave_rope-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,lightning_indexer,lightning_indexer-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,mla_prolog,mla_prolog-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,moe_fused_topk,moe_fused_topk-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,rms_norm,rms_norm-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+gpt-5.6-terra,opencode,gpt-5.6-terra,swi_glu,swi_glu-opencode-native-opencode-gpt-5.6-terra-20260925-231120,opencode-gpt-5-6-terra.json
+opencode+glm-5.3,opencode,glm-5.3,add_rms_norm,add_rms_norm-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,clipped_swiglu,clipped_swiglu-opencode-native-opencode-glm-5.3-bigmodel-20261014-172302,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-glm-5.3-bigmodel-20261013-175208,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,hc_post,hc_post-opencode-native-opencode-glm-5.3-bigmodel-20261014-172302,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,interleave_rope,interleave_rope-opencode-native-opencode-glm-5.3-bigmodel-20261014-172302,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,lightning_indexer,lightning_indexer-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,mla_prolog,mla_prolog-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,moe_fused_topk,moe_fused_topk-opencode-native-opencode-glm-5.3-bigmodel-20261014-172302,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-glm-5.3-bigmodel-20261013-175208,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,rms_norm,rms_norm-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+glm-5.3,opencode,glm-5.3,swi_glu,swi_glu-opencode-native-opencode-glm-5.3-bigmodel-20261015-103412-resume,data_glm_sup/glm_opencode_runs.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,add_rms_norm,add_rms_norm-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,clipped_swiglu,clipped_swiglu-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,hc_post,hc_post-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,interleave_rope,interleave_rope-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,lightning_indexer,lightning_indexer-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,mla_prolog,mla_prolog-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,moe_fused_topk,moe_fused_topk-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,rms_norm,rms_norm-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.5-122B,opencode,Qwen3.5-122B,swi_glu,swi_glu-opencode-native-opencode-qwen3.5-122b-a10b-20260923-165640,opencode-qwen3-5-122b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,add_rms_norm,add_rms_norm-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,clipped_swiglu,clipped_swiglu-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-qwen3.6-35b-a3b-supplement-jin-20261017-151855,data_glm_sup/supplement_runs.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,hc_post,hc_post-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,interleave_rope,interleave_rope-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,lightning_indexer,lightning_indexer-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,mla_prolog,mla_prolog-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,moe_fused_topk,moe_fused_topk-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,rms_norm,rms_norm-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+Qwen3.6-35B,opencode,Qwen3.6-35B,swi_glu,swi_glu-opencode-native-opencode-qwen3.6-35b-a3b-20260925-020123,opencode-qwen3-6-35b.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,add_rms_norm,add_rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-add-shortstep-remaining64-jin-20261019-114500,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,clipped_swiglu,clipped_swiglu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin159-model176-full-supplement-20261016-002000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,fused_gdn_gating,fused_gdn_gating-opencode-native-opencode-DeepSeek-V4-Flash-BF16-gdn-remaining4-hika-model216-20261019-113000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,hc_post,hc_post-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,hc_pre_sinkhorn,hc_pre_sinkhorn-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,interleave_rope,interleave_rope-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin159-model176-full-supplement-20261016-002000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,lightning_indexer,lightning_indexer-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,mla_prolog,mla_prolog-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,moe_fused_topk,moe_fused_topk-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin159-model176-full-supplement-20261016-002000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,moe_gating_top_k,moe_gating_top_k-opencode-native-opencode-DeepSeek-V4-Flash-BF16-moe-length-recovery-20261017-214511,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,moe_token_unpermute,moe_token_unpermute-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin159-model176-full-supplement-20261016-002000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,qkv_rms_norm_rope_cache,qkv_rms_norm_rope_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin159-model176-full-supplement-20261016-002000,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,recurrent_gated_delta_rule,recurrent_gated_delta_rule-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,rms_norm,rms_norm-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,rope_with_sin_cos_cache,rope_with_sin_cos_cache-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,sparse_flash_attention,sparse_flash_attention-opencode-native-opencode-DeepSeek-V4-Flash-BF16-jin-sparse-parallel-20261016-160600,data_glm_sup/supplement_runs.json
+opencode+DeepSeek-V4-Flash-BF16,opencode,DeepSeek-V4-Flash-BF16,swi_glu,swi_glu-opencode-native-opencode-DeepSeek-V4-Flash-BF16-20260925-180117,opencode-deepseek-v4-flash-bf16.json
+kl-luna,default-cold,GPT-5.6 Luna,add_rms_norm,klens/AddRmsNorm/kl_1,k_lens_agent-master/Results_artifacts/luna/AddRmsNorm/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,clipped_swiglu,klens/ClippedSwiglu/kl_1,k_lens_agent-master/Results_artifacts/luna/ClippedSwiglu/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,gather_pa_kv_cache,klens/GatherPaKvCache/kl_1,k_lens_agent-master/Results_artifacts/luna/GatherPaKvCache/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,interleave_rope,klens/InterleaveRope/kl_1,k_lens_agent-master/Results_artifacts/luna/InterleaveRope/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,lightning_indexer,klens/LightningIndexer/kl_1,k_lens_agent-master/Results_artifacts/luna/LightningIndexer/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,mla_prolog,klens/MlaProlog/kl_1,k_lens_agent-master/Results_artifacts/luna/MlaProlog/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,moe_fused_topk,klens/MoeFusedTopk/kl_1,k_lens_agent-master/Results_artifacts/luna/MoeFusedTopk/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,moe_gating_top_k,klens/MoeGatingTopK/kl_1,k_lens_agent-master/Results_artifacts/luna/MoeGatingTopK/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,moe_token_unpermute,klens/MoeTokenUnpermute/kl_1,k_lens_agent-master/Results_artifacts/luna/MoeTokenUnpermute/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,qkv_rms_norm_rope_cache,klens/QkvRmsNormRopeCache/kl_1,k_lens_agent-master/Results_artifacts/luna/QkvRmsNormRopeCache/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,recurrent_gated_delta_rule,klens/RecurrentGatedDeltaRule/kl_1,k_lens_agent-master/Results_artifacts/luna/RecurrentGatedDeltaRule/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,rms_norm,klens/RmsNorm/kl_1,k_lens_agent-master/Results_artifacts/luna/RmsNorm/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,rope_with_sin_cos_cache,klens/RopeWithSinCosCache/kl_1,k_lens_agent-master/Results_artifacts/luna/RopeWithSinCosCache/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,sparse_attn_sharedkv,klens/SparseAttnSharedkv/kl_1,k_lens_agent-master/Results_artifacts/luna/SparseAttnSharedkv/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,sparse_flash_attention,klens/SparseFlashAttention/kl_1,k_lens_agent-master/Results_artifacts/luna/SparseFlashAttention/runs/kl_1/analysis.json
+kl-luna,default-cold,GPT-5.6 Luna,swi_glu,klens/SwiGlu/kl_1,k_lens_agent-master/Results_artifacts/luna/SwiGlu/runs/kl_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,add_rms_norm,klens/AddRmsNorm/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/AddRmsNorm/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,clipped_swiglu,klens/ClippedSwiglu/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/ClippedSwiglu/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,gather_pa_kv_cache,klens/GatherPaKvCache/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/GatherPaKvCache/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,interleave_rope,klens/InterleaveRope/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/InterleaveRope/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,lightning_indexer,klens/LightningIndexer/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/LightningIndexer/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,mla_prolog,klens/MlaProlog/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/MlaProlog/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,moe_fused_topk,klens/MoeFusedTopk/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/MoeFusedTopk/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,moe_gating_top_k,klens/MoeGatingTopK/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/MoeGatingTopK/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,moe_token_unpermute,klens/MoeTokenUnpermute/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/MoeTokenUnpermute/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,qkv_rms_norm_rope_cache,klens/QkvRmsNormRopeCache/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/QkvRmsNormRopeCache/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,recurrent_gated_delta_rule,klens/RecurrentGatedDeltaRule/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/RecurrentGatedDeltaRule/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,rms_norm,klens/RmsNorm/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/RmsNorm/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,rope_with_sin_cos_cache,klens/RopeWithSinCosCache/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/RopeWithSinCosCache/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,sparse_attn_sharedkv,klens/SparseAttnSharedkv/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/SparseAttnSharedkv/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,sparse_flash_attention,klens/SparseFlashAttention/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/SparseFlashAttention/runs/kl_warm_1/analysis.json
+kl-warm,default-warm,GPT-5.6 Luna,swi_glu,klens/SwiGlu/kl_warm_1,k_lens_agent-master/Results_artifacts/luna/SwiGlu/runs/kl_warm_1/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,add_rms_norm,klens/AddRmsNorm/kl_nl,k_lens_agent-master/Results_artifacts/luna/AddRmsNorm/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,clipped_swiglu,klens/ClippedSwiglu/kl_nl,k_lens_agent-master/Results_artifacts/luna/ClippedSwiglu/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,gather_pa_kv_cache,klens/GatherPaKvCache/kl_nl,k_lens_agent-master/Results_artifacts/luna/GatherPaKvCache/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,interleave_rope,klens/InterleaveRope/kl_nl,k_lens_agent-master/Results_artifacts/luna/InterleaveRope/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,lightning_indexer,klens/LightningIndexer/kl_nl,k_lens_agent-master/Results_artifacts/luna/LightningIndexer/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,mla_prolog,klens/MlaProlog/kl_nl,k_lens_agent-master/Results_artifacts/luna/MlaProlog/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,moe_fused_topk,klens/MoeFusedTopk/kl_nl,k_lens_agent-master/Results_artifacts/luna/MoeFusedTopk/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,moe_gating_top_k,klens/MoeGatingTopK/kl_nl,k_lens_agent-master/Results_artifacts/luna/MoeGatingTopK/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,moe_token_unpermute,klens/MoeTokenUnpermute/kl_nl,k_lens_agent-master/Results_artifacts/luna/MoeTokenUnpermute/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,qkv_rms_norm_rope_cache,klens/QkvRmsNormRopeCache/kl_nl,k_lens_agent-master/Results_artifacts/luna/QkvRmsNormRopeCache/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,recurrent_gated_delta_rule,klens/RecurrentGatedDeltaRule/kl_nl,k_lens_agent-master/Results_artifacts/luna/RecurrentGatedDeltaRule/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,rms_norm,klens/RmsNorm/kl_nl,k_lens_agent-master/Results_artifacts/luna/RmsNorm/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,rope_with_sin_cos_cache,klens/RopeWithSinCosCache/kl_nl,k_lens_agent-master/Results_artifacts/luna/RopeWithSinCosCache/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,sparse_attn_sharedkv,klens/SparseAttnSharedkv/kl_nl,k_lens_agent-master/Results_artifacts/luna/SparseAttnSharedkv/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,sparse_flash_attention,klens/SparseFlashAttention/kl_nl,k_lens_agent-master/Results_artifacts/luna/SparseFlashAttention/runs/kl_nl/analysis.json
+kl-nl,default-no-lessons,GPT-5.6 Luna,swi_glu,klens/SwiGlu/kl_nl,k_lens_agent-master/Results_artifacts/luna/SwiGlu/runs/kl_nl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,add_rms_norm,klens/AddRmsNorm/kl_cl,k_lens_agent-master/Results_artifacts/luna/AddRmsNorm/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,clipped_swiglu,klens/ClippedSwiglu/kl_cl,k_lens_agent-master/Results_artifacts/luna/ClippedSwiglu/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,gather_pa_kv_cache,klens/GatherPaKvCache/kl_cl,k_lens_agent-master/Results_artifacts/luna/GatherPaKvCache/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,interleave_rope,klens/InterleaveRope/kl_cl,k_lens_agent-master/Results_artifacts/luna/InterleaveRope/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,lightning_indexer,klens/LightningIndexer/kl_cl,k_lens_agent-master/Results_artifacts/luna/LightningIndexer/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,mla_prolog,klens/MlaProlog/kl_cl,k_lens_agent-master/Results_artifacts/luna/MlaProlog/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,moe_fused_topk,klens/MoeFusedTopk/kl_cl,k_lens_agent-master/Results_artifacts/luna/MoeFusedTopk/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,moe_gating_top_k,klens/MoeGatingTopK/kl_cl,k_lens_agent-master/Results_artifacts/luna/MoeGatingTopK/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,moe_token_unpermute,klens/MoeTokenUnpermute/kl_cl,k_lens_agent-master/Results_artifacts/luna/MoeTokenUnpermute/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,qkv_rms_norm_rope_cache,klens/QkvRmsNormRopeCache/kl_cl,k_lens_agent-master/Results_artifacts/luna/QkvRmsNormRopeCache/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,recurrent_gated_delta_rule,klens/RecurrentGatedDeltaRule/kl_cl,k_lens_agent-master/Results_artifacts/luna/RecurrentGatedDeltaRule/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,rms_norm,klens/RmsNorm/kl_cl,k_lens_agent-master/Results_artifacts/luna/RmsNorm/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,rope_with_sin_cos_cache,klens/RopeWithSinCosCache/kl_cl,k_lens_agent-master/Results_artifacts/luna/RopeWithSinCosCache/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,sparse_attn_sharedkv,klens/SparseAttnSharedkv/kl_cl,k_lens_agent-master/Results_artifacts/luna/SparseAttnSharedkv/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,sparse_flash_attention,klens/SparseFlashAttention/kl_cl,k_lens_agent-master/Results_artifacts/luna/SparseFlashAttention/runs/kl_cl/analysis.json
+kl-cl,default-code-only,GPT-5.6 Luna,swi_glu,klens/SwiGlu/kl_cl,k_lens_agent-master/Results_artifacts/luna/SwiGlu/runs/kl_cl/analysis.json

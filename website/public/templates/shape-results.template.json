@@ -1,0 +1,56 @@
+{
+  "schema_version": "ascendgym-shape-results-v1",
+  "latency_unit": "us",
+  "records": [
+    {
+      "entry_id": "claude-code+claude-opus-5",
+      "harness_id": "claude-code",
+      "model_id": "claude-opus-5",
+      "operator": "add_rms_norm",
+      "run_id": "add_rms_norm-claude-native-claude-claude-opus-5-20260926-232241",
+      "source_summary": "claude-code-claude-opus-5.json",
+      "candidate_selection": null,
+      "token_budget": 50000000,
+      "candidate_id": null,
+      "candidate_source_hash": null,
+      "candidate_tokens_at_selection": null,
+      "expected_case_count": null,
+      "measurement_protocol": {
+        "device_model": null,
+        "device_id": null,
+        "cann_version": null,
+        "driver_version": null,
+        "latency_statistic": null,
+        "warmup_iterations": null,
+        "timed_iterations": null,
+        "synchronization": null,
+        "baseline_implementation": null,
+        "benchmark_revision": null,
+        "case_manifest_uri": null
+      },
+      "duration_by_shape": [
+        {
+          "case_id": null,
+          "shape": null,
+          "dtype": null,
+          "inputs": [
+            {
+              "name": null,
+              "shape": null,
+              "dtype": null,
+              "layout": null,
+              "strides": null
+            }
+          ],
+          "outputs": [],
+          "attributes": {},
+          "t_base_us": null,
+          "t_best_us": null,
+          "correctness": "not_measured",
+          "error": null,
+          "evidence_uri": null
+        }
+      ]
+    }
+  ]
+}

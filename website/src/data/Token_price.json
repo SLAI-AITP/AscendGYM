@@ -1,0 +1,210 @@
+{
+  "schema": "ascendgym-pricing-v1",
+  "currency": "USD",
+  "unit": "per_1M_tokens",
+  "updated": "2026-10-26",
+  "note": "Official API text-token prices checked on 2026-10-26. Model-specific regions, context tiers and successor mappings are explicit. Scenario estimates are API-equivalent costs, not invoices.",
+  "sources": {
+    "deepseek": "https://api-docs.deepseek.com/quick_start/pricing",
+    "openai": "https://openai.com/api/pricing/",
+    "moonshot": "https://platform.kimi.com/docs/pricing/chat",
+    "anthropic": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "alibaba": "https://help.aliyun.com/zh/model-studio/models",
+    "openai_terra": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+    "openai_luna": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+    "zai": "https://docs.z.ai/guides/overview/pricing",
+    "qwen35": "https://www.alibabacloud.com/help/en/model-studio/qwen3-5-122b-a10b",
+    "qwen36": "https://www.alibabacloud.com/help/en/model-studio/qwen3-6-35b-a3b"
+  },
+  "models": {
+    "DeepSeek-V4-Pro": {
+      "vendor": "DeepSeek",
+      "input": 0.66,
+      "cached_input": 0.022,
+      "output": 1.98,
+      "source": "deepseek",
+      "source_model": "deepseek-v4-pro",
+      "note": "官方分 peak / off-peak，off-peak 为半价。此处取 PEAK 价（保守，偏高）。",
+      "updated": "2026-09-25"
+    },
+    "DeepSeek-V3.2": {
+      "vendor": "DeepSeek",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "deepseek",
+      "source_model": null,
+      "note": "DeepSeek 官方定价页当前只列 deepseek-flash 与 deepseek-v4-pro，未列 V3.2，故不填。",
+      "updated": "2026-09-25"
+    },
+    "Kimi-K3": {
+      "vendor": "Moonshot",
+      "input": 2.79,
+      "cached_input": 0.28,
+      "cache_write": 2.79,
+      "output": 13.97,
+      "source": "moonshot",
+      "source_model": "kimi-k3",
+      "note": "官方为人民币 ¥20 / ¥2 / ¥20 / ¥100（缓存写入 TTL 5min / 缓存命中 / 缓存未命中 / 输出）。按 1 USD ≈ 7.16 CNY 换算。",
+      "updated": "2026-09-25"
+    },
+    "Kimi-K2.7": {
+      "vendor": "Moonshot",
+      "input": 0.91,
+      "cached_input": 0.18,
+      "output": 3.77,
+      "source": "moonshot",
+      "source_model": "kimi-k2.7-code",
+      "note": "官方条目为 kimi-k2.7-code：¥6.50 / ¥1.30 / ¥27.00（未命中 / 命中 / 输出），按 1 USD ≈ 7.16 CNY 换算。注意官方另有 -highspeed 档，价格为其两倍。",
+      "updated": "2026-09-25"
+    },
+    "GPT-5.6": {
+      "vendor": "OpenAI",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "openai",
+      "source_model": null,
+      "note": "OpenAI 定价页当前列 GPT-6 Astra / GPT-6 Sol / GPT-6 Luna，未列 GPT-5.6，故不填。",
+      "updated": "2026-09-25"
+    },
+    "GPT-5.6-Sol": {
+      "vendor": "OpenAI",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "openai",
+      "source_model": null,
+      "note": "同上。GPT-5.6-Sol 与官方 GPT-6 Sol 名称相近，但无法确证是同一型号，不按推测填写。",
+      "updated": "2026-09-25"
+    },
+    "Claude-Opus-4.8": {
+      "vendor": "Anthropic",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "anthropic",
+      "source_model": null,
+      "note": "Anthropic 定价页在本区域被重定向屏蔽，未能取得官方数据，故不填。",
+      "updated": "2026-09-25"
+    },
+    "Claude-Sonnet-4.8": {
+      "vendor": "Anthropic",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "anthropic",
+      "source_model": null,
+      "note": "同上。",
+      "updated": "2026-09-25"
+    },
+    "Qwen3.5-122B": {
+      "vendor": "Alibaba",
+      "input": 0.115,
+      "cached_input": null,
+      "cache_write": null,
+      "output": 0.917,
+      "source": "qwen35",
+      "source_url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-5-122b-a10b",
+      "source_model": "qwen3.5-122b-a10b",
+      "rate_basis": "exact_model",
+      "note": "China (Beijing), input <=128K; 128K–256K input/output rates are $0.287/$2.294. Context caching is unsupported.",
+      "updated": "2026-10-26"
+    },
+    "Qwen3.7-Max": {
+      "vendor": "Alibaba",
+      "input": null,
+      "cached_input": null,
+      "output": null,
+      "source": "alibaba",
+      "source_model": "qwen3.7-max",
+      "note": "同上。官方模型列表有 qwen3.7-max，但未在可抓取的页面提供价格。",
+      "updated": "2026-09-25"
+    },
+    "claude-opus-5": {
+      "vendor": "Anthropic",
+      "input": 5,
+      "cached_input": 0.5,
+      "cache_write": 6.25,
+      "output": 25,
+      "source": "anthropic",
+      "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "source_model": "claude-opus-5",
+      "rate_basis": "exact_model",
+      "note": "Standard API; 5-minute cache writes. 1-hour writes cost $10/1M and are not used in the scenario.",
+      "updated": "2026-10-26"
+    },
+    "gpt-5.6-terra": {
+      "vendor": "OpenAI",
+      "input": 2,
+      "cached_input": 0.2,
+      "cache_write": 2.5,
+      "output": 12,
+      "source": "openai_terra",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "source_model": "gpt-5.6-terra",
+      "rate_basis": "exact_model",
+      "note": "Standard API, input <=272K per request; longer prompts are billed at 2x input and 1.5x output.",
+      "updated": "2026-10-26"
+    },
+    "GPT-5.6 Luna": {
+      "vendor": "OpenAI",
+      "input": 0.2,
+      "cached_input": 0.02,
+      "cache_write": 0.25,
+      "output": 1.2,
+      "source": "openai_luna",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "source_model": "gpt-5.6-luna",
+      "rate_basis": "exact_model",
+      "note": "Standard API, input <=272K per request; longer prompts are billed at 2x input and 1.5x output.",
+      "updated": "2026-10-26"
+    },
+    "glm-5.3": {
+      "vendor": "Z.ai",
+      "input": 1.4,
+      "cached_input": 0.26,
+      "cache_write": null,
+      "output": 4.4,
+      "source": "zai",
+      "source_url": "https://docs.z.ai/guides/overview/pricing",
+      "source_model": "GLM-5.3",
+      "rate_basis": "exact_model",
+      "note": "Standard USD API pricing; cached-input storage is temporarily free.",
+      "updated": "2026-10-26"
+    },
+    "DeepSeek-V4-Flash-BF16": {
+      "vendor": "DeepSeek",
+      "input": 0.3,
+      "cached_input": 0.006,
+      "cache_write": null,
+      "output": 1.2,
+      "source": "deepseek",
+      "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "source_model": "deepseek-flash / DeepSeek-V4.1-Flash-1017",
+      "rate_basis": "successor_proxy",
+      "note": "Peak rates. Original V4-Flash has retired; the legacy API name now serves V4.1-Flash. This is a successor-rate proxy, not the historical BF16 model bill. Off-peak rates are half.",
+      "updated": "2026-10-26"
+    },
+    "Qwen3.6-35B": {
+      "vendor": "Alibaba",
+      "input": 0.248,
+      "cached_input": null,
+      "cache_write": null,
+      "output": 1.485,
+      "source": "qwen36",
+      "source_url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-6-35b-a3b",
+      "source_model": "qwen3.6-35b-a3b",
+      "rate_basis": "exact_model",
+      "note": "China (Beijing). Context caching is unsupported. Singapore input/output rates are $0.375/$2.25.",
+      "updated": "2026-10-26"
+    }
+  },
+  "estimation": {
+    "enabled": true,
+    "output_fraction": 0.1,
+    "cached_input_fraction": 0,
+    "scope": "API-equivalent text token scenario; not an actual bill",
+    "note": "Use cumulative benchmark tokens with a common 90% input / 10% output mix and no caching. Excludes long-context surcharges, cache writes, tools, subscriptions, tax and accelerator costs."
+  }
+}
