@@ -1,0 +1,56 @@
+910B3_theory:
+  name: 910B3_theory
+  core_num: 20  # 个
+  cacheB_l0abc: [65536, 65536, 131072]  # Byte
+  cacheB_l1: 524032  # Byte
+  cacheB_l2: 201326592  # Byte
+  clock_speed: 1.8  #GHz
+  bandwidth:  # Byte/Cycle
+    mte2: 43.7
+    mte1a: 256
+    mte1b: 128
+    fixpipe: 128
+    mac: 8192
+  fix_time:  # Cycle
+    mte2: 0
+    mte1a: 0
+    mte1b: 0
+    fixpipe: 0
+    mac: 0
+    core: 0
+
+910B3_modify:
+  name: 910B3_modify
+  core_num: 20  # 个
+  cacheB_l0abc: [65536, 65536, 131072]  # Byte
+  cacheB_l1: 524032  # Byte，假设x%可用，512*1024*0.0x
+  cacheB_l2: 161061273  # Byte，假设x%可用，192*1024*1024*0.0x
+  clock_speed: 1.8  #GHz
+  scalar_time:  # Cycle/num
+    fix: 1710
+    l0num: 96
+    l0cnum: 165
+    l1num: 91
+  bandwidth:  # Byte/Cycle
+    mte2gm: 43
+    mte2nz: 156
+    mte2nd_pre: 127
+    mte2nd: 118
+    mte1a: 166 #197
+    mte1b: 101 #98
+    fixpipe_nz: 216
+    fixpipe_nd: 115
+    mac_cal: 8192
+    mac_k: 32 # num/Cycle
+  fix_time:  # Cycle
+    mte2nz: 88
+    mte2nd: 88
+    mte1: 7 #4
+    mte1_l1: 7 #27
+    fixpipe_nz: 246
+    fixpipe_nd: 216
+    mac: 22
+    core: 150
+  tscale:
+    fixpipe_not_power2: 3
+    fixpipe_1024B: 0.75
