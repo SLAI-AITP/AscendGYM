@@ -1,0 +1,153 @@
+{
+  "op_name": "mla_prolog",
+  "op_camel": "MlaProlog",
+  "output_keys": [
+    "query",
+    "query_rope",
+    "kv_cache",
+    "kr_cache"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "shape": [
+        1,
+        1,
+        4,
+        512
+      ],
+      "attrs": {
+        "N": 4,
+        "bsz": 16,
+        "fused": false
+      }
+    },
+    {
+      "id": 1,
+      "shape": [
+        1,
+        1,
+        2,
+        512
+      ],
+      "attrs": {
+        "T": 2,
+        "N": 2,
+        "bsz": 16,
+        "fused": true
+      }
+    },
+    {
+      "id": 2,
+      "shape": [
+        1,
+        4,
+        8,
+        512
+      ],
+      "attrs": {
+        "N": 8,
+        "bsz": 32,
+        "fused": false
+      }
+    },
+    {
+      "id": 3,
+      "shape": [
+        2,
+        1,
+        4,
+        512
+      ],
+      "attrs": {
+        "N": 4,
+        "bsz": 64,
+        "fused": false
+      }
+    },
+    {
+      "id": 4,
+      "shape": [
+        1,
+        8,
+        16,
+        512
+      ],
+      "attrs": {
+        "N": 16,
+        "bsz": 32,
+        "fused": false
+      }
+    },
+    {
+      "id": 5,
+      "shape": [
+        2,
+        4,
+        8,
+        512
+      ],
+      "attrs": {
+        "N": 8,
+        "bsz": 32,
+        "fused": false
+      }
+    },
+    {
+      "id": 6,
+      "shape": [
+        2,
+        2,
+        2,
+        512
+      ],
+      "attrs": {
+        "N": 2,
+        "bsz": 16,
+        "fused": false
+      }
+    },
+    {
+      "id": 7,
+      "shape": [
+        4,
+        4,
+        4,
+        512
+      ],
+      "attrs": {
+        "N": 4,
+        "bsz": 16,
+        "fused": false
+      }
+    },
+    {
+      "id": 8,
+      "shape": [
+        2,
+        16,
+        16,
+        512
+      ],
+      "attrs": {
+        "N": 16,
+        "bsz": 16,
+        "fused": false
+      }
+    },
+    {
+      "id": 9,
+      "shape": [
+        3,
+        3,
+        8,
+        512
+      ],
+      "attrs": {
+        "N": 8,
+        "bsz": 64,
+        "fused": false
+      }
+    }
+  ]
+}

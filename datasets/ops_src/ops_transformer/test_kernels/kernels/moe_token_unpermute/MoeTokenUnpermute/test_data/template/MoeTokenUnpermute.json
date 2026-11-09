@@ -1,0 +1,111 @@
+[
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float16", "shape": [16, 64]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [16]},
+      {"name": "probs", "type": "Tensor", "dtype": "float16", "shape": [8, 2]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float16", "shape": [64, 128]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [64]},
+      {"name": "probs", "type": "Tensor", "dtype": "float16", "shape": [16, 4]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "bfloat16", "shape": [64, 64]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [64]},
+      {"name": "probs", "type": "Tensor", "dtype": "bfloat16", "shape": [32, 2]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float32", "shape": [12, 256]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [12]},
+      {"name": "probs", "type": "Tensor", "dtype": "float32", "shape": [4, 3]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float16", "shape": [8, 128]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [8]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "bfloat16", "shape": [160, 256]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [160]},
+      {"name": "probs", "type": "Tensor", "dtype": "bfloat16", "shape": [20, 8]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float16", "shape": [128, 64]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [128]},
+      {"name": "probs", "type": "Tensor", "dtype": "float16", "shape": [64, 2]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float32", "shape": [512, 512]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [512]},
+      {"name": "probs", "type": "Tensor", "dtype": "float32", "shape": [128, 4]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "bfloat16", "shape": [512, 128]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [512]},
+      {"name": "probs", "type": "Tensor", "dtype": "bfloat16", "shape": [256, 2]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "permuted_tokens", "type": "Tensor", "dtype": "float16", "shape": [30, 32]},
+      {"name": "sorted_indices", "type": "Tensor", "dtype": "int32", "shape": [30]},
+      {"name": "probs", "type": "Tensor", "dtype": "float16", "shape": [10, 3]},
+      {"name": "padded_mode", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "unpermuted_tokens", "type": "Tensor", "dtype": "float16"}
+    ]
+  }
+]

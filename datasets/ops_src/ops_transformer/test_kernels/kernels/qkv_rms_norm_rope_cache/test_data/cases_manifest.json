@@ -1,0 +1,206 @@
+{
+  "op_name": "qkv_rms_norm_rope_cache",
+  "op_camel": "QkvRmsNormRopeCache",
+  "output_keys": [
+    "q_out",
+    "k_cache",
+    "v_cache",
+    "q_out_before_quant",
+    "k_out_before_quant",
+    "v_out_before_quant"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "fp16",
+      "shape": [
+        48,
+        2304
+      ],
+      "attrs": {
+        "B": 16,
+        "S": 3,
+        "D": 128,
+        "Nq": 16,
+        "Nk": 1,
+        "Nv": 1,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "bf16",
+      "shape": [
+        2,
+        1536
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 2,
+        "D": 128,
+        "Nq": 8,
+        "Nk": 2,
+        "Nv": 2,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "fp16",
+      "shape": [
+        2,
+        768
+      ],
+      "attrs": {
+        "B": 2,
+        "S": 1,
+        "D": 128,
+        "Nq": 4,
+        "Nk": 1,
+        "Nv": 1,
+        "blockSize": 64,
+        "quant": true,
+        "asym": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "fp16",
+      "shape": [
+        4,
+        5120
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 4,
+        "D": 128,
+        "Nq": 32,
+        "Nk": 4,
+        "Nv": 4,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "bf16",
+      "shape": [
+        1,
+        384
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 1,
+        "D": 128,
+        "Nq": 1,
+        "Nk": 1,
+        "Nv": 1,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "fp16",
+      "shape": [
+        64,
+        3072
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 64,
+        "D": 128,
+        "Nq": 8,
+        "Nk": 8,
+        "Nv": 8,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "bf16",
+      "shape": [
+        6,
+        1024
+      ],
+      "attrs": {
+        "B": 3,
+        "S": 2,
+        "D": 128,
+        "Nq": 4,
+        "Nk": 2,
+        "Nv": 2,
+        "blockSize": 32,
+        "quant": true,
+        "asym": true,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "fp16",
+      "shape": [
+        8,
+        2304
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 8,
+        "D": 128,
+        "Nq": 16,
+        "Nk": 1,
+        "Nv": 1,
+        "blockSize": 32,
+        "quant": false,
+        "eps": 1e-05
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "bf16",
+      "shape": [
+        32,
+        3072
+      ],
+      "attrs": {
+        "B": 2,
+        "S": 16,
+        "D": 128,
+        "Nq": 8,
+        "Nk": 8,
+        "Nv": 8,
+        "blockSize": 64,
+        "quant": false,
+        "eps": 1e-06
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "fp16",
+      "shape": [
+        16,
+        5632
+      ],
+      "attrs": {
+        "B": 1,
+        "S": 16,
+        "D": 128,
+        "Nq": 40,
+        "Nk": 2,
+        "Nv": 2,
+        "blockSize": 128,
+        "quant": false,
+        "eps": 1e-12
+      }
+    }
+  ]
+}

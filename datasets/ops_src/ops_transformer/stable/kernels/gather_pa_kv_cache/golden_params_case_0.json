@@ -1,0 +1,25 @@
+{
+  "dtype": "torch.float16",
+  "num_blocks": 128,
+  "block_size": 16,
+  "batch": 4,
+  "num_heads": 16,
+  "head_dim_k": 128,
+  "head_dim_v": 128,
+  "max_blocks": 32,
+  "lens": [
+    16,
+    32,
+    48,
+    64
+  ],
+  "is_seq_lens_cumsum": true,
+  "seed": 2026,
+  "has_seq_offset": false,
+  "total_tokens": 160,
+  "case_id": 0,
+  "index_dtype": "torch.int32",
+  "golden_source": "cpu-reference",
+  "npu_failed": true,
+  "npu_error": "The Inner error is reported as above. The process exits for this inner error, and the current working operator name is aclnnGatherPaKvCache."
+}

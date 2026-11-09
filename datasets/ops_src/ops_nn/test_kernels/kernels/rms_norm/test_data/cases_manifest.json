@@ -1,0 +1,129 @@
+{
+  "op_name": "rms_norm",
+  "op_camel": "RmsNorm",
+  "output_keys": [
+    "y",
+    "rstd"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "shape": [
+        2,
+        16
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "float16",
+      "shape": [
+        1,
+        256
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "float16",
+      "shape": [
+        4,
+        64,
+        32
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "float16",
+      "shape": [
+        8,
+        128,
+        64
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "float16",
+      "shape": [
+        2,
+        256,
+        128
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "float32",
+      "shape": [
+        2,
+        16,
+        32,
+        64
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "float32",
+      "shape": [
+        64,
+        256
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "float32",
+      "shape": [
+        1,
+        2,
+        4,
+        128,
+        64
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "bfloat16",
+      "shape": [
+        32,
+        1024
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "bfloat16",
+      "shape": [
+        2,
+        64,
+        128
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    }
+  ]
+}

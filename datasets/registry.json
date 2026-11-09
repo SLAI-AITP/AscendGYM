@@ -1,0 +1,88 @@
+{
+  "schema_version": "ascend-gym-task-registry-v1",
+  "active_catalog": "../bridge/configs/op_catalog.json",
+  "tasks": [
+    {
+      "id": "add_rms_norm",
+      "spec": "tasks/batch1/add_rms_norm/task.json"
+    },
+    {
+      "id": "clipped_swiglu",
+      "spec": "tasks/batch1/clipped_swiglu/task.json"
+    },
+    {
+      "id": "rms_norm",
+      "spec": "tasks/batch1/rms_norm/task.json"
+    },
+    {
+      "id": "swi_glu",
+      "spec": "tasks/batch1/swi_glu/task.json"
+    },
+    {
+      "id": "interleave_rope",
+      "spec": "tasks/batch1/interleave_rope/task.json"
+    },
+    {
+      "id": "lightning_indexer",
+      "spec": "tasks/batch1/lightning_indexer/task.json"
+    },
+    {
+      "id": "mla_prolog",
+      "spec": "tasks/batch1/mla_prolog/task.json"
+    },
+    {
+      "id": "moe_fused_topk",
+      "spec": "tasks/batch1/moe_fused_topk/task.json"
+    },
+    {
+      "id": "moe_gating_top_k",
+      "spec": "tasks/batch1/moe_gating_top_k/task.json"
+    },
+    {
+      "id": "moe_token_unpermute",
+      "spec": "tasks/batch1/moe_token_unpermute/task.json"
+    },
+    {
+      "id": "qkv_rms_norm_rope_cache",
+      "spec": "tasks/batch1/qkv_rms_norm_rope_cache/task.json"
+    },
+    {
+      "id": "recurrent_gated_delta_rule",
+      "spec": "tasks/batch1/recurrent_gated_delta_rule/task.json"
+    },
+    {
+      "id": "rope_with_sin_cos_cache",
+      "spec": "tasks/batch1/rope_with_sin_cos_cache/task.json"
+    },
+    {
+      "id": "sparse_flash_attention",
+      "spec": "tasks/batch1/sparse_flash_attention/task.json"
+    },
+    {
+      "id": "fused_gdn_gating",
+      "spec": "tasks/batch1/fused_gdn_gating/task.json"
+    },
+    {
+      "id": "hc_post",
+      "spec": "tasks/batch1/hc_post/task.json"
+    },
+    {
+      "id": "hc_pre_sinkhorn",
+      "spec": "tasks/batch1/hc_pre_sinkhorn/task.json"
+    }
+  ],
+  "preserved_golden_tasks": [
+    {
+      "id": "transformer__chunk_gated_delta_rule",
+      "spec": "tasks/preserved-golden/transformer__chunk_gated_delta_rule/task.json"
+    },
+    {
+      "id": "transformer__gather_pa_kv_cache",
+      "spec": "tasks/preserved-golden/transformer__gather_pa_kv_cache/task.json"
+    },
+    {
+      "id": "transformer__kv_rms_norm_rope_cache",
+      "spec": "tasks/preserved-golden/transformer__kv_rms_norm_rope_cache/task.json"
+    }
+  ]
+}

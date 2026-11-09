@@ -1,0 +1,25 @@
+{
+  "dtype": "torch.int8",
+  "num_blocks": 128,
+  "block_size": 32,
+  "batch": 4,
+  "num_heads": 16,
+  "head_dim_k": 64,
+  "head_dim_v": 64,
+  "max_blocks": 32,
+  "lens": [
+    64,
+    64,
+    64,
+    64
+  ],
+  "is_seq_lens_cumsum": true,
+  "seed": 13,
+  "has_seq_offset": false,
+  "total_tokens": 256,
+  "case_id": 8,
+  "index_dtype": "torch.int32",
+  "golden_source": "cpu-reference",
+  "npu_failed": true,
+  "npu_error": "NPU output shape mismatch: (160, 16, 64) vs (256, 16, 64)"
+}

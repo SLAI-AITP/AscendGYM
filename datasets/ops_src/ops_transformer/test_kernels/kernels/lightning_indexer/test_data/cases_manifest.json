@@ -1,0 +1,217 @@
+{
+  "op_name": "lightning_indexer",
+  "op_camel": "LightningIndexer",
+  "output_keys": [
+    "sparse_indices",
+    "sparse_values"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "q_layout": "BSND",
+      "k_layout": "BSND",
+      "shape": [
+        1,
+        4,
+        1
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 4,
+        "N1": 1,
+        "S2": 64,
+        "sc": 64,
+        "sm": 0,
+        "rv": true
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "bfloat16",
+      "q_layout": "BSND",
+      "k_layout": "BSND",
+      "shape": [
+        2,
+        16,
+        8
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 16,
+        "N1": 8,
+        "S2": 128,
+        "sc": 2048,
+        "sm": 3,
+        "rv": false
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "float16",
+      "q_layout": "BSND",
+      "k_layout": "BSND",
+      "shape": [
+        1,
+        8,
+        32
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 8,
+        "N1": 32,
+        "S2": 128,
+        "sc": 128,
+        "sm": 3,
+        "rv": false
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "float16",
+      "q_layout": "BSND",
+      "k_layout": "BSND",
+      "shape": [
+        2,
+        16,
+        4
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 16,
+        "N1": 4,
+        "S2": 64,
+        "sc": 64,
+        "sm": 0,
+        "rv": true,
+        "weights_dtype": "float32"
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "bfloat16",
+      "q_layout": "BSND",
+      "k_layout": "PA_BSND",
+      "shape": [
+        2,
+        32,
+        8
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 32,
+        "N1": 8,
+        "blocks": 16,
+        "blk": 16,
+        "max_blocks": 8,
+        "sc": 128,
+        "sm": 3,
+        "rv": false
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "float16",
+      "q_layout": "TND",
+      "k_layout": "TND",
+      "shape": [
+        1,
+        64,
+        2
+      ],
+      "attrs": {
+        "B": 1,
+        "T": 64,
+        "N1": 2,
+        "sc": 64,
+        "sm": 0,
+        "rv": true
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "bfloat16",
+      "q_layout": "TND",
+      "k_layout": "TND",
+      "shape": [
+        1,
+        64,
+        4
+      ],
+      "attrs": {
+        "B": 1,
+        "T": 64,
+        "N1": 4,
+        "sc": 128,
+        "sm": 3,
+        "rv": false
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "float16",
+      "q_layout": "TND",
+      "k_layout": "TND",
+      "shape": [
+        3,
+        48,
+        8
+      ],
+      "attrs": {
+        "B": 3,
+        "T": 48,
+        "N1": 8,
+        "sc": 16,
+        "sm": 0,
+        "rv": false,
+        "weights_dtype": "float32",
+        "seq": "[16, 32, 48]"
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "float16",
+      "q_layout": "TND",
+      "k_layout": "PA_BSND",
+      "shape": [
+        1,
+        16,
+        2
+      ],
+      "attrs": {
+        "B": 1,
+        "T": 16,
+        "N1": 2,
+        "blocks": 2,
+        "blk": 16,
+        "max_blocks": 2,
+        "seq": "[16]",
+        "seq_key": "[32]",
+        "block_table_override": "[[0, 1]]",
+        "sc": 64,
+        "sm": 3,
+        "rv": false
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "float16",
+      "q_layout": "BSND",
+      "k_layout": "BSND",
+      "shape": [
+        1,
+        1,
+        64
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 1,
+        "N1": 64,
+        "S2": 16,
+        "sc": 16,
+        "sm": 0,
+        "rv": true
+      }
+    }
+  ]
+}

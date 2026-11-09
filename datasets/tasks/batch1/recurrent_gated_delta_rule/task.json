@@ -1,0 +1,20 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "recurrent_gated_delta_rule",
+  "operator": "recurrent_gated_delta_rule",
+  "active": true,
+  "batch": "batch1",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/test_kernels/kernels/recurrent_gated_delta_rule",
+  "test_script": "recurrent_gated_delta_rule_test.py",
+  "case_manifests": [
+    "test_data/cases_manifest.json"
+  ],
+  "golden_tensor_files": 20,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

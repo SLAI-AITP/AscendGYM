@@ -1,0 +1,213 @@
+{
+  "op_name": "rope_with_sin_cos_cache",
+  "op_camel": "RopeWithSinCosCache",
+  "output_keys": [
+    "queryOut",
+    "keyOut"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "shape": [
+        8,
+        512
+      ],
+      "attrs": {
+        "sections": [
+          16,
+          24,
+          24
+        ],
+        "numQ": 4,
+        "numK": 4,
+        "T": 8,
+        "maxSeq": 256,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "bfloat16",
+      "shape": [
+        16,
+        2048
+      ],
+      "attrs": {
+        "sections": [
+          8,
+          12,
+          12
+        ],
+        "numQ": 32,
+        "numK": 8,
+        "T": 16,
+        "maxSeq": 256,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "float32",
+      "shape": [
+        64,
+        1024
+      ],
+      "attrs": {
+        "sections": [
+          16,
+          16,
+          16,
+          16
+        ],
+        "numQ": 8,
+        "numK": 8,
+        "T": 64,
+        "maxSeq": 512,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "float16",
+      "shape": [
+        512,
+        2048
+      ],
+      "attrs": {
+        "sections": [
+          24,
+          20,
+          20
+        ],
+        "numQ": 16,
+        "numK": 4,
+        "T": 512,
+        "maxSeq": 1024,
+        "isNeoxStyle": false
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "bfloat16",
+      "shape": [
+        1,
+        512
+      ],
+      "attrs": {
+        "sections": [
+          11,
+          11,
+          10
+        ],
+        "numQ": 8,
+        "numK": 8,
+        "T": 1,
+        "maxSeq": 128,
+        "isNeoxStyle": false
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "float16",
+      "shape": [
+        2048,
+        4096
+      ],
+      "attrs": {
+        "sections": [
+          16,
+          24,
+          24
+        ],
+        "numQ": 32,
+        "numK": 8,
+        "T": 2048,
+        "maxSeq": 4096,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "float32",
+      "shape": [
+        32,
+        1024
+      ],
+      "attrs": {
+        "sections": [
+          24,
+          20,
+          20
+        ],
+        "numQ": 8,
+        "numK": 1,
+        "T": 32,
+        "maxSeq": 512,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "bfloat16",
+      "shape": [
+        128,
+        1024
+      ],
+      "attrs": {
+        "sections": [
+          8,
+          12,
+          12
+        ],
+        "numQ": 16,
+        "numK": 16,
+        "T": 128,
+        "maxSeq": 1024,
+        "isNeoxStyle": true
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "float16",
+      "shape": [
+        256,
+        512
+      ],
+      "attrs": {
+        "sections": [
+          16,
+          16,
+          16,
+          16
+        ],
+        "numQ": 4,
+        "numK": 4,
+        "T": 256,
+        "maxSeq": 2048,
+        "isNeoxStyle": false
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "float16",
+      "shape": [
+        16,
+        768
+      ],
+      "attrs": {
+        "sections": [
+          11,
+          11,
+          10
+        ],
+        "numQ": 8,
+        "numK": 8,
+        "T": 16,
+        "maxSeq": 256,
+        "isNeoxStyle": true,
+        "headSize_override": 96
+      }
+    }
+  ]
+}

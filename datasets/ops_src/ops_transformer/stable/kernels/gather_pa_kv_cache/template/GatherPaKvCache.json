@@ -1,0 +1,154 @@
+[
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [4, 32]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [64, 32, 8, 64]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [64, 32, 8, 64]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [2, 16]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [2]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [96, 8, 64]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [96, 8, 64]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "bfloat16", "shape": [256, 8, 32, 64]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "bfloat16", "shape": [256, 8, 32, 64]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [8, 64]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [8]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "bfloat16", "shape": [256, 32, 64]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "bfloat16", "shape": [256, 32, 64]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "bfloat16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float32", "shape": [128, 16, 16, 64]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float32", "shape": [128, 16, 16, 64]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [4, 32]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float32", "shape": [128, 16, 64]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float32", "shape": [128, 16, 64]},
+      {"name": "seqOffset", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float32"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [4, 32]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": false}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [512, 4, 8, 128]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [512, 4, 8, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int64", "shape": [16, 128]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int64", "shape": [16]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [512, 8, 128]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [512, 8, 128]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [1, 64]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [1]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [64, 16, 128]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [64, 16, 128]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [256, 16, 16, 144]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [256, 16, 16, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [8, 64]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [8]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [512, 16, 144]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [512, 16, 128]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "int8", "shape": [128, 32, 16, 64]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "int8", "shape": [128, 32, 16, 64]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [4, 32]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "int8", "shape": [256, 16, 64]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "int8", "shape": [256, 16, 64]},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "int8"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "int8"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "keyCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "valueCache", "type": "Tensor", "dtype": "float16", "shape": [128, 16, 16, 128]},
+      {"name": "blockTables", "type": "Tensor", "dtype": "int32", "shape": [4, 32]},
+      {"name": "seqLens", "type": "Tensor", "dtype": "int32", "shape": [4]},
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16", "shape": [160, 16, 128]},
+      {"name": "cacheMode", "type": "string", "value": "PA_NZ"},
+      {"name": "isSeqLensCumsum", "type": "bool", "value": true}
+    ],
+    "outputs": [
+      {"name": "keyRef", "type": "Tensor", "dtype": "float16"},
+      {"name": "valueRef", "type": "Tensor", "dtype": "float16"}
+    ]
+  }
+]

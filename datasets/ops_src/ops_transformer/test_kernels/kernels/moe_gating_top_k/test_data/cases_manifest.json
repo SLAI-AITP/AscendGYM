@@ -1,0 +1,206 @@
+{
+  "op_name": "moe_gating_top_k",
+  "op_camel": "MoeGatingTopK",
+  "output_keys": [
+    "y",
+    "expert_idx",
+    "out"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "fp32",
+      "x_shape": [
+        4,
+        64
+      ],
+      "attrs": {
+        "k": 8,
+        "kg": 1,
+        "gc": 1,
+        "gsm": 0,
+        "ren": 1,
+        "nt": 0,
+        "of": true,
+        "rsf": 1.5,
+        "eps": 1e-12
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "fp16",
+      "x_shape": [
+        3,
+        256
+      ],
+      "attrs": {
+        "k": 8,
+        "kg": 4,
+        "gc": 8,
+        "gsm": 1,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20,
+        "bias": true
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "bf16",
+      "x_shape": [
+        5,
+        128
+      ],
+      "attrs": {
+        "k": 2,
+        "kg": 2,
+        "gc": 4,
+        "gsm": 0,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 0.5,
+        "eps": 1e-20,
+        "bias": true
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "fp16",
+      "x_shape": [
+        6,
+        32
+      ],
+      "attrs": {
+        "k": 16,
+        "kg": 1,
+        "gc": 1,
+        "gsm": 0,
+        "ren": 0,
+        "nt": 0,
+        "of": true,
+        "rsf": 2.0,
+        "eps": 1e-06,
+        "bias": true
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "fp32",
+      "x_shape": [
+        2,
+        512
+      ],
+      "attrs": {
+        "k": 4,
+        "kg": 4,
+        "gc": 16,
+        "gsm": 0,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "fp16",
+      "x_shape": [
+        9,
+        2048
+      ],
+      "attrs": {
+        "k": 32,
+        "kg": 1,
+        "gc": 1,
+        "gsm": 0,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "bf16",
+      "x_shape": [
+        4,
+        64
+      ],
+      "attrs": {
+        "k": 8,
+        "kg": 8,
+        "gc": 8,
+        "gsm": 1,
+        "ren": 0,
+        "nt": 0,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20,
+        "bias": true
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "fp32",
+      "x_shape": [
+        1,
+        128
+      ],
+      "attrs": {
+        "k": 4,
+        "kg": 4,
+        "gc": 4,
+        "gsm": 1,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 0.1,
+        "eps": 1e-20
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "fp16",
+      "x_shape": [
+        7,
+        64
+      ],
+      "attrs": {
+        "k": 16,
+        "kg": 2,
+        "gc": 2,
+        "gsm": 1,
+        "ren": 0,
+        "nt": 1,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20,
+        "bias": true
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "bf16",
+      "x_shape": [
+        2,
+        300
+      ],
+      "attrs": {
+        "k": 32,
+        "kg": 1,
+        "gc": 1,
+        "gsm": 0,
+        "ren": 1,
+        "nt": 0,
+        "of": true,
+        "rsf": 1.0,
+        "eps": 1e-20
+      }
+    }
+  ]
+}

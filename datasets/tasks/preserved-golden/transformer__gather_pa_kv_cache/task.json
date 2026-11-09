@@ -1,0 +1,18 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "transformer__gather_pa_kv_cache",
+  "operator": "gather_pa_kv_cache",
+  "active": false,
+  "batch": "preserved-golden",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/stable/kernels/gather_pa_kv_cache",
+  "test_script": "gather_pa_kv_cache_test.py",
+  "case_manifests": [],
+  "golden_tensor_files": 80,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

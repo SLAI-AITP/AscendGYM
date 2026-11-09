@@ -1,0 +1,20 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "sparse_flash_attention",
+  "operator": "sparse_flash_attention",
+  "active": true,
+  "batch": "batch1",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/test_kernels/kernels/sparse_flash_attention",
+  "test_script": "sparse_flash_attention_test.py",
+  "case_manifests": [
+    "test_data/cases_manifest.json"
+  ],
+  "golden_tensor_files": 20,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

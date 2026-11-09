@@ -1,0 +1,211 @@
+{
+  "op_name": "sparse_flash_attention",
+  "op_camel": "SparseFlashAttention",
+  "output_keys": [
+    "attention_out",
+    "softmax_max",
+    "softmax_sum"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "q_type": "fp16",
+      "shape": [
+        1,
+        4,
+        8,
+        512
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 4,
+        "S2": 8,
+        "N1": 8,
+        "K": 16,
+        "spb": 1,
+        "mode": 3,
+        "lse": true
+      }
+    },
+    {
+      "id": 1,
+      "q_type": "bf16",
+      "shape": [
+        2,
+        3,
+        16,
+        512
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 3,
+        "S2": 6,
+        "N1": 16,
+        "K": 32,
+        "spb": 1,
+        "mode": 0,
+        "lse": false
+      }
+    },
+    {
+      "id": 2,
+      "q_type": "fp16",
+      "shape": [
+        2,
+        4,
+        8,
+        512
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 4,
+        "S2": 4,
+        "N1": 8,
+        "K": 8,
+        "spb": 1,
+        "mode": 3,
+        "lse": true
+      }
+    },
+    {
+      "id": 3,
+      "q_type": "bf16",
+      "shape": [
+        1,
+        8,
+        32,
+        512
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 8,
+        "S2": 32,
+        "N1": 32,
+        "K": 64,
+        "spb": 1,
+        "mode": 0,
+        "lse": false
+      }
+    },
+    {
+      "id": 4,
+      "q_type": "fp16",
+      "shape": [
+        3,
+        2,
+        16,
+        512
+      ],
+      "attrs": {
+        "B": 3,
+        "S1": 2,
+        "S2": 8,
+        "N1": 16,
+        "K": 16,
+        "spb": 1,
+        "mode": 3,
+        "lse": true
+      }
+    },
+    {
+      "id": 5,
+      "q_type": "bf16",
+      "shape": [
+        1,
+        5,
+        8,
+        512
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 5,
+        "S2": 16,
+        "N1": 8,
+        "K": 16,
+        "spb": 2,
+        "mode": 3,
+        "lse": false
+      }
+    },
+    {
+      "id": 6,
+      "q_type": "fp16",
+      "shape": [
+        2,
+        6,
+        64,
+        512
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 6,
+        "S2": 12,
+        "N1": 64,
+        "K": 32,
+        "spb": 1,
+        "mode": 0,
+        "lse": false
+      }
+    },
+    {
+      "id": 7,
+      "q_type": "bf16",
+      "shape": [
+        2,
+        4,
+        32,
+        512
+      ],
+      "attrs": {
+        "B": 2,
+        "S1": 4,
+        "S2": 16,
+        "N1": 32,
+        "K": 32,
+        "spb": 1,
+        "mode": 0,
+        "lse": true
+      }
+    },
+    {
+      "id": 8,
+      "q_type": "fp16",
+      "shape": [
+        1,
+        6,
+        16,
+        512
+      ],
+      "attrs": {
+        "B": 1,
+        "S1": 6,
+        "S2": 6,
+        "N1": 16,
+        "K": 8,
+        "spb": 1,
+        "mode": 3,
+        "lse": false
+      }
+    },
+    {
+      "id": 9,
+      "q_type": "bf16",
+      "shape": [
+        3,
+        8,
+        16,
+        512
+      ],
+      "attrs": {
+        "B": 3,
+        "S1": 8,
+        "S2": 32,
+        "N1": 16,
+        "K": 64,
+        "spb": 1,
+        "mode": 3,
+        "lse": true
+      }
+    }
+  ]
+}

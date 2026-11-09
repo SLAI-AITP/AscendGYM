@@ -1,0 +1,8 @@
+/packages/
+/runs/
+__pycache__/
+*.pyc
+*.log
+
+# Fixed benchmark tensors must remain part of the dataset.
+!**/*.pt

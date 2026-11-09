@@ -1,0 +1,29 @@
+{
+  "dtype": "torch.bfloat16",
+  "num_blocks": 256,
+  "block_size": 8,
+  "batch": 8,
+  "num_heads": 32,
+  "head_dim_k": 64,
+  "head_dim_v": 64,
+  "max_blocks": 64,
+  "lens": [
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+  ],
+  "is_seq_lens_cumsum": true,
+  "seed": 123,
+  "has_seq_offset": false,
+  "total_tokens": 256,
+  "case_id": 2,
+  "index_dtype": "torch.int32",
+  "golden_source": "cpu-reference",
+  "npu_failed": true,
+  "npu_error": "NPU output empty (kernel produced no data)"
+}

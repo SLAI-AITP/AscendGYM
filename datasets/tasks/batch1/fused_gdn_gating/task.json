@@ -1,0 +1,18 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "fused_gdn_gating",
+  "operator": "fused_gdn_gating",
+  "active": true,
+  "batch": "batch1",
+  "ops_repo": "vllm_ascend",
+  "source_dir": "ops_src/vllm_ascend/kernels/fused_gdn_gating",
+  "test_script": "fused_gdn_gating_test.py",
+  "case_manifests": [],
+  "golden_tensor_files": 0,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "vllm-ascend"
+}

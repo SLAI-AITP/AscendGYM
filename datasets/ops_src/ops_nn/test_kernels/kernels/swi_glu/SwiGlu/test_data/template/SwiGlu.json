@@ -1,0 +1,92 @@
+[
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float16", "shape": [2, 32]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float16", "shape": [1, 512]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float16", "shape": [4, 64, 32]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float16", "shape": [8, 128, 64]},
+      {"name": "dim", "type": "int", "value": 1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float16", "shape": [2, 256, 128]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float32", "shape": [2, 16, 32, 64]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float32", "shape": [64, 256]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "float32", "shape": [1, 2, 4, 128, 64]},
+      {"name": "dim", "type": "int", "value": 2}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "bfloat16", "shape": [32, 1024]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x", "type": "Tensor", "dtype": "bfloat16", "shape": [2, 64, 128]},
+      {"name": "dim", "type": "int", "value": -1}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  }
+]

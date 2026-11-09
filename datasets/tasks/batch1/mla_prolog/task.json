@@ -1,0 +1,20 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "mla_prolog",
+  "operator": "mla_prolog",
+  "active": true,
+  "batch": "batch1",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/test_kernels/kernels/mla_prolog",
+  "test_script": "mla_prolog_test.py",
+  "case_manifests": [
+    "test_data/cases_manifest.json"
+  ],
+  "golden_tensor_files": 20,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

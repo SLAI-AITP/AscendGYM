@@ -1,0 +1,132 @@
+[
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float16", "shape": [2, 16]},
+      {"name": "x2", "type": "Tensor", "dtype": "float16", "shape": [2, 16]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float16", "shape": [16]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float16", "shape": [1, 256]},
+      {"name": "x2", "type": "Tensor", "dtype": "float16", "shape": [1, 256]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float16", "shape": [256]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float16", "shape": [4, 64, 32]},
+      {"name": "x2", "type": "Tensor", "dtype": "float16", "shape": [4, 64, 32]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float16", "shape": [32]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float16", "shape": [8, 128, 64]},
+      {"name": "x2", "type": "Tensor", "dtype": "float16", "shape": [8, 128, 64]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float16", "shape": [64]},
+      {"name": "epsilon", "type": "float", "value": 1e-5}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float16", "shape": [2, 256, 128]},
+      {"name": "x2", "type": "Tensor", "dtype": "float16", "shape": [2, 256, 128]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float16", "shape": [128]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float32", "shape": [2, 16, 32, 64]},
+      {"name": "x2", "type": "Tensor", "dtype": "float32", "shape": [2, 16, 32, 64]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float32", "shape": [64]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float32", "shape": [64, 256]},
+      {"name": "x2", "type": "Tensor", "dtype": "float32", "shape": [64, 256]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float32", "shape": [256]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "float32", "shape": [1, 2, 4, 128, 64]},
+      {"name": "x2", "type": "Tensor", "dtype": "float32", "shape": [1, 2, 4, 128, 64]},
+      {"name": "gamma", "type": "Tensor", "dtype": "float32", "shape": [64]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "float32"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "float32"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "bfloat16", "shape": [32, 1024]},
+      {"name": "x2", "type": "Tensor", "dtype": "bfloat16", "shape": [32, 1024]},
+      {"name": "gamma", "type": "Tensor", "dtype": "bfloat16", "shape": [1024]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "bfloat16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  },
+  {
+    "inputs": [
+      {"name": "x1", "type": "Tensor", "dtype": "bfloat16", "shape": [2, 64, 128]},
+      {"name": "x2", "type": "Tensor", "dtype": "bfloat16", "shape": [2, 64, 128]},
+      {"name": "gamma", "type": "Tensor", "dtype": "bfloat16", "shape": [128]},
+      {"name": "epsilon", "type": "float", "value": 1e-6}
+    ],
+    "outputs": [
+      {"name": "y", "type": "Tensor", "dtype": "bfloat16"},
+      {"name": "rstd", "type": "Tensor", "dtype": "float32"},
+      {"name": "x", "type": "Tensor", "dtype": "bfloat16"}
+    ]
+  }
+]

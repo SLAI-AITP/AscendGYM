@@ -1,0 +1,168 @@
+{
+  "op_name": "clipped_swiglu",
+  "op_camel": "ClippedSwiglu",
+  "output_keys": [
+    "y"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "shape": [
+        2,
+        32
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "float16",
+      "shape": [
+        1,
+        512
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "float16",
+      "shape": [
+        4,
+        64,
+        32
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": false
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "float16",
+      "shape": [
+        8,
+        128,
+        64
+      ],
+      "attrs": {
+        "dim": 1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "float16",
+      "shape": [
+        2,
+        256,
+        128
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "float32",
+      "shape": [
+        2,
+        16,
+        32,
+        64
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "float32",
+      "shape": [
+        64,
+        256
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "float32",
+      "shape": [
+        1,
+        2,
+        4,
+        128,
+        64
+      ],
+      "attrs": {
+        "dim": 2,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": false
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "bfloat16",
+      "shape": [
+        32,
+        1024
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "bfloat16",
+      "shape": [
+        2,
+        64,
+        128
+      ],
+      "attrs": {
+        "dim": -1,
+        "alpha": 1.702,
+        "limit": 7.0,
+        "bias": 1.0,
+        "interleaved": true
+      }
+    }
+  ]
+}

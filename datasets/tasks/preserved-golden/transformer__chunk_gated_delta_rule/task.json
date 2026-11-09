@@ -1,0 +1,18 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "transformer__chunk_gated_delta_rule",
+  "operator": "chunk_gated_delta_rule",
+  "active": false,
+  "batch": "preserved-golden",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/stable/kernels/chunk_gated_delta_rule",
+  "test_script": "chunk_gated_delta_rule_test.py",
+  "case_manifests": [],
+  "golden_tensor_files": 4,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

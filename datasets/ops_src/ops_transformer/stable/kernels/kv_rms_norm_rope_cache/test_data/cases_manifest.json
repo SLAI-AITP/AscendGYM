@@ -1,0 +1,140 @@
+{
+  "op_name": "kv_rms_norm_rope_cache",
+  "op_camel": "KvRmsNormRopeCache",
+  "output_keys": [
+    "k_cache",
+    "ckv_cache"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "shape": [
+        1,
+        1,
+        1,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "bfloat16",
+      "shape": [
+        1,
+        1,
+        8,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "float16",
+      "shape": [
+        2,
+        1,
+        4,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "bfloat16",
+      "shape": [
+        4,
+        1,
+        1,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "float16",
+      "shape": [
+        1,
+        1,
+        16,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-06
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "bfloat16",
+      "shape": [
+        1,
+        1,
+        64,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "float16",
+      "shape": [
+        8,
+        1,
+        1,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "bfloat16",
+      "shape": [
+        2,
+        1,
+        32,
+        576
+      ],
+      "attrs": {
+        "epsilon": 0.0001
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "float16",
+      "shape": [
+        1,
+        1,
+        4,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "bfloat16",
+      "shape": [
+        1,
+        1,
+        8,
+        576
+      ],
+      "attrs": {
+        "epsilon": 1e-05
+      }
+    }
+  ]
+}

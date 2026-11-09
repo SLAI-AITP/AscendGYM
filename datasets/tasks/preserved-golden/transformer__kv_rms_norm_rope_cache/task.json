@@ -1,0 +1,20 @@
+{
+  "schema_version": "ascend-gym-task-v1",
+  "task_id": "transformer__kv_rms_norm_rope_cache",
+  "operator": "kv_rms_norm_rope_cache",
+  "active": false,
+  "batch": "preserved-golden",
+  "ops_repo": "transformer",
+  "source_dir": "ops_src/ops_transformer/stable/kernels/kv_rms_norm_rope_cache",
+  "test_script": "kv_rms_norm_rope_cache_test.py",
+  "case_manifests": [
+    "test_data/cases_manifest.json"
+  ],
+  "golden_tensor_files": 20,
+  "editable_prefixes": [
+    "op_host/",
+    "op_kernel/"
+  ],
+  "baseline_policy": "Frozen benchmark snapshot; public build repositories remain separate submodules.",
+  "upstream_repository": "ops-transformer"
+}

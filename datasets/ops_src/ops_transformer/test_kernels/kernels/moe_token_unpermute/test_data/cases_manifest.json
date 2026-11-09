@@ -1,0 +1,139 @@
+{
+  "op_name": "moe_token_unpermute",
+  "op_camel": "MoeTokenUnpermute",
+  "output_keys": [
+    "unpermuted_tokens"
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "dtype": "float16",
+      "shape": [
+        16,
+        64
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 2,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 1,
+      "dtype": "float16",
+      "shape": [
+        64,
+        128
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 4,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 2,
+      "dtype": "bfloat16",
+      "shape": [
+        64,
+        64
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 2,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 3,
+      "dtype": "float32",
+      "shape": [
+        12,
+        256
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 3,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 4,
+      "dtype": "float16",
+      "shape": [
+        8,
+        128
+      ],
+      "attrs": {
+        "with_probs": false,
+        "topk": 1,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 5,
+      "dtype": "bfloat16",
+      "shape": [
+        160,
+        256
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 8,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 6,
+      "dtype": "float16",
+      "shape": [
+        128,
+        64
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 2,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 7,
+      "dtype": "float32",
+      "shape": [
+        512,
+        512
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 4,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 8,
+      "dtype": "bfloat16",
+      "shape": [
+        512,
+        128
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 2,
+        "padded_mode": false
+      }
+    },
+    {
+      "id": 9,
+      "dtype": "float16",
+      "shape": [
+        30,
+        32
+      ],
+      "attrs": {
+        "with_probs": true,
+        "topk": 3,
+        "padded_mode": false
+      }
+    }
+  ]
+}
