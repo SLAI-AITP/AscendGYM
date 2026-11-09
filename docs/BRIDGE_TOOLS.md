@@ -207,4 +207,4 @@ python3 tools/monitor/native_monitor.py --tag <TAG> --single \
 
 - [BRIDGE_USAGE.md](BRIDGE_USAGE.md)
 - [BRIDGE_CONFIG.md](BRIDGE_CONFIG.md)
-- [../QUICK_START.md](../QUICK_START.md)
+- [README：快速开始](../README.md#quick-start)

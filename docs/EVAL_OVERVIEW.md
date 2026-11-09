@@ -13,4 +13,4 @@
 - 数据路径使用 `${ASCEND_GYM_DATA_ROOT}/...`。
 - 运行产物由 bridge 写入 `${ASCEND_GYM_WORKSPACE}/runs/`（CWD 相对路径 `../runs`，从 `bridge/` 执行）。
 
-安装、数据准备与模型配置见根目录 [USER_GUIDE.md](../USER_GUIDE.md)；首次运行见 [QUICK_START.md](../QUICK_START.md)。
+安装、数据准备与模型配置见 [README](../README.md#installation)；首次运行见 [README：快速开始](../README.md#quick-start)。

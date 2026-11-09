@@ -192,8 +192,8 @@ _client/                # bare 原始产物
 
 ## 10. 文档索引
 
-- [USER_GUIDE.md](../USER_GUIDE.md)
-- [QUICK_START.md](../QUICK_START.md)
+- [README：安装与环境](../README.md#installation)
+- [README：快速开始](../README.md#quick-start)
 - [BRIDGE_CONFIG.md](BRIDGE_CONFIG.md)
 - [BRIDGE_TOOLS.md](BRIDGE_TOOLS.md)
 - [eval/native_harness/README.md](../eval/native_harness/README.md)

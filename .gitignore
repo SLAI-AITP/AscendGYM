@@ -1,6 +1,9 @@
 # Local evaluation runs, trajectories and generated credentials
 /runs/
 
+# Excluded from this release; keep any local client copy untracked.
+/eval/bare_harness/client_v2/
+
 # Python / editor caches
 __pycache__/
 *.py[cod]

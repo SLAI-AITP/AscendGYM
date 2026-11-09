@@ -210,6 +210,6 @@ python3 op_manager.py run --op <OP> --harness bare --agent bare \
 
 - [BRIDGE_USAGE.md](BRIDGE_USAGE.md)
 - [CATALOG_REFERENCE.md](CATALOG_REFERENCE.md)
-- [../USER_GUIDE.md](../USER_GUIDE.md)
+- [README：模型配置](../README.md#models)
 - [../eval/native_harness/README.md](../eval/native_harness/README.md)
 - [../eval/bare_harness/README.md](../eval/bare_harness/README.md)

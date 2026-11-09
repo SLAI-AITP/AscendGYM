@@ -28,8 +28,6 @@ AscendGYM 用于评测模型和 agent harness 优化昇腾算子的能力，提�
 |:---:|:---:|:---:|
 | **17 个正式任务** · 全部冻结用例 | **Native / Bare** · 统一启动入口 | **AscendForge** · 昇腾沙盒 |
 
-> **上传进度：** 仓库正在分模块上传，完整评测需等待 `AscendForge/`、`bridge/`、`datasets/` 和 `eval/` 全部合入。主页源码已纳入，在线部署将在准备完成后启用。
-
 **使用导航：** [安装与环境](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
 ## 仓库组成
@@ -135,7 +133,7 @@ bare 的主要结果为 `result.json`；native 的加速比见 `metrics.json` �
 <a id="upstream-dependencies"></a>
 ## 上游构建依赖
 
-AscendGYM 根目录是唯一 Git 根，`AscendForge/` 作为普通目录随主仓发布。四个完整上游仓库单独下载到 `AscendForge/runtime/ascend_c/`，不随主仓复制，也不在主仓登记 `.gitmodules` 或 gitlink。版本同时记录在 [PUBLIC_DEPENDENCIES.json](AscendForge/PUBLIC_DEPENDENCIES.json)。
+`AscendForge/` 作为普通目录随主仓发布；其四个上游构建仓库通过根目录的 [.gitmodules](.gitmodules) 和 Git 子模块固定到指定 commit，下载位置为 `AscendForge/runtime/ascend_c/`。版本同时记录在 [PUBLIC_DEPENDENCIES.json](AscendForge/PUBLIC_DEPENDENCIES.json)。
 
 ### 复现基线（固定 commit）
 
@@ -151,32 +149,16 @@ AscendGYM 根目录是唯一 Git 根，`AscendForge/` 作为普通目录随主�
 <details>
 <summary><strong>获取和校验上游依赖：展开完整命令</strong></summary>
 
-在四个目标目录尚不存在时执行：
+部署沙盒前，在克隆得到的工作区中执行以下命令，获取固定版本的上游源码并应用构建补丁：
 
 ```bash
 ASCENDGYM_ASCEND_C="$ASCEND_GYM_WORKSPACE/AscendForge/runtime/ascend_c"
-mkdir -p "$ASCENDGYM_ASCEND_C"
-
-git clone https://gitcode.com/cann/ops-math.git "$ASCENDGYM_ASCEND_C/ops-math"
-git -C "$ASCENDGYM_ASCEND_C/ops-math" checkout --detach a522538bb2cfa5f836ee99d488092ea2fadebd85
-
-git clone https://gitcode.com/cann/ops-nn.git "$ASCENDGYM_ASCEND_C/ops-nn"
-git -C "$ASCENDGYM_ASCEND_C/ops-nn" checkout --detach d93dc7dfef407a65a2c4139b9a46deefe3d02751
-
-git clone https://gitcode.com/cann/ops-transformer.git "$ASCENDGYM_ASCEND_C/ops-transformer"
-git -C "$ASCENDGYM_ASCEND_C/ops-transformer" checkout --detach 250ea09c089246f6927ca5f0f799b84ceb047672
-git -C "$ASCENDGYM_ASCEND_C/ops-transformer" submodule update --init --recursive
-
-git clone https://github.com/vllm-project/vllm-ascend.git "$ASCENDGYM_ASCEND_C/vllm-ascend"
-git -C "$ASCENDGYM_ASCEND_C/vllm-ascend" checkout --detach f4a08bddd0cc65a0bd8c3d377b158ae5ca7527db
-git -C "$ASCENDGYM_ASCEND_C/vllm-ascend" submodule update --init --recursive
-
-bash "$ASCEND_GYM_WORKSPACE/AscendForge/scripts/apply_public_patches.sh"
+bash "$ASCEND_GYM_WORKSPACE/AscendForge/scripts/fetch_public_dependencies.sh" --sources-only
 ```
 
-这里的 `submodule update` 只用于上游仓库自己的嵌套依赖，包括 ops-transformer 的 catlass `c8948c340c4f30fb5964ccdd6e3a0bc7615fe202` 和 vllm-ascend 的 catlass `41bf90da655bba3c66d0acd7e00abe33960ecfd6`。主仓不使用 submodule 初始化流程。
+该脚本执行 `git submodule update --init --recursive`，初始化主仓登记的四个依赖及它们的嵌套依赖，包括 ops-transformer 的 catlass `c8948c340c4f30fb5964ccdd6e3a0bc7615fe202` 和 vllm-ascend 的 catlass `41bf90da655bba3c66d0acd7e00abe33960ecfd6`，随后调用 `apply_public_patches.sh`。普通 `git clone` 不会自动下载子模块源码；只运行评测客户端、连接已有沙盒时，无需在客户端机器执行此步骤。
 
-补丁脚本会应用 `ops-transformer-host-protoc.patch` 等当前适用补丁。检出后可核对版本：
+补丁脚本会应用 `ops-transformer-host-protoc.patch`。检出后可核对版本：
 
 ```bash
 for repo in ops-nn ops-transformer ops-math vllm-ascend; do

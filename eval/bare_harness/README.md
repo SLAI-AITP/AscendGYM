@@ -104,7 +104,7 @@ $ASCEND_GYM_WORKSPACE/runs/<TAG>/<op>-<agent>-<TAG>/
 
 相关文档：
 
-- [USER_GUIDE.md](../../USER_GUIDE.md)
-- [QUICK_START.md](../../QUICK_START.md)
+- [README：安装与环境](../../README.md#installation)
+- [README：快速开始](../../README.md#quick-start)
 - [docs/BRIDGE_USAGE.md](../../docs/BRIDGE_USAGE.md)
 - [docs/BRIDGE_CONFIG.md](../../docs/BRIDGE_CONFIG.md)
