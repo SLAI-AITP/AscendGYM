@@ -1,0 +1,453 @@
+{
+  "schema_version": "ascend-gym-op-catalog-v1",
+  "name": "ascend_c_ops_20260918",
+  "source_root": "${ASCEND_GYM_DATA_ROOT}/ops_src",
+  "outputs": {
+    "inputs_dir": "${ASCEND_GYM_DATA_ROOT}/packages",
+    "runs_dir": "../runs",
+    "native_root": "${ASCEND_GYM_WORKSPACE}/eval/native_harness"
+  },
+  "package_layout": "per_op",
+  "search_roots": [
+    {
+      "id": "test_kernels:ops_nn",
+      "path": "ops_nn/test_kernels/kernels",
+      "ops_repo": "nn",
+      "bucket": "test_kernels"
+    },
+    {
+      "id": "stable:ops_nn",
+      "path": "ops_nn/stable/kernels",
+      "ops_repo": "nn",
+      "bucket": "stable"
+    },
+    {
+      "id": "experimental:ops_nn",
+      "path": "ops_nn/experimental/kernels",
+      "ops_repo": "nn",
+      "bucket": "experimental"
+    },
+    {
+      "id": "test_kernels:ops_transformer",
+      "path": "ops_transformer/test_kernels/kernels",
+      "ops_repo": "transformer",
+      "bucket": "test_kernels"
+    },
+    {
+      "id": "stable:ops_transformer",
+      "path": "ops_transformer/stable/kernels",
+      "ops_repo": "transformer",
+      "bucket": "stable"
+    },
+    {
+      "id": "experimental:ops_transformer",
+      "path": "ops_transformer/experimental/kernels",
+      "ops_repo": "transformer",
+      "bucket": "experimental"
+    },
+    {
+      "id": "vllm_ascend",
+      "path": "vllm_ascend/kernels",
+      "ops_repo": "vllm_ascend",
+      "bucket": "vllm"
+    }
+  ],
+  "package": {
+    "keep_top_level": [
+      "op_host",
+      "op_kernel",
+      "op_graph",
+      "framework",
+      "CMakeLists.txt"
+    ],
+    "optional_top_level": [
+      "README.md"
+    ],
+    "forbid_names": [
+      "*.pt",
+      "*.bin",
+      "*.so",
+      "*.o",
+      "*.log",
+      "__pycache__"
+    ],
+    "max_files": 256,
+    "max_bytes": 8000000,
+    "editable_prefixes": [
+      "op_host/",
+      "op_kernel/"
+    ],
+    "test_dir": "op_speed_test"
+  },
+  "budget_defaults": {
+    "candidate_evaluations_max": 1,
+    "max_model_turns": 120,
+    "final_reprofile_count": 1,
+    "min_improvement_epsilon": 0.01,
+    "wall_clock_seconds_max": 10800
+  },
+  "metrics_defaults": {
+    "token_checkpoints": [
+      1000,
+      2000,
+      4000,
+      8000,
+      16000,
+      32000,
+      64000,
+      128000
+    ],
+    "time_checkpoints_sec": [
+      60,
+      120,
+      240,
+      480,
+      960,
+      1920,
+      3840,
+      7200,
+      10800
+    ]
+  },
+  "agents": {
+    "claude": {
+      "kind": "claude",
+      "executable": "claude",
+      "timeout_seconds": 1200,
+      "retry_attempts": 2,
+      "retry_backoff_seconds": 30
+    },
+    "codex": {
+      "kind": "command",
+      "timeout_seconds": 1200
+    },
+    "opencode": {
+      "kind": "command",
+      "timeout_seconds": 1800
+    }
+  },
+  "backend": {
+    "kind": "command",
+    "evidence_kind": "real",
+    "command": [
+      "{python}",
+      "{config_dir}/sandbox_evaluator.py"
+    ],
+    "timeout_seconds": 5400
+  },
+  "infra_retry": {
+    "_comment": "沙盒/设备基础设施故障的处置策略。评测器读 env、agent 读 prompt（经 task_note），共用这一份配置，避免各写一套。可用同名 SANDBOX_* 环境变量覆盖。",
+    "eval_retries": 3,
+    "eval_retry_backoff_seconds": 20,
+    "eval_retry_max_backoff_seconds": 300,
+    "eval_budget_seconds": 4800,
+    "max_streak": 3,
+    "agent_sleep_seconds": 60,
+    "keepalive_status": "profiling_failed",
+    "candidate_fault_status": "test_failed",
+    "guidance": "评测诊断可能给出两类与算子质量无关的故障提示，处理方式不同，请严格区分：\n（1）诊断含 [INFRA]：属于沙盒/设备侧的基础设施故障，与你的代码无关。此时不要修改代码，等待约 {sleep} 秒后用完全相同的代码重新提交一次 candidate 评测；连续 {max_streak} 次仍是同一故障时停止重试，简要说明情况并结束本轮。\n（2）诊断含 [DEVICE-FAULT]：你的候选实现触发了 NPU 设备故障，属于候选实现缺陷。此类故障会稳定跟随该版本代码复现，原样重交必然再次触发并白耗候选额度，因此严禁原样重交；请先定位并修复缺陷，确认后再提交新的候选版本。",
+    "candidate_fault_guidance": "本次评测在你的候选实现执行期间触发了 NPU 设备故障：\n{cause}\n本 run 的 baseline 已通过，且该故障在 {attempts} 次重试中稳定复现，因此判定为候选实现缺陷，而不是沙盒/设备侧的基础设施故障。\n请勿原样重新提交当前版本：相同代码会再次触发同一故障，并浪费候选评测额度。\n请先定位并修复导致设备异常的缺陷（常见原因：越界访存、非法指令、UB 空间越界），确认修复后再提交新的候选版本。"
+  },
+  "models": {
+    "qwen3.5-122b-a10b": {
+      "provider": "local",
+      "name": "qwen3.5-122b-a10b",
+      "openai_base": "http://127.0.0.1:8008/v1",
+      "anthropic_base": "http://127.0.0.1:8008",
+      "wire_api": "responses",
+      "context": 262144,
+      "api_key": "any-value",
+      "tool_format": "xml"
+    },
+    "qwen3.6-35b-a3b": {
+      "provider": "local",
+      "name": "qwen3.6-35b-a3b",
+      "openai_base": "http://127.0.0.1:8008/v1",
+      "anthropic_base": "http://127.0.0.1:8008",
+      "wire_api": "responses",
+      "context": 262144,
+      "api_key": "any-value",
+      "tool_format": "xml"
+    },
+    "glm-5.3": {
+      "provider": "local",
+      "name": "glm-5.3",
+      "openai_base": "http://127.0.0.1:8008/v1",
+      "anthropic_base": "http://127.0.0.1:8008",
+      "wire_api": "responses",
+      "context": 200000,
+      "api_key": null,
+      "tool_format": "xml",
+      "codex_instructions_suffix": "\n\n# 工具限制（重要）\n上游推理服务不支持 apply_patch 的自由文本补丁格式（调用它会返回 400）。禁止使用 apply_patch 工具；需要修改文件时请使用 shell 命令（例如 cat > file <<'EOF' … EOF、sed -i、python3 - <<'PY' … PY）或其它可用编辑工具。\n"
+    },
+    "glm-5.3-bigmodel": {
+      "provider": "bigmodel",
+      "name": "glm-5.3",
+      "kind": "cloud",
+      "openai_base": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "proxy": "never",
+      "wire_api": "chat",
+      "responses_ok": false,
+      "context": 1000000,
+      "max_output": 65536,
+      "api_key_env": "YOUR_API_KEY"
+    },
+    "DeepSeek-V4-Flash-BF16": {
+      "provider": "local",
+      "name": "DeepSeek-V4-Flash-BF16",
+      "anthropic_base": "http://<MODEL_HOST>:8008",
+      "openai_base": "http://<MODEL_HOST>:8008/v1",
+      "wire_api": "chat",
+      "responses_ok": false,
+      "context": 1000000,
+      "api_key": "any-value",
+      "protocol_correction_max": 6,
+      "codex_instructions_suffix": "\n\n# 工具限制（重要）\n上游推理服务不支持 apply_patch 的自由文本补丁格式（调用它会返回 `Fatal error: tool apply_patch invoked with incompatible payload`，2026-09-27 实测 17/17 个 codex run 全部命中）。禁止使用 apply_patch；需要修改文件时请使用 shell 命令（例如 cat > file <<'EOF' … EOF、sed -i、python3 - <<'PY' … PY）或其它可用编辑工具。\n另：数值参数请写成 JSON 数字（不要写成字符串 \"300000\"），否则会报 `invalid type: string \"…\", expected u64`。\n"
+    },
+    "gpt-6-sol": {
+      "provider": "gptplus5",
+      "name": "gpt-6-sol",
+      "kind": "cloud",
+      "openai_base": "https://az.gptplus5.com/v1",
+      "anthropic_base": "https://az.gptplus5.com",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "proxy": "never",
+      "context": 262144,
+      "responses_ok": true,
+      "api_key_env": "YOUR_API_KEY"
+    },
+    "gpt-5.6-terra": {
+      "provider": "gptplus5",
+      "name": "gpt-5.6-terra",
+      "kind": "cloud",
+      "openai_base": "https://az.gptplus5.com/v1",
+      "anthropic_base": "https://az.gptplus5.com",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "proxy": "never",
+      "context": 262144,
+      "responses_ok": true,
+      "api_key_env": "YOUR_API_KEY"
+    },
+    "claude-opus-5": {
+      "provider": "gptplus5",
+      "name": "claude-opus-5",
+      "kind": "cloud",
+      "openai_base": "https://az.gptplus5.com/v1",
+      "anthropic_base": "https://az.gptplus5.com",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "proxy": "never",
+      "context": 200000,
+      "wire_api": "chat",
+      "responses_ok": false,
+      "max_output": 32000,
+      "api_key_env": "YOUR_API_KEY"
+    },
+    "claude-opus-5-proxy": {
+      "provider": "local",
+      "name": "claude-opus-5",
+      "openai_base": "http://127.0.0.1:18008/v1",
+      "anthropic_base": "http://127.0.0.1:18008",
+      "api_key": "any-value",
+      "context": 200000,
+      "wire_api": "responses"
+    },
+    "deepseek-v4-flash": {
+      "provider": "gptplus5",
+      "name": "deepseek-v4-flash",
+      "kind": "cloud",
+      "openai_base": "https://az.gptplus5.com/v1",
+      "anthropic_base": "https://az.gptplus5.com",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "proxy": "never",
+      "context": 1000000,
+      "wire_api": "responses",
+      "api_key_env": "YOUR_API_KEY"
+    },
+    "glm-5.3-bigmodel-proxy": {
+      "provider": "bigmodel",
+      "name": "glm-5.3",
+      "kind": "cloud",
+      "openai_base": "http://127.0.0.1:18008/v1",
+      "api_key": "REPLACE_WITH_YOUR_API_KEY",
+      "wire_api": "responses",
+      "context": 1000000,
+      "max_output": 65536,
+      "tool_format": "json",
+      "_note": "经 bridge/tools/proxy.py --protocol responses 把 codex 的 /v1/responses 翻译成 bigmodel 的 /chat/completions；代理需先启动",
+      "api_key_env": "YOUR_API_KEY"
+    }
+  },
+  "bare": {
+    "client_root": "${ASCEND_GYM_WORKSPACE}/eval/bare_harness/client_v2",
+    "backend_root": "${ASCEND_GYM_WORKSPACE}/eval/bare_harness/Backend",
+    "python": "python3",
+    "default_model": "qwen3.5-122b-a10b",
+    "models": {
+      "qwen3.5-122b-a10b": {
+        "provider": "vllm",
+        "name": "qwen3.5-122b-a10b",
+        "url": "http://127.0.0.1:8008/v1/chat/completions"
+      },
+      "qwen3.6-35b-a3b": {
+        "provider": "vllm",
+        "name": "qwen3.6-35b-a3b",
+        "url": "http://127.0.0.1:8008/v1/chat/completions"
+      }
+    },
+    "profiling": {
+      "total_runs": 8,
+      "warmup_runs": 3,
+      "statistic": "mean"
+    },
+    "backend": {
+      "compile_timeout_ms": 1800000,
+      "run_timeout_ms": 3600000,
+      "min_improvement_epsilon": 0.0,
+      "start_timeout_seconds": 90
+    },
+    "client": {
+      "backend_timeout_seconds": 3600
+    }
+  },
+  "ops": [
+    {
+      "name": "fused_gdn_gating",
+      "prefer": [
+        "vllm_ascend"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "moe_token_unpermute",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "moe_fused_topk",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "interleave_rope",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "qkv_rms_norm_rope_cache",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "clipped_swiglu",
+      "prefer": [
+        "test_kernels:ops_nn",
+        "stable:ops_nn"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "hc_post",
+      "prefer": [
+        "vllm_ascend"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "swi_glu",
+      "prefer": [
+        "test_kernels:ops_nn",
+        "stable:ops_nn"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "recurrent_gated_delta_rule",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "vllm_ascend",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "hc_pre_sinkhorn",
+      "prefer": [
+        "vllm_ascend"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "moe_gating_top_k",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "vllm_ascend",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "rope_with_sin_cos_cache",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "add_rms_norm",
+      "prefer": [
+        "test_kernels:ops_nn",
+        "stable:ops_nn"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "rms_norm",
+      "prefer": [
+        "test_kernels:ops_nn",
+        "stable:ops_nn"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "lightning_indexer",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "vllm_ascend",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "sparse_flash_attention",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "vllm_ascend",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    },
+    {
+      "name": "mla_prolog",
+      "prefer": [
+        "test_kernels:ops_transformer",
+        "stable:ops_transformer"
+      ],
+      "data_cases": "all"
+    }
+  ],
+  "distribution_note": "ASCEND_GYM_WORKSPACE is the package root (`${ASCEND_GYM_WORKSPACE}`); ASCEND_GYM_DATA_ROOT holds ops_src/ and packages/. Both are expanded by op_manager, bare_bench, the bench Backends and client config loaders. outputs.runs_dir is CWD-relative (../runs when running from bridge/). Set the environment variable named by api_key_env for cloud models, and pass --sandbox-url or SANDBOX_URL."
+}
