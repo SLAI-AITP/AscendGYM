@@ -9,7 +9,7 @@
 
 <p align="center">
   <strong>A Benchmark for Kernel Optimization on Ascend</strong><br>
-  真实训练与推理工作负载上的算子优化评测
+  真实训推场景下的昇腾算子优化评测
 </p>
 
 <p align="center">
@@ -22,11 +22,11 @@
 
 ---
 
-AscendGYM 用于评测模型和 agent harness 优化昇腾算子的能力，提供从任务准备、沙盒编译与正确性测试，到性能测量和结果分析的统一入口。
+AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，提供从任务准备、沙盒编译与正确性测试，到性能测量和结果分析的统一入口。
 
 | 任务与数据 | 评测方式 | 执行环境 |
 |:---:|:---:|:---:|
-| **17 个正式任务** · 全部冻结用例 | **Native / Bare** · 统一启动入口 | **AscendForge** · 昇腾沙盒 |
+| **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 统一启动入口 | **AscendForge** · 沙盒环境（见镜像） |
 
 **使用导航：** [安装与环境](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
@@ -373,5 +373,3 @@ export CODEX_HOME=/path/to/codex-template
 本项目自行编写且未另行声明许可的评测框架、配置、测试脚本和文档采用 [Apache License 2.0](LICENSE)。该许可仅覆盖项目有权授权的原创内容；第三方源码、移植或派生内容、图片及其他材料继续适用其原有许可和版权声明。
 
 算子快照和评测数据的来源及适用范围见 [datasets/README.md](datasets/README.md)，服务及内置组件的许可边界见 [AscendForge/THIRD_PARTY_NOTICES.md](AscendForge/THIRD_PARTY_NOTICES.md)。公开依赖的许可不由项目 Apache-2.0 声明替代。
-
-内置 gtsrus 采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/legalcode.en)，不属于项目 Apache-2.0 授权范围；其中第三方材料继续适用原有许可。包含该组件的使用和分发须遵守适用的署名、非商业等条件。
