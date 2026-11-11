@@ -2006,6 +2006,8 @@ def cmd_run(args, catalog, catalog_path):
     env = os.environ.copy()
     env.update(sandbox_env(catalog, item, metadata,
                            profiling_runs=measured_runs, warmup_runs=warmup_runs))
+    if sandbox_url:
+        env["SANDBOX_URL"] = sandbox_url
     env.update(model_env)
     if args.agent == "codex":
         env.setdefault("CODEX_HOME", str(Path.home() / ".codex"))
@@ -2131,7 +2133,7 @@ def main():
     run.add_argument("--bare-model", dest="bare_model",
                        help="bare harness 的裸模型名（取 op_catalog.bare.models；缺省用 default_model）")
     run.add_argument("--sandbox-url", dest="sandbox_url",
-                       help="沙盒代理 URL（bare harness 需要，取 host/port 传给 k-lens-v2 Backend）")
+                       help="沙盒服务 URL（native/bare 通用，优先于 SANDBOX_URL 环境变量）")
     run.add_argument("--harness", choices=list(HARNESS_KINDS), default="native",
                      help="native=native_bench；bare=k-lens-v2 bare_client")
     run.add_argument("--run-id", help="显式 run-id（优先级高于 --tag）")
