@@ -26,7 +26,7 @@ AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，提供从�
 
 | 任务与数据 | 评测方式 | 执行环境 |
 |:---:|:---:|:---:|
-| **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 统一启动入口 | **AscendForge** · 沙盒环境（见镜像） |
+| **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 启动入口 | **AscendForge** · 镜像环境 |
 
 **使用导航：** [安装与环境](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
