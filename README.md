@@ -35,6 +35,22 @@ Leaderboard 提供交互式评测榜单，可按模型、Harness 和算子查看
 
 **访问地址：[AscendGYM Leaderboard](https://slai-aitp.github.io/AscendGYM/)**。
 
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="docs/assets/leaderboard/leaderboard-sts.png"><img src="docs/assets/leaderboard/leaderboard-sts.png" width="100%" alt="STS Leaderboard"></a>
+    </td>
+    <td width="50%" valign="top">
+      <a href="docs/assets/leaderboard/leaderboard-performance-cost.png"><img src="docs/assets/leaderboard/leaderboard-performance-cost.png" width="100%" alt="Performance × Cost"></a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <a href="docs/assets/leaderboard/leaderboard-sts-wide.png"><img src="docs/assets/leaderboard/leaderboard-sts-wide.png" width="100%" alt="STS Leaderboard wide view"></a>
+    </td>
+  </tr>
+</table>
+
 **使用导航：** [环境准备](#sandbox-setup) · [客户端依赖](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
 ## 仓库组成

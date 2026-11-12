@@ -68,7 +68,7 @@ export const SECTIONS = {
   },
   operators: {
     id: 'operators',
-    index: '04',
+    index: '03',
     kicker: 'KERNEL PANEL',
     label: 'Details',
     title: 'Kernel Panel',
@@ -76,7 +76,7 @@ export const SECTIONS = {
   },
   gain: {
     id: 'gain',
-    index: '05',
+    index: '04',
     kicker: 'PERFORMANCE GAIN',
     label: 'Performance',
     title: 'Performance Gain',
