@@ -16,6 +16,7 @@
   <a href="#sandbox-setup">环境准备</a> ·
   <a href="#quick-start">快速开始</a> ·
   <a href="website/public/AscendGYM_TechReport.pdf">技术报告</a> ·
+  <a href="https://slai-aitp.github.io/AscendGYM/">Leaderboard</a> ·
   <a href="#documentation">文档</a> ·
   <a href="#license">许可</a>
 </p>
