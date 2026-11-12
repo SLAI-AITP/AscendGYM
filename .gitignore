@@ -1,6 +1,9 @@
 # Local evaluation runs, trajectories and generated credentials
 /runs/
 
+# AscendForge is distributed as a container image; keep service source untracked.
+/AscendForge/
+
 # Excluded from this release; keep any local client copy untracked.
 /eval/bare_harness/client_v2/
 
@@ -23,17 +26,8 @@ __pycache__/
 *.before_*
 
 # datasets/ has its own rules; keep frozen .pt tensors.
-# Do not ignore every build/ directory: AscendForge/sandbox/utils/npu/build is source.
 
 # Local migration records: retained on disk, excluded from Git
-/AscendForge/GTSRUS_COPY_REPORT.json
-/AscendForge/MIGRATION_ADJUSTMENTS.json
-/AscendForge/MIGRATION_NOTES.md
-/AscendForge/COMPLETENESS_CHECKS.json
-/AscendForge/COMPLETENESS_REVIEW.md
-/AscendForge/SOURCE_CLEANUP_REPORT.json
-/AscendForge/SOURCE_SEPARATION_CPU_TESTS.json
-/AscendForge/PUBLIC_SCAN_REPORT.json
 /bridge/PACKAGE_SCAN.json
 /datasets/GOLDEN_MIGRATION_MAP.json
 /datasets/VALIDATION_REPORT.json

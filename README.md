@@ -13,22 +13,28 @@
 </p>
 
 <p align="center">
+  <a href="#sandbox-setup">环境准备</a> ·
   <a href="#quick-start">快速开始</a> ·
   <a href="website/public/AscendGYM_TechReport.pdf">技术报告</a> ·
-  <a href="website/">项目主页源码</a> ·
   <a href="#documentation">文档</a> ·
   <a href="#license">许可</a>
 </p>
 
 ---
 
-AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，开源评测任务数据和评测工程，提供任务准备、正确性测试、性能测量和结果分析的统一入口。编译执行环境可使用托管在独立镜像平台、需申请访问权限的官方 AscendForge 镜像，也可使用符合[服务协议](docs/EXECUTION_BACKEND.md)的自建服务；使用开源评测集和工程不要求获得官方镜像。
+AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，开源评测任务数据和评测工程，提供任务准备、正确性测试、性能测量和结果分析的统一入口。编译执行环境可使用在 Quay 公开发布、可直接拉取的官方 AscendForge 镜像，也可使用符合[服务协议](docs/EXECUTION_BACKEND.md)的自建服务；使用开源评测集和工程不要求获得官方镜像。
 
 | 任务与数据 | 评测方式 | 执行环境 |
 |:---:|:---:|:---:|
 | **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 启动入口 | [官方镜像](docs/SANDBOX_IMAGE.md) / [自建服务](docs/SELF_HOSTED_ENVIRONMENT.md) |
 
-**使用导航：** [安装与环境](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
+## 项目主页
+
+项目主页提供交互式评测榜单，可按模型、Harness 和算子查看结果，对比加速比、token 消耗及估算 API 成本，并查阅 STS 等指标说明和技术报告。
+
+**访问地址：[AscendGYM 项目主页](https://slai-aitp.github.io/AscendGYM/)**。
+
+**使用导航：** [环境准备](#sandbox-setup) · [客户端依赖](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
 ## 仓库组成
 
@@ -36,6 +42,7 @@ AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，开源评�
 AscendGYM/
 ├── bridge/             # 评测入口、配置、批次调度和工具
 ├── datasets/           # 正式任务、源码基线、冻结测试和 golden
+├── environment/        # 执行环境参考版本、上游版本与测试依赖清单
 ├── eval/
 │   ├── native_harness/ # 原生 coding agent 自主循环
 │   └── bare_harness/   # 裸模型与工具池
@@ -47,6 +54,8 @@ AscendGYM/
 └── README.md
 ```
 
+`environment/` 提供[参考软件栈](environment/reference-stack.json)、[上游仓库版本](environment/public-dependencies.json)和[测试侧 Python 依赖](environment/requirements-tests.txt)，用于查阅编译执行环境的配置。评测客户端的 Python 依赖见根目录 [requirements.txt](requirements.txt)，镜像部署步骤见下方[环境准备](#sandbox-setup)。
+
 | Harness | 适用方式 | 详细说明 |
 |---|---|---|
 | native | Claude Code、Codex、OpenCode 等原生 agent | [native_harness](eval/native_harness/README.md) |
@@ -57,9 +66,11 @@ AscendGYM/
 <a id="quick-start"></a>
 ## 快速开始
 
-以下流程使用 bare harness 跑一个任务。需要 Python 3.10+、可访问的模型端点，以及可访问的编译执行服务。先按[安装与环境](#installation)选择官方镜像或自建服务，再设置 `SANDBOX_URL`。
+以下流程使用 bare harness 跑一个任务。需要 Python 3.10+、可访问的模型端点，以及可访问的编译执行服务。
 
-### 1. 获取仓库并设置路径
+**操作顺序：安装客户端 → 准备镜像服务 → 配置模型与任务 → 运行评测。** 客户端和编译执行服务可以位于不同机器。
+
+### 1. 获取仓库并安装客户端依赖
 
 ```bash
 git clone https://github.com/SLAI-AITP/AscendGYM.git
@@ -67,14 +78,36 @@ cd AscendGYM
 
 export ASCEND_GYM_WORKSPACE="$PWD"
 export ASCEND_GYM_DATA_ROOT="$ASCEND_GYM_WORKSPACE/datasets"
-export SANDBOX_URL='http://<sandbox-host>:<port>'
 
 python3 -m pip install -r "$ASCEND_GYM_WORKSPACE/requirements.txt"
 ```
 
-将 `SANDBOX_URL` 替换为实际沙盒地址。已有仓库时，在仓库根目录设置上述变量即可。运行时也可使用 `source datasets/activate.sh` 设置工作区和随包数据根。
+已有仓库时，在仓库根目录设置上述变量并安装依赖即可。运行时也可使用 `source datasets/activate.sh` 设置工作区和随包数据根。
 
-### 2. 准备模型与任务包
+<a id="sandbox-setup"></a>
+### 2. 准备编译执行环境
+
+在配有 NPU 和兼容驱动的 **Linux arm64 执行主机**上拉取官方镜像，无需申请权限或登录 Quay：
+
+```bash
+export SANDBOX_IMAGE='quay.io/slai-aitp/ascendgym:v1.0.0-a3-cann9.0.1'
+docker pull "$SANDBOX_IMAGE"
+```
+
+**拉取后，按[镜像指南中的启动命令](docs/SANDBOX_IMAGE.md#2-启动服务)启动服务**，配置 NPU 设备、驱动目录和端口映射。完整说明见 [SANDBOX_IMAGE.md](docs/SANDBOX_IMAGE.md)。已有服务时可直接进行下面的连接检查；也可按[自建环境指南](docs/SELF_HOSTED_ENVIRONMENT.md)准备兼容服务。
+
+回到**评测客户端**，设置实际服务地址并检查编译、冻结测试及 profiling（不调用模型）：
+
+```bash
+export SANDBOX_URL='http://<sandbox-host>:9000'
+curl --fail "$SANDBOX_URL/ping"
+cd "$ASCEND_GYM_WORKSPACE/bridge"
+python3 op_manager.py smoke --op add_rms_norm --cases all --profiling-runs 5
+```
+
+将 `<sandbox-host>` 替换为执行主机地址，端口与部署配置保持一致；客户端和服务在同一台机器时可使用 `127.0.0.1`。`/ping` 用于检查连通性，smoke 用于检查实际编译执行，结果说明见[安装与环境](#installation)。
+
+### 3. 准备模型与任务包
 
 在 `bridge/configs/op_catalog.json` 的 `models` 中配置模型端点和认证方式，记下条目的 key。密钥使用环境变量传入，见[模型配置](#models)。
 
@@ -85,7 +118,7 @@ python3 op_manager.py build --all
 
 该命令从 `datasets/ops_src/` 生成评测用的 `datasets/packages/`。`packages/` 可以在安装后生成，不要求预先随仓库上传。
 
-### 3. 运行一个 bare 任务
+### 4. 运行一个 bare 任务
 
 将下面的 `<MODEL_KEY>` 替换为 catalog 中的模型条目 key：
 
@@ -104,7 +137,7 @@ python3 op_manager.py run \
 
 首次可加 `--dry-run` 离线检查命令与环境。该检查不探测模型协议、不启动代理、不提交评测，因此不能验证端点认证或 NPU 执行。
 
-### 4. 查看结果
+### 5. 查看结果
 
 运行产物位于：
 
@@ -127,18 +160,12 @@ bare 的主要结果为 `result.json`；native 的加速比见 `metrics.json` �
 
 评测客户端通过 HTTP 提交算子源码和冻结测试，由服务完成编译、正确性测试及 profiling。客户端与服务可在不同机器运行；仅运行客户端时无需安装 CANN 或 NPU 驱动。
 
-- **官方镜像**：AscendForge 不随本仓库提供源码，镜像托管在独立平台。申请访问权限后，从平台拉取镜像；平台地址、拉取、启动与接入方法见 [SANDBOX_IMAGE.md](docs/SANDBOX_IMAGE.md)。
+- **官方镜像**：AscendForge 不随本仓库提供源码。公开镜像为 `quay.io/slai-aitp/ascendgym:v1.0.0-a3-cann9.0.1`，可直接拉取；拉取、启动与接入方法见 [SANDBOX_IMAGE.md](docs/SANDBOX_IMAGE.md)。
 - **自建服务**：自行准备编译工具链和算子绑定，提供兼容的执行接口。能力要求与参考环境见 [SELF_HOSTED_ENVIRONMENT.md](docs/SELF_HOSTED_ENVIRONMENT.md)。
 
 两种方式均通过 `SANDBOX_URL` 连接。`op_manager.py run` 的 `--sandbox-url` 优先于环境变量；均未设置时默认 `http://127.0.0.1:9000`。不同协议的服务需要适配器，不能只替换 URL。
 
-启动模型前，先验证真实编译、冻结测试和 profiling（不调用模型）：
-
-```bash
-curl --fail "$SANDBOX_URL/ping"
-cd "$ASCEND_GYM_WORKSPACE/bridge"
-python3 op_manager.py smoke --op add_rms_norm --cases all --profiling-runs 5
-```
+镜像拉取、服务启动入口、连接检查和 smoke 命令见[环境准备](#sandbox-setup)。
 
 `--cases all` 指定全部冻结用例。未覆盖 `SANDBOX_WARMUP_RUNS` 时，命令运行 3 轮预热加 5 轮测量，以日志中的实际协议为准。`/ping` 只检查服务可达；`smoke` 汇总编译、测试输出和 profiling 解析结果。正式验收仍需核对全部测试轮次和错误日志，不能只凭一条通过标志或 profiler 的退出码认定全部测试成功。单个任务的结果不代表所有任务已通过。
 
@@ -334,6 +361,7 @@ export CODEX_HOME=/path/to/codex-template
 | [官方镜像](docs/SANDBOX_IMAGE.md) | 镜像平台访问、拉取、启动与接入 |
 | [自建环境](docs/SELF_HOSTED_ENVIRONMENT.md) | 编译执行能力、参考依赖与验收 |
 | [服务协议](docs/EXECUTION_BACKEND.md) | 工具调用、文件传输和返回结果 |
+| [环境参考文件](environment/) | 参考软件栈、上游仓库版本与测试侧依赖清单 |
 | [datasets](datasets/README.md) | 任务索引、冻结数据与来源 |
 | [native harness](eval/native_harness/README.md) | 原生 agent 的配置与运行 |
 | [bare harness](eval/bare_harness/README.md) | 裸模型与工具池 |
@@ -345,7 +373,7 @@ export CODEX_HOME=/path/to/codex-template
 | [OPERATOR_TEST_GUIDE](docs/OPERATOR_TEST_GUIDE.md) | 冻结测试脚本接口 |
 | [DATA_LAYOUT](docs/DATA_LAYOUT.md) | 自定义数据根布局 |
 | [examples](examples/README.md) | 多种 agent 的启动示例 |
-| [项目主页](website/README.md) | 主页本地预览、静态构建与 GitHub Pages 部署 |
+| [主页开发与部署](website/README.md) | 主页本地预览、静态构建与 GitHub Pages 部署 |
 
 <a id="license"></a>
 ## 许可

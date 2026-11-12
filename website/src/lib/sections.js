@@ -97,7 +97,7 @@ export const SECTIONS = {
     kicker: 'IMPORT DATA',
     label: 'Import',
     title: 'Import Your Evaluation Data',
-    summary: 'Set up the environment provided in the open-source repository, including the sandbox and supporting code. Load the default or a custom harness, generate the evaluation files, and upload them to display your results on the AscendGYM leaderboard.',
+    summary: 'Set up the execution environment using the public AscendForge container image or a compatible self-hosted service. Load the default or a custom harness, generate the evaluation files, and upload them to display your results on the AscendGYM leaderboard.',
     route: '/imports' // lives on its own page
   }
 };

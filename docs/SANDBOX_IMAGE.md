@@ -1,30 +1,24 @@
 # 官方镜像使用
 
-官方 AscendForge 镜像托管在独立镜像平台，不随开源代码仓库分发。使用前需申请相应访问权限，再从平台拉取镜像。无需官方镜像的接入方式见[自建环境](SELF_HOSTED_ENVIRONMENT.md)。
+官方 AscendForge 镜像公开托管在 Quay，可直接拉取，无需申请访问权限。无需官方镜像的接入方式见[自建环境](SELF_HOSTED_ENVIRONMENT.md)。
 
 ## 1. 获取镜像
 
-镜像平台地址：`<IMAGE_PLATFORM_URL>`（待填写）。访问该平台并按平台说明完成权限申请与授权。
+镜像页面：[slai-aitp/ascendgym](https://quay.io/repository/slai-aitp/ascendgym)。
 
-获得权限后，将下方 `SANDBOX_IMAGE` 设置为平台提供的完整镜像引用，包含仓库域名、命名空间、镜像名称与版本标签，或指定 digest。平台网页 URL 与 Docker 镜像引用用途不同，不要将带 `https://` 的网页地址直接用于 `docker pull`。
-
-```bash
-export SANDBOX_IMAGE='<IMAGE_REFERENCE>'
-```
-
-如平台要求 Docker 登录，先按平台提供的认证方式登录镜像仓库。对于上述包含仓库域名的完整镜像引用，可使用：
+将 `SANDBOX_IMAGE` 设置为以下完整镜像引用。平台网页 URL 与 Docker 镜像引用用途不同，不要将带 `https://` 的网页地址直接用于 `docker pull`。
 
 ```bash
-docker login "${SANDBOX_IMAGE%%/*}"
+export SANDBOX_IMAGE='quay.io/slai-aitp/ascendgym:v1.0.0-a3-cann9.0.1'
 ```
 
-然后拉取镜像：
+该公开镜像无需登录，直接拉取：
 
 ```bash
 docker pull "$SANDBOX_IMAGE"
 ```
 
-下文启动命令复用 `SANDBOX_IMAGE`，无需重复填写镜像名称。评测记录中应保存实际使用的镜像引用和版本；镜像平台地址用于获取访问说明，不是 bridge 的编译服务地址。
+下文启动命令复用 `SANDBOX_IMAGE`，无需重复填写镜像名称。评测记录中应保存实际使用的镜像引用和版本；镜像页面用于查看版本信息，不是 bridge 的编译服务地址。
 
 ## 2. 启动服务
 

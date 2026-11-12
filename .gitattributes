@@ -10,21 +10,8 @@
 *.before_* export-ignore
 
 # Local migration records are not release archive inputs.
-/AscendForge/GTSRUS_COPY_REPORT.json export-ignore
-/AscendForge/MIGRATION_ADJUSTMENTS.json export-ignore
-/AscendForge/MIGRATION_NOTES.md export-ignore
-/AscendForge/COMPLETENESS_CHECKS.json export-ignore
-/AscendForge/COMPLETENESS_REVIEW.md export-ignore
-/AscendForge/SOURCE_CLEANUP_REPORT.json export-ignore
-/AscendForge/SOURCE_SEPARATION_CPU_TESTS.json export-ignore
-/AscendForge/PUBLIC_SCAN_REPORT.json export-ignore
 /bridge/PACKAGE_SCAN.json export-ignore
 /datasets/GOLDEN_MIGRATION_MAP.json export-ignore
 /datasets/VALIDATION_REPORT.json export-ignore
 
 *.sh text eol=lf
-
-/AscendForge/docs/build export-ignore
-/AscendForge/docs/.docusaurus export-ignore
-/AscendForge/docker/Miniconda3-latest-Linux-aarch64.sh export-ignore
-/AscendForge/sandbox/client/docker/Miniconda3-latest-Linux-aarch64.sh export-ignore
