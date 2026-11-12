@@ -28,11 +28,11 @@ AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，开源评�
 |:---:|:---:|:---:|
 | **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 启动入口 | [官方镜像](docs/SANDBOX_IMAGE.md) / [自建服务](docs/SELF_HOSTED_ENVIRONMENT.md) |
 
-## 项目主页
+## Leaderboard
 
-项目主页提供交互式评测榜单，可按模型、Harness 和算子查看结果，对比加速比、token 消耗及估算 API 成本，并查阅 STS 等指标说明和技术报告。
+Leaderboard 提供交互式评测榜单，可按模型、Harness 和算子查看结果，对比加速比、token 消耗及估算 API 成本，并查阅 STS 等指标说明和技术报告。
 
-**访问地址：[AscendGYM 项目主页](https://slai-aitp.github.io/AscendGYM/)**。
+**访问地址：[AscendGYM Leaderboard](https://slai-aitp.github.io/AscendGYM/)**。
 
 **使用导航：** [环境准备](#sandbox-setup) · [客户端依赖](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
@@ -48,7 +48,7 @@ AscendGYM/
 │   └── bare_harness/   # 裸模型与工具池
 ├── docs/               # 跨模块详细文档
 ├── examples/           # 启动示例
-├── website/            # 项目主页、榜单与技术报告
+├── website/            # Leaderboard、指标说明与技术报告
 ├── requirements.txt
 ├── LICENSE
 └── README.md
@@ -373,7 +373,7 @@ export CODEX_HOME=/path/to/codex-template
 | [OPERATOR_TEST_GUIDE](docs/OPERATOR_TEST_GUIDE.md) | 冻结测试脚本接口 |
 | [DATA_LAYOUT](docs/DATA_LAYOUT.md) | 自定义数据根布局 |
 | [examples](examples/README.md) | 多种 agent 的启动示例 |
-| [主页开发与部署](website/README.md) | 主页本地预览、静态构建与 GitHub Pages 部署 |
+| [Leaderboard 开发与部署](website/README.md) | Leaderboard 本地预览、静态构建与 GitHub Pages 部署 |
 
 <a id="license"></a>
 ## 许可
