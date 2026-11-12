@@ -1,0 +1,8 @@
+# Common Python dependency used by frozen NPU tests.
+# This file does NOT install a complete NPU compiler/runtime or operator bindings.
+numpy
+
+# Install a mutually compatible torch + torch_npu pair separately for the target
+# Python ABI, architecture, driver and CANN. See docs/SELF_HOSTED_ENVIRONMENT.md.
+# vLLM tasks additionally need compatible vllm/vllm_ascend and built NPU operators.
+# gtsrusops is a task build output/adapter module, not a generic pip dependency.

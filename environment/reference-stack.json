@@ -1,0 +1,11 @@
+{
+  "scope": "Reference isolated node runtime used for selected-operator checks; not full container NPU acceptance or universal compatibility",
+  "architecture": "Linux aarch64",
+  "python": "3.11.15",
+  "cann": "9.0.1",
+  "torch": "2.10.0+cpu",
+  "torch_npu": "2.10.0.post2",
+  "hardware_family": "Ascend 910C / ascend910_93",
+  "driver": "Use a compatible host driver; exact target installation must be checked",
+  "validation": "Selected operators tested; independently validate self-hosted environments and all intended tasks"
+}

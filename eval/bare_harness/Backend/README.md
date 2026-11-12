@@ -1,5 +1,7 @@
 # Backend — tool execution service
 
+> AscendGYM 接入说明：通过 bridge 启动时，Backend 使用公开的 `bridge/bare_bench/sandbox_runner/main.py` 经 HTTP 调用编译服务，地址由 `SANDBOX_URL` 或启动参数确定。无需本机安装私有服务源码或 NPU Conda 环境。下文涉及本地 Conda、`SANDBOX_PATH` 和 `_test.sh` 的默认配置属于独立运行 Backend 的旧路径，不是 AscendGYM 推荐入口。当前服务契约见 [EXECUTION_BACKEND.md](../../../docs/EXECUTION_BACKEND.md)。
+
 The Backend is a single-process Flask service that executes everything
 the Client's LLM cannot do itself: read operator source, edit it,
 compile and profile via SandboxFusion, persist version snapshots, and
@@ -23,9 +25,9 @@ cross-syncing code between variants is explicitly discouraged.
 
 The big differences in this variant:
 
-- **No SSH, no container, no `gtsdev debug`.** Compile / run / profile
-  go through local `SandboxFusion` via `conda run -n
-  sandbox-npu-runtime bash <sandbox_path>/<op_name>_test.sh`.
+- **AscendGYM execution path.** The Backend invokes the public bridge runner,
+  which uploads sources and tests to an HTTP compilation service. NPU execution
+  happens at that service; local NPU Conda activation is not required for this path.
 - **No `operator_cleanup`, no `code_framework_generate`, no
   `pytorch_golden_generate`.** This variant is performance-oriented,
   not full-pipeline.
@@ -200,14 +202,14 @@ POST /api/   { "name": "<tool>", "parameters": {...} }
    <service>.process / .execute / ...
        │
        │   (e.g. ascend_code_profiling →
-       │     conda run -n sandbox-npu-runtime bash <op>_test.sh)
+       │     public bridge runner → HTTP /run_code)
        ▼
    jsonify({ "success": bool, "tool_name": str, "tool_call_result": {...} })
 ```
 
-There is no SSH, no `docker exec`, no container manager — everything
-that touches the NPU happens inside the SandboxFusion subprocess
-invoked locally.
+For the AscendGYM entry point, the local subprocess is the bridge HTTP runner.
+Compilation, testing and profiling happen at the configured execution service;
+the Backend does not directly enter the service container.
 
 ---
 
@@ -371,7 +373,4 @@ one that's fully self-contained.)
 - [`services/gemm/CLAUDE.md`](./services/gemm/CLAUDE.md) — MIP GEMM
   tiling solver internals.
 - Top-level [`../README.md`](../README.md) — system overview.
-- [`../client_v2/README.md`](../client_v2/README.md) — the client this
-  Backend talks to.
-- [`../client_v2/world_model/PLAN.md`](../client_v2/world_model/PLAN.md) —
-  full search-strategy design (Chinese).
+- [AscendGYM bare harness](../README.md) — client configuration and supported entry point.

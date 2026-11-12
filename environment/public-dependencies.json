@@ -1,0 +1,25 @@
+{
+  "purpose": "Reference public build repository snapshots; not a complete installer or required client-side checkout",
+  "repositories": [
+    {
+      "name": "ops-nn",
+      "url": "https://gitcode.com/cann/ops-nn.git",
+      "commit": "d93dc7dfef407a65a2c4139b9a46deefe3d02751"
+    },
+    {
+      "name": "ops-transformer",
+      "url": "https://gitcode.com/cann/ops-transformer.git",
+      "commit": "250ea09c089246f6927ca5f0f799b84ceb047672"
+    },
+    {
+      "name": "ops-math",
+      "url": "https://gitcode.com/cann/ops-math.git",
+      "commit": "a522538bb2cfa5f836ee99d488092ea2fadebd85"
+    },
+    {
+      "name": "vllm-ascend",
+      "url": "https://github.com/vllm-project/vllm-ascend.git",
+      "commit": "f4a08bddd0cc65a0bd8c3d377b158ae5ca7527db"
+    }
+  ]
+}

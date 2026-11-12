@@ -50,7 +50,7 @@ python3 tools/proxy.py --protocol responses \
 - native：读取 `snapshots/<solution_id>/files`，按 `config.resolved.json` 的 `evaluator.command` 连续执行复测；
 - bare：启动本 run 的 Backend，先 `restore_op_version` 恢复最佳版本，再连续执行 `ascend_code_profiling`。
 
-复测结果写入 `<run-dir>/_final_recheck_<timestamp>/result.json`，格式与 `apply_final_recheck.py` 的输入一致。工具不会重新运行 agent，也不消耗候选预算。
+复测结果写入 `<run-dir>/_final_recheck_<timestamp>/result.json`，格式与 `apply_final_recheck.py` 的输入一致。工具不会重新运行 agent，也不消耗候选预算。指定节点或 NPU 需要调度服务支持相应约束；直连单 worker 时设备由部署配置决定，不能假设 `--npu` 字段会被执行。见[服务协议](EXECUTION_BACKEND.md)。
 
 典型场景：批次已结束、`result.json.success=false`，`final_verification` 在固定同一张 NPU 上连续失败，需要换一张卡对同一最佳版本重新取证。
 

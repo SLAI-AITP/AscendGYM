@@ -22,11 +22,11 @@
 
 ---
 
-AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，提供从任务准备、沙盒编译与正确性测试，到性能测量和结果分析的统一入口。
+AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，开源评测任务数据和评测工程，提供任务准备、正确性测试、性能测量和结果分析的统一入口。编译执行环境可使用托管在独立镜像平台、需申请访问权限的官方 AscendForge 镜像，也可使用符合[服务协议](docs/EXECUTION_BACKEND.md)的自建服务；使用开源评测集和工程不要求获得官方镜像。
 
 | 任务与数据 | 评测方式 | 执行环境 |
 |:---:|:---:|:---:|
-| **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 启动入口 | **AscendForge** · 镜像环境 |
+| **Batch 1 （17 Tasks）** · Batch 2/3 后续更新 | **Native / Bare** · 启动入口 | [官方镜像](docs/SANDBOX_IMAGE.md) / [自建服务](docs/SELF_HOSTED_ENVIRONMENT.md) |
 
 **使用导航：** [安装与环境](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
@@ -34,7 +34,6 @@ AscendGYM 用于评测模型和 Harness 优化昇腾算子的能力，提供从�
 
 ```text
 AscendGYM/
-├── AscendForge/        # 沙盒服务和构建适配
 ├── bridge/             # 评测入口、配置、批次调度和工具
 ├── datasets/           # 正式任务、源码基线、冻结测试和 golden
 ├── eval/
@@ -58,7 +57,7 @@ AscendGYM/
 <a id="quick-start"></a>
 ## 快速开始
 
-以下流程使用 bare harness 跑一个任务。需要 Python 3.10+、可访问的模型端点，以及已部署并可用的 AscendForge 沙盒。首次部署沙盒请先完成[安装与环境](#installation)和[上游构建依赖](#upstream-dependencies)。
+以下流程使用 bare harness 跑一个任务。需要 Python 3.10+、可访问的模型端点，以及可访问的编译执行服务。先按[安装与环境](#installation)选择官方镜像或自建服务，再设置 `SANDBOX_URL`。
 
 ### 1. 获取仓库并设置路径
 
@@ -124,52 +123,31 @@ bare 的主要结果为 `result.json`；native 的加速比见 `metrics.json` �
 - native：在客户端依赖基础上安装所选 agent 的 CLI。Claude Code 使用 `claude`，Codex 使用 `codex`，OpenCode 使用 `opencode`。
 - Codex 需要模板 `CODEX_HOME`；OpenCode 需要可用的全局配置。具体要求见 [native harness 文档](eval/native_harness/README.md)。
 
-### 沙盒服务
+### 编译执行服务
 
-算子的编译、正确性测试和 profiling 由 AscendForge 完成，需要兼容的昇腾硬件、驱动、CANN 和相关运行环境。部署方法见 [AscendForge](AscendForge/README.md) 和[部署说明](AscendForge/README_OPEN_SOURCE.md)。
+评测客户端通过 HTTP 提交算子源码和冻结测试，由服务完成编译、正确性测试及 profiling。客户端与服务可在不同机器运行；仅运行客户端时无需安装 CANN 或 NPU 驱动。
 
-上游构建仓库按下面的固定 commit 获取。客户端与沙盒可部署在不同机器上，客户端通过 `SANDBOX_URL` 访问服务。
+- **官方镜像**：AscendForge 不随本仓库提供源码，镜像托管在独立平台。申请访问权限后，从平台拉取镜像；平台地址、拉取、启动与接入方法见 [SANDBOX_IMAGE.md](docs/SANDBOX_IMAGE.md)。
+- **自建服务**：自行准备编译工具链和算子绑定，提供兼容的执行接口。能力要求与参考环境见 [SELF_HOSTED_ENVIRONMENT.md](docs/SELF_HOSTED_ENVIRONMENT.md)。
+
+两种方式均通过 `SANDBOX_URL` 连接。`op_manager.py run` 的 `--sandbox-url` 优先于环境变量；均未设置时默认 `http://127.0.0.1:9000`。不同协议的服务需要适配器，不能只替换 URL。
+
+启动模型前，先验证真实编译、冻结测试和 profiling（不调用模型）：
+
+```bash
+curl --fail "$SANDBOX_URL/ping"
+cd "$ASCEND_GYM_WORKSPACE/bridge"
+python3 op_manager.py smoke --op add_rms_norm --cases all --profiling-runs 5
+```
+
+`--cases all` 指定全部冻结用例。未覆盖 `SANDBOX_WARMUP_RUNS` 时，命令运行 3 轮预热加 5 轮测量，以日志中的实际协议为准。`/ping` 只检查服务可达；`smoke` 汇总编译、测试输出和 profiling 解析结果。正式验收仍需核对全部测试轮次和错误日志，不能只凭一条通过标志或 profiler 的退出码认定全部测试成功。单个任务的结果不代表所有任务已通过。
 
 <a id="upstream-dependencies"></a>
-## 上游构建依赖
+## 自建环境参考依赖
 
-`AscendForge/` 作为普通目录随主仓发布；其四个上游构建仓库通过根目录的 [.gitmodules](.gitmodules) 和 Git 子模块固定到指定 commit，下载位置为 `AscendForge/runtime/ascend_c/`。版本同时记录在 [PUBLIC_DEPENDENCIES.json](AscendForge/PUBLIC_DEPENDENCIES.json)。
+[公开依赖版本清单](environment/public-dependencies.json)记录用于参考构建环境的四个上游仓库及固定 commit。任务源码基线和 golden 已随 `datasets/` 提供；连接已有服务的客户端不需要下载完整构建仓库。
 
-### 复现基线（固定 commit）
-
-| 仓库 | 固定 commit | 对应 tag |
-|---|---|---|
-| ops-nn | `d93dc7dfef407a65a2c4139b9a46deefe3d02751` | 无 |
-| ops-transformer | `250ea09c089246f6927ca5f0f799b84ceb047672` | 无 |
-| ops-math | `a522538bb2cfa5f836ee99d488092ea2fadebd85` | 无 |
-| vllm-ascend | `f4a08bddd0cc65a0bd8c3d377b158ae5ca7527db` | `v0.23.0rc1` |
-
-三个 CANN 仓库的上述快照声明版本为 `9.1.0`，没有对应 tag。按 commit 检出，不要用其他版本的 tag 替代。
-
-<details>
-<summary><strong>获取和校验上游依赖：展开完整命令</strong></summary>
-
-部署沙盒前，在克隆得到的工作区中执行以下命令，获取固定版本的上游源码并应用构建补丁：
-
-```bash
-ASCENDGYM_ASCEND_C="$ASCEND_GYM_WORKSPACE/AscendForge/runtime/ascend_c"
-bash "$ASCEND_GYM_WORKSPACE/AscendForge/scripts/fetch_public_dependencies.sh" --sources-only
-```
-
-该脚本执行 `git submodule update --init --recursive`，初始化主仓登记的四个依赖及它们的嵌套依赖，包括 ops-transformer 的 catlass `c8948c340c4f30fb5964ccdd6e3a0bc7615fe202` 和 vllm-ascend 的 catlass `41bf90da655bba3c66d0acd7e00abe33960ecfd6`，随后调用 `apply_public_patches.sh`。普通 `git clone` 不会自动下载子模块源码；只运行评测客户端、连接已有沙盒时，无需在客户端机器执行此步骤。
-
-补丁脚本会应用 `ops-transformer-host-protoc.patch`。检出后可核对版本：
-
-```bash
-for repo in ops-nn ops-transformer ops-math vllm-ascend; do
-    printf '%s %s\n' "$repo" \
-        "$(git -C "$ASCENDGYM_ASCEND_C/$repo" rev-parse HEAD)"
-done
-```
-
-输出应与表中的四个 commit 一致。gtsrus 源码已内置，评测任务和 golden 保存在 `datasets/`，不写入这些上游仓库。
-
-</details>
+自建服务应按所选后端准备构建资源、匹配的 CANN/PyTorch 环境和测试调用所需的 Python 绑定。固定 commit 是复现信息，不是完整安装程序。详见[自建环境说明](docs/SELF_HOSTED_ENVIRONMENT.md)。仓库不依赖 `AscendForge/` 目录或 Git 子模块来安装评测客户端。
 
 <a id="data"></a>
 ## 数据准备与任务注册
@@ -193,9 +171,9 @@ ops_src/
 └── vllm_ascend/kernels/<op>/
 ```
 
-算子目录通常包括 `op_host/`、`op_kernel/` 和 `<op>_test.py` 或 `op_speed_test/*.py`。冻结测试的接口要求见 [OPERATOR_TEST_GUIDE.md](docs/OPERATOR_TEST_GUIDE.md)。使用已有数据或预构建包时，可以将对应目录链接到数据根；确认链接目标在运行机器上可访问。
+数据源中的算子目录应包含 `op_host/`、`op_kernel/`，以及直接放在该目录下的 `<op>_test.py`（或其他 `*_test.py`）。`build` 会把选中的测试复制到生成包的 `agent/op_speed_test/`；仅在原始源码的子目录放测试，不会被自动发现。冻结测试的接口要求见 [OPERATOR_TEST_GUIDE.md](docs/OPERATOR_TEST_GUIDE.md)。使用已有数据或预构建包时，可以将对应目录链接到数据根；确认链接目标在运行机器上可访问。
 
-生成后的任务包包含 `agent/`、`spec.md`、`package.json`，以及适用任务的 `test_data/`。`build` 同时生成 `bridge/configs/op_catalog.resolved.json`。
+`build` 生成的任务包包含 `agent/`、`spec.md` 和 `package.json`，并生成 `bridge/configs/op_catalog.resolved.json`。golden 通过 `package.json` 中的 `data_dir` 指向原数据目录，提交评测时再由 bridge 上传；`build` 不会默认把 golden 复制到生成包内。
 
 ### 注册与校验任务
 
@@ -353,7 +331,9 @@ export CODEX_HOME=/path/to/codex-template
 
 | 文档 | 内容 |
 |---|---|
-| [AscendForge](AscendForge/README.md) | 沙盒部署与运行环境 |
+| [官方镜像](docs/SANDBOX_IMAGE.md) | 镜像平台访问、拉取、启动与接入 |
+| [自建环境](docs/SELF_HOSTED_ENVIRONMENT.md) | 编译执行能力、参考依赖与验收 |
+| [服务协议](docs/EXECUTION_BACKEND.md) | 工具调用、文件传输和返回结果 |
 | [datasets](datasets/README.md) | 任务索引、冻结数据与来源 |
 | [native harness](eval/native_harness/README.md) | 原生 agent 的配置与运行 |
 | [bare harness](eval/bare_harness/README.md) | 裸模型与工具池 |
@@ -372,4 +352,4 @@ export CODEX_HOME=/path/to/codex-template
 
 本项目自行编写且未另行声明许可的评测框架、配置、测试脚本和文档采用 [Apache License 2.0](LICENSE)。该许可仅覆盖项目有权授权的原创内容；第三方源码、移植或派生内容、图片及其他材料继续适用其原有许可和版权声明。
 
-算子快照和评测数据的来源及适用范围见 [datasets/README.md](datasets/README.md)，服务及内置组件的许可边界见 [AscendForge/THIRD_PARTY_NOTICES.md](AscendForge/THIRD_PARTY_NOTICES.md)。公开依赖的许可不由项目 Apache-2.0 声明替代。
+算子快照和评测数据的来源及适用范围见 [datasets/README.md](datasets/README.md)，官方镜像及其中第三方组件以镜像平台提供的版本说明和组件附带的许可声明为准。开源评测工程的许可不替代镜像或公开依赖各自的许可。

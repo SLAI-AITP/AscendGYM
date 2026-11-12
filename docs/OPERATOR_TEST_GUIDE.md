@@ -3,9 +3,9 @@
 面向要往评测集里新增/替换算子的用户：说明 `${ASCEND_GYM_DATA_ROOT}/ops_src/<backend>/<bucket>/kernels/<op>/` 下的
 冻结测试脚本必须满足哪些契约，`bridge build` 才能发现它、两个 harness 才能跑通它。
 
-harness 侧的执行链路见
-[`eval/bare_harness/client_v2/docs/07_OPERATOR_HARNESS.md`](../eval/bare_harness/client_v2/docs/07_OPERATOR_HARNESS.md)；
-本文只讲**数据集这一侧**要准备什么。
+当前编译服务对接和文件传输约定见 [EXECUTION_BACKEND.md](EXECUTION_BACKEND.md)。测试必须在服务端可调用已编译的算子，Python 绑定与运行环境要求见 [SELF_HOSTED_ENVIRONMENT.md](SELF_HOSTED_ENVIRONMENT.md)。
+
+本文说明数据集一侧的准备要求；harness 与服务的调用边界见上述服务协议。
 
 <!-- toc -->
 ## 目录
@@ -64,8 +64,7 @@ build 只按 **basename** 把它复制到包的 `op_speed_test/<file>.py`，目�
 - 全部用例通过：退出码 `0`，并打印 `ALL CHECKS PASSED (N cases)` 或 `All tests PASSED`。
 - 有用例失败：退出码非 `0`，并打印可识别的失败标志（如 `REGRESSION DETECTED`、`[FAIL]`）。
 
-桥接同时看**退出码**和**标志行**。只打印标志、退出码仍为 0，会被判成成功；
-只返回非 0、没有任何标志行，诊断信息会很难读。
+测试应同时提供真实退出码和完整的通过/失败标志。profiler 的退出码不能替代测试退出码；验收时应核对完整用例输出和 profiling 数据，不能仅凭早先一轮的通过标志认定全部成功。
 
 ## 4. 契约 C：必须支持 `--runs N`
 
@@ -77,11 +76,9 @@ msprof --application="python3 <test>.py --runs N" ...
 
 `msprof` **不会**替你循环，它只是把 `--runs N` 当参数传给脚本。脚本必须自己重复完整用例集
 `N` 次。Backend 的 `profile_op_summary.aggregate()` 硬性要求
-`total_rows % total_loops == 0`，所以只跑一遍会让总行数不整除，直接
-`baseline_failed`（报"总行数 X 不是循环次数 8 的整数倍"）。
+`total_rows % total_loops == 0`。行数不能整除时，bare 无法按配置拆分轮次并会报告失败；能整除也不能证明测试确实重复了 N 轮。
 
-native harness 对这个不整除是宽容的，所以**缺 `--runs` 的脚本在 native 下能跑、在 bare 下必挂**。
-不要用 native 的结果推断 bare 可用。
+native 的聚合器不强制同一整除关系，这不意味着不支持 `--runs` 的脚本就能通过：脚本也可能因未知参数直接退出。两条路径都应实现并验证完整的 N 轮测试，不能用一条路径的结果替代另一条。
 
 ### 标准收尾模板
 

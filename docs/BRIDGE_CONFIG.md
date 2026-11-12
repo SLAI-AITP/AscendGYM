@@ -1,5 +1,7 @@
 # 配置说明
 
+编译执行环境可选择[官方镜像](../docs/SANDBOX_IMAGE.md)或[兼容自建服务](../docs/SELF_HOSTED_ENVIRONMENT.md)。连接地址为服务基础 URL，`op_manager.py run` 的 `--sandbox-url` 优先于 `SANDBOX_URL`，均未设置时默认 `http://127.0.0.1:9000`。源码和冻结数据通过 HTTP 上传；客户端无需服务源码。请求与返回格式见[服务协议](../docs/EXECUTION_BACKEND.md)。
+
 本目录保存 bridge 的共享配置。字段级参考见 [CATALOG_REFERENCE.md](CATALOG_REFERENCE.md)。
 
 ```text

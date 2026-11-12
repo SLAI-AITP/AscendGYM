@@ -1,12 +1,14 @@
 # CLAUDE.md
 
+> AscendGYM 接入说明：通过 bridge 启动时，Backend 使用公开的 `bridge/bare_bench/sandbox_runner/main.py` 经 HTTP 调用编译服务，地址由 `SANDBOX_URL` 或启动参数确定。无需本机安装私有服务源码或 NPU Conda 环境。下文涉及本地 Conda、`SANDBOX_PATH` 和 `_test.sh` 的默认配置属于独立运行 Backend 的旧路径，不是 AscendGYM 推荐入口。当前服务契约见 [EXECUTION_BACKEND.md](../../../docs/EXECUTION_BACKEND.md)。
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 项目概述
 
 AscendC Tools Backend（`_renew` 性能评测变体）— 面向华为昇腾 NPU 算子优化的 Flask REST API 服务，作为 `ascendc_agent` 客户端的工具执行后端。
 
-本仓库聚焦**算子性能优化（profile / fix / backfill）**，不再做 1D 算子生成、容器内 debug、operator_cleanup 等"全流程编排"工作。沙盒编译/profiling 走本地 `SandboxFusion`（`conda run -n sandbox-npu-runtime ...`），不再 SSH 进容器执行。
+本仓库聚焦**算子性能优化（profile / fix / backfill）**，不再做 1D 算子生成、容器内 debug、operator_cleanup 等"全流程编排"工作。通过 AscendGYM bridge 启动时，编译/profiling 经公开 runner 访问配置的 HTTP 服务，不需要本机 NPU Conda 环境或 SSH 进入服务容器。
 
 **与 `ascendc_tools_backend_zzc`（无 `_renew` 后缀）的关系**：两者已经分叉到不同方向，不建议直接同步代码。
 
@@ -38,7 +40,7 @@ bash start.sh --port 7077 \
 | `list_board_files` | `list_board_files_service.py` | 列出某算子目录下 `op_host` / `op_kernel` 板块的文件 |
 | `view_all_file_content` | `view_all_file_content_service.py` | 读取单文件全文（带版本切换） |
 | `get_op_version` | `get_op_version_service.py` | 回读历史版本快照 (`<root>/op_backup/<op>_version{N}/`) |
-| `ascend_code_profiling` | `ascendc_code_profiling_service.py` | 调 SandboxFusion `_test.sh`：编译 + 运行 + msprof 跑指定 `profiling_runs` 轮，吐 `compile_result`、`run_result`、`profiling_result` |
+| `ascend_code_profiling` | `ascendc_code_profiling_service.py` | 调用配置的 profiling runner 完成编译、测试和 profiling，再解析日志与采样结果 |
 | `solve_gemm_tiling_optimization` | `solve_gemm_tiling_optimization_service.py`（→ `services/gemm/` MIP solver） | GEMM tiling 优化求解（独立子模块，详见 `services/gemm/CLAUDE.md`） |
 | `search_from_windrag` / `search_from_windrag_error` | `search_from_windrag_service.py` | WindVector + rerank 的 RAG 检索（同一 handler 处理两种入口） |
 | `load_cann_skills` | `load_cann_skills_service.py` | 加载 `knowledge_base/GTSOPS-CANN-skills/` 下的 CANN Markdown 技能 |
@@ -49,7 +51,7 @@ bash start.sh --port 7077 \
 - `services/profile_op_summary.py` — 把 msprof JSON 渲染成评测报告 Markdown，由 `ascendc_code_profiling_service` / `generate_profiling_report_service` 调用。
 - `services/extract_msprof_fields.py` — 从 msprof CSV 抽字段。
 - `services/generate_profiling_report_service.py` — 单独的"重新生成历史 profiling 报告"工具，目前未在 `tool_list` 中暴露，但被单测引用。
-- `services/sandbox_compile_test_service.py` — SandboxFusion 编译/测试封装；现在只在 `ascendc_code_profiling_service` 内部被调用，不再有独立的 `ascendc_code_debug` 工具入口。
+- `services/sandbox_compile_test_service.py` — 独立编译/测试封装；当前 AscendGYM profiling 命令由 `ascendc_code_profiling_service` 按 `PROFILING_CONFIG` 构造。
 
 ## 架构说明
 
@@ -75,7 +77,7 @@ POST /api/  →  parse_native_tool_call (if NATIVE_TOOL=1)
   - `SANDBOX_CONFIG`：`sandbox_path` / `timeout`（默认 3600s）/ `conda_env`（默认 `sandbox-npu-runtime`）。
   - `PROFILING_CONFIG`：`ascend_c_path` / `main_py_path` / `host` / `port` / `compile_timeout`（默认 1800000ms）/ `run_timeout`（默认 3600000ms）/ `profiling_runs`（默认 8）。
 - **算子目录布局** — 现行布局**不再带 `_custom` 后缀**：`<RUS_OP_PATH_VERSION 或 RUS_OP_PATH>/<op_name>/<to_snake_case_compact(op_name)>/op_host/...`。带 `_custom` 的算子名本身合法（只是不再作为隐式标记）；`utils/backup.py::_find_custom_dir` 的语义已改为"包含 `op_host` 子目录的子目录"，与命名解耦。
-- **`utils/naming.py`** — `to_snake_case_compact(...)` 是 service 拼路径用的工具函数；如 `SparseAttnSharedkv` → `sparse_attn_sharedkv`，沙盒脚本名规则是 `<op_name>_test.sh`（注意是 camelCase 不是 snake_case，对应 `SANDBOX_PATH` 下的真实文件）。
+- **`utils/naming.py`** — `to_snake_case_compact(...)` 是 service 拼路径用的工具函数；如 `SparseAttnSharedkv` → `sparse_attn_sharedkv`。当前 profiling 入口由 `PROFILING_CONFIG.main_py_path` 指定，不按这个名字寻找 `_test.sh`。
 - **`utils/backup.py`** — 版本快照工具，`get_op_version` 用它列举/恢复 `op_backup/<op_name>_version{N}/` 下的历史代码。
 
 ### `ascend_code_profiling` 的执行机制
@@ -84,7 +86,7 @@ POST /api/  →  parse_native_tool_call (if NATIVE_TOOL=1)
 
 1. `_resolve_op_root(op_name)` —— 优先从 `RUS_OP_PATH_VERSION` 取，否则回退到 `RUS_OP_PATH`，构造路径 `<root>/<op_name>/<op_snake>`。
 2. 查找待执行测试脚本：优先 `<op_dir>/<op_snake>_test.py`；找不到时取目录里第一个 `.py` 文件作为 fallback。
-3. 通过 `conda run -n sandbox-npu-runtime bash <SANDBOX_PATH>/<op_name>_test.sh` 启动 SandboxFusion。
+3. 按 `PROFILING_CONFIG` 中的 runner 目录、脚本和 host/port 构造命令。AscendGYM bridge 将其指向公开 `sandbox_runner/main.py`，由 runner 经 HTTP 提交编译与 profiling；不执行算子目录里的 `_test.sh`。
 4. 校验沙盒响应：若 `status == 'SandboxError'` 且 `compile_result` 为空 → 直接 `compile_failed` 并把 sandbox `message` 抽出来；否则按 AscendC / Triton 分支分别校验 `compile_result.return_code`、`run_result.return_code`、`profiling_result`。
 5. 调 `profile_op_summary.profile_op_summary(..., op_name=...)` 渲染 Markdown 报告（标题始终带算子名，表格永远渲染 `Op Type / Input Shapes / Output Shapes` 三列）。
 6. 返回四种状态：`success`、`compile_failed`、`no_run_result`、`parse_error`（解析失败时在 `message` 末尾附沙盒输出 tail 便于定位）。
