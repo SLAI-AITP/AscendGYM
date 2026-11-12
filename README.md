@@ -55,7 +55,7 @@ Leaderboard 提供交互式评测榜单，可按模型、Harness 和算子查看
 <a id="evaluation-guide"></a>
 ### 参与评测与打榜
 
-请前往 [Leaderboard 的 Import 入口](https://slai-aitp.github.io/AscendGYM/#/imports)，点击 **Choose Files** 填写机构及联系信息，再点击 **Upload Evaluation Results**，按弹窗提示联系项目团队申请评测或提交成绩。也可直接邮件联系 [lidongfang@hit.edu.cn](mailto:lidongfang@hit.edu.cn)。
+请前往 [Leaderboard 的 Import 入口](https://slai-aitp.github.io/AscendGYM/#/imports)，点击 **Choose Files** 填写机构及联系信息，再点击 **Upload Evaluation Results**，按弹窗提示联系项目团队申请评测或提交成绩。
 
 **使用导航：** [参与评测](#evaluation-guide) · [环境准备](#sandbox-setup) · [客户端依赖](#installation) · [上游依赖](#upstream-dependencies) · [数据与任务](#data) · [模型配置](#models) · [结果查看](#results) · [常见问题](#faq)
 
