@@ -45,11 +45,6 @@ Leaderboard 提供交互式评测榜单，可按模型、Harness 和算子查看
       <a href="docs/assets/leaderboard/leaderboard-performance-cost.png"><img src="docs/assets/leaderboard/leaderboard-performance-cost.png" width="100%" alt="Performance × Cost"></a>
     </td>
   </tr>
-  <tr>
-    <td colspan="2">
-      <a href="docs/assets/leaderboard/leaderboard-sts-wide.png"><img src="docs/assets/leaderboard/leaderboard-sts-wide.png" width="100%" alt="STS Leaderboard wide view"></a>
-    </td>
-  </tr>
 </table>
 
 <a id="evaluation-guide"></a>
