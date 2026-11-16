@@ -202,7 +202,7 @@ codex 模型目录里没有可用模板 ...
 ```bash
 cd $ASCEND_GYM_WORKSPACE/bridge
 python3 op_manager.py build --all
-python3 op_manager.py validate --op <OP> --harness native --model <KEY>
+python3 op_manager.py validate --op '<OP>' --harness native
 python3 op_manager.py run --op <OP> --harness bare --agent bare \
   --model <KEY> --candidate-evaluations-max 1 --final-reprofile-count 1 \
   --sandbox-url $SANDBOX_URL --tag CONFIG-CHECK --dry-run

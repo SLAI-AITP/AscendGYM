@@ -65,7 +65,7 @@ python3 op_manager.py build --all
 ### 4.2 校验
 
 ```bash
-python3 op_manager.py validate --op swi_glu --harness native --model <MODEL_KEY>
+python3 op_manager.py validate --op swi_glu --harness native
 ```
 
 `bare` 没有离线 preflight，使用 `run --dry-run` 检查配置。

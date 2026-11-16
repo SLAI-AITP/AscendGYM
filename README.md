@@ -84,7 +84,7 @@ AscendGYM/
 <a id="quick-start"></a>
 ## 快速开始
 
-以下流程使用 bare harness 跑一个任务。需要 Python 3.10+、可访问的模型端点，以及可访问的编译执行服务。
+以下流程使用 native harness + Claude Code 跑一个任务。需要 Python 3.10+、Claude Code CLI、可访问的模型端点，以及可访问的编译执行服务。
 
 **操作顺序：安装客户端 → 准备镜像服务 → 配置模型与任务 → 运行评测。** 客户端和编译执行服务可以位于不同机器。
 
@@ -136,7 +136,7 @@ python3 op_manager.py build --all
 
 该命令从 `datasets/ops_src/` 生成评测用的 `datasets/packages/`。`packages/` 可以在安装后生成，不要求预先随仓库上传。
 
-### 4. 运行一个 bare 任务
+### 4. 运行一个 native 任务
 
 将下面的 `<MODEL_KEY>` 替换为 catalog 中的模型条目 key：
 
@@ -144,13 +144,13 @@ python3 op_manager.py build --all
 cd "$ASCEND_GYM_WORKSPACE/bridge"
 python3 op_manager.py run \
   --op swi_glu \
-  --harness bare \
-  --agent bare \
+  --harness native \
+  --agent claude \
   --model '<MODEL_KEY>' \
   --candidate-evaluations-max 1 \
   --final-reprofile-count 1 \
   --sandbox-url "$SANDBOX_URL" \
-  --tag BARE-DEMO-$(date +%Y%m%d-%H%M%S)
+  --tag NATIVE-DEMO-$(date +%Y%m%d-%H%M%S)
 ```
 
 首次可加 `--dry-run` 离线检查命令与环境。该检查不探测模型协议、不启动代理、不提交评测，因此不能验证端点认证或 NPU 执行。

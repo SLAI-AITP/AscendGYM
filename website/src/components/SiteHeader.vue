@@ -67,8 +67,7 @@
       <p class="hero-tagline">A Benchmark for Evaluating Kernel Optimization Capabilities on Real-World Training and Inference Workloads on Ascend</p>
       <div class="resource-row" aria-label="Project resources">
         <a class="resource-chip" :href="assetPath('AscendGYM_TechReport.pdf')" target="_blank" rel="noopener"><span class="resource-icon resource-brand arxiv"><img :src="assetPath('assets/resources/arxiv.jpg')" alt="arXiv" width="32" height="32"></span> Technical Report <span aria-hidden="true">↗</span></a>
-        <!-- Hugging Face remains a placeholder until a dataset URL is available. -->
-        <span class="resource-chip is-placeholder"><span class="resource-icon resource-brand hf"><img :src="assetPath('assets/resources/huggingface.svg')" alt="" width="32" height="32"></span> Hugging Face</span>
+        <a class="resource-chip" href="https://huggingface.co/datasets/SLAI-AITP/AscendGYM" target="_blank" rel="noopener"><span class="resource-icon resource-brand hf"><img :src="assetPath('assets/resources/huggingface.svg')" alt="" width="32" height="32"></span> Hugging Face <span aria-hidden="true">↗</span></a>
         <a class="resource-chip" href="https://github.com/SLAI-AITP/AscendGYM" target="_blank" rel="noopener"><span class="resource-icon resource-brand gh"><img :src="assetPath('assets/resources/github.svg')" alt="" width="32" height="32"></span> GitHub <span aria-hidden="true">↗</span></a>
       </div>
 

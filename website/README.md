@@ -41,7 +41,7 @@ npm run preview -- --host 127.0.0.1 --base /AscendGYM/
 3. 在 **Actions → Deploy project website → Run workflow** 选择 `main`，运行构建和部署。
 4. 在成功的运行记录中打开部署地址，核对首页、Methodology、Imports、logo、技术报告和仓库按钮。
 
-未设置自定义域名时，预计地址为 `https://slai-aitp.github.io/AscendGYM/`，以部署输出为准。当前文档不表示网站已经上线。
+Leaderboard 地址：[AscendGYM Leaderboard](https://slai-aitp.github.io/AscendGYM/)。更新网站后，重新运行上述部署工作流发布修改。
 
 工作流只上传 `website/dist/`，使用 GitHub 自动提供的授权完成 Pages 部署，不需要把个人 token 写入仓库。参见 [GitHub Pages 官方配置说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 和 [Vite 部署说明](https://vite.dev/guide/static-deploy.html#github-pages)。
 
@@ -76,6 +76,6 @@ npm run test:submission
 
 ## 发布范围
 
-源码、锁文件、随包数据、公开资源及来源声明纳入 Git；`node_modules/`、`dist/`、截图、临时日志、macOS 元数据和本地部署缓存不纳入。页面的 Hugging Face 入口保留为占位，等待真实的数据集发布地址。
+源码、锁文件、随包数据、公开资源及来源声明纳入 Git；`node_modules/`、`dist/`、截图、临时日志、macOS 元数据和本地部署缓存不纳入。页面的 Hugging Face 入口指向 [SLAI-AITP/AscendGYM 数据集](https://huggingface.co/datasets/SLAI-AITP/AscendGYM)。
 
 许可范围见[主仓许可说明](../README.md#license)，第三方图标及其他材料保留各自来源与声明。
