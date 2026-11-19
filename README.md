@@ -17,6 +17,7 @@
   <a href="#quick-start">快速开始</a> ·
   <a href="website/public/AscendGYM_TechReport.pdf">技术报告</a> ·
   <a href="https://slai-aitp.github.io/AscendGYM/">Leaderboard</a> ·
+  <a href="https://huggingface.co/datasets/SLAI-AITP/AscendGYM">Hugging Face Dataset</a> ·
   <a href="#evaluation-guide">参与评测</a> ·
   <a href="#documentation">文档</a> ·
   <a href="#license">许可</a>
@@ -196,6 +197,8 @@ bare 的主要结果为 `result.json`；native 的加速比见 `metrics.json` �
 
 <a id="data"></a>
 ## 数据准备与任务注册
+
+**Hugging Face 数据集：[SLAI-AITP/AscendGYM](https://huggingface.co/datasets/SLAI-AITP/AscendGYM)**。HF 提供任务定义、算子源码基线、冻结测试和 golden 张量的完整评测包下载；`load_dataset()` 可读取任务元数据索引。
 
 ### 使用随包数据
 
