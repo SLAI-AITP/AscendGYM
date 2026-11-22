@@ -1,4 +1,4 @@
-// Minimal stand-in for the backend aggregation service (README §6).
+// Minimal stand-in for the backend aggregation service.
 //
 // Serves `GET /api/bundle` from `src/data/operator_bundle.json` — the snapshot
 // `npm run bundle:operator` writes from `src/data/eval_datasets_summary/` — on

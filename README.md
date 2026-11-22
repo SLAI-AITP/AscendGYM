@@ -394,7 +394,6 @@ export CODEX_HOME=/path/to/codex-template
 | [OPERATOR_TEST_GUIDE](docs/OPERATOR_TEST_GUIDE.md) | 冻结测试脚本接口 |
 | [DATA_LAYOUT](docs/DATA_LAYOUT.md) | 自定义数据根布局 |
 | [examples](examples/README.md) | 多种 agent 的启动示例 |
-| [Leaderboard 开发与部署](website/README.md) | Leaderboard 本地预览、静态构建与 GitHub Pages 部署 |
 
 <a id="license"></a>
 ## 许可
